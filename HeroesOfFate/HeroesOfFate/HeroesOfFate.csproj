@@ -41,21 +41,74 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Compile Include="Contracts\ICreature.cs" />
     <Compile Include="GameEngine\Engine.cs" />
     <Compile Include="MainProgram.cs" />
     <Compile Include="Models\Hero.cs" />
     <Compile Include="Models\Creature.cs" />
     <Compile Include="Models\Monster.cs" />
+=======
+    <Compile Include="Contracts\ICharacter\IArcher.cs" />
+    <Compile Include="Contracts\ICharacter\IMage.cs" />
+    <Compile Include="Contracts\ICharacter\IWarrior.cs" />
+    <Compile Include="Contracts\IMerchant.cs" />
+    <Compile Include="Contracts\IMonster\IMonster.cs" />
+    <Compile Include="GameEngine\Engine.cs" />
+    <Compile Include="MainProgram.cs" />
+    <Compile Include="Models\Character.cs" />
+    <Compile Include="Models\Characters\Archer.cs" />
+    <Compile Include="Models\Characters\Mage.cs" />
+    <Compile Include="Models\Characters\Warrior.cs" />
+    <Compile Include="Models\Item.cs" />
+    <Compile Include="Models\Items\Armor.cs" />
+    <Compile Include="Models\Items\Armors\Body.cs" />
+    <Compile Include="Models\Items\Armors\Boots.cs" />
+    <Compile Include="Models\Items\Armors\Gloves.cs" />
+    <Compile Include="Models\Items\Armors\Helm.cs" />
+    <Compile Include="Models\Items\Armors\Legs.cs" />
+    <Compile Include="Models\Items\Armors\Shield.cs" />
+    <Compile Include="Models\Items\Chest.cs" />
+    <Compile Include="Models\Items\Potion.cs" />
+    <Compile Include="Models\Items\Potions\AttackPotion.cs" />
+    <Compile Include="Models\Items\Potions\DefencePotion.cs" />
+    <Compile Include="Models\Items\Potions\ExpPotion.cs" />
+    <Compile Include="Models\Items\Potions\HealthPotion.cs" />
+    <Compile Include="Models\Items\Potions\ManaPotion.cs" />
+    <Compile Include="Models\Items\Weapon.cs" />
+    <Compile Include="Models\Items\Weapons\OneHWeapons\Axe.cs" />
+    <Compile Include="Models\Items\Weapons\OneHWeapons\Dagger.cs" />
+    <Compile Include="Models\Items\Weapons\OneHWeapons\HandCrossbow.cs" />
+    <Compile Include="Models\Items\Weapons\OneHWeapons\Mace.cs" />
+    <Compile Include="Models\Items\Weapons\OneHWeapons\SpellBook.cs" />
+    <Compile Include="Models\Items\Weapons\OneHWeapons\Sword.cs" />
+    <Compile Include="Models\Items\Weapons\OneHWeapons\Wand.cs" />
+    <Compile Include="Models\Items\Weapons\TwoHWeapons\Bow.cs" />
+    <Compile Include="Models\Items\Weapons\TwoHWeapons\Greataxe.cs" />
+    <Compile Include="Models\Items\Weapons\TwoHWeapons\Greatsword.cs" />
+    <Compile Include="Models\Items\Weapons\TwoHWeapons\Staff.cs" />
+    <Compile Include="Models\Monster.cs" />
+    <Compile Include="Models\Monsters\Boss.cs" />
+    <Compile Include="Models\Monsters\Goblin.cs" />
+    <Compile Include="Models\Monsters\Ogre.cs" />
+    <Compile Include="Models\Monsters\Troll.cs" />
+    <Compile Include="Models\Monsters\Undead.cs" />
+    <Compile Include="Models\Monsters\Wolf.cs" />
+    <Compile Include="Models\NPC\Merchant.cs" />
+>>>>>>> b623402054a437b2643cbfc5ed1fd8d9efef8c8c
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+<<<<<<< HEAD
   <ItemGroup>
     <Folder Include="Models\Characters\" />
     <Folder Include="Models\Monsters\" />
   </ItemGroup>
+=======
+  <ItemGroup />
+>>>>>>> b623402054a437b2643cbfc5ed1fd8d9efef8c8c
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
