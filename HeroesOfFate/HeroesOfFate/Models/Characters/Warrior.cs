@@ -1,4 +1,4 @@
-﻿using HeroesOfFate.Contracts.ICharacter;
+﻿using HeroesOfFate.Contracts.ICharacters;
 
 namespace HeroesOfFate.Models.Characters
 {

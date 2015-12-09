@@ -41,17 +41,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\ICharacter\IArcher.cs" />
-    <Compile Include="Contracts\ICharacter\IMage.cs" />
-    <Compile Include="Contracts\ICharacter\IWarrior.cs" />
+    <Compile Include="Contracts\ICharacter.cs" />
+    <Compile Include="Contracts\ICharacters\IArcher.cs" />
+    <Compile Include="Contracts\ICharacters\IMage.cs" />
+    <Compile Include="Contracts\ICharacters\IWarrior.cs" />
     <Compile Include="Contracts\IMerchant.cs" />
     <Compile Include="Contracts\IMonster\IMonster.cs" />
+    <Compile Include="Contracts\ISkill.cs" />
     <Compile Include="GameEngine\Engine.cs" />
     <Compile Include="MainProgram.cs" />
     <Compile Include="Models\Character.cs" />
     <Compile Include="Models\Characters\Archer.cs" />
     <Compile Include="Models\Characters\Mage.cs" />
     <Compile Include="Models\Characters\Warrior.cs" />
+    <Compile Include="Models\Hero.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\Items\Armor.cs" />
     <Compile Include="Models\Items\Armors\Body.cs" />
