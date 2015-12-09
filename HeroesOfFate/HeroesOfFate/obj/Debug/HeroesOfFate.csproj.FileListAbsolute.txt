@@ -1,1 +1,2 @@
 C:\Users\AboveAll\Documents\Visual Studio 2013\Projects\HeroesOfFate\HeroesOfFate\bin\Debug\HeroesOfFate.exe.config
+C:\Users\AboveAll\Desktop\Bekke\HeroesOfFate\HeroesOfFate\bin\Debug\HeroesOfFate.exe.config
