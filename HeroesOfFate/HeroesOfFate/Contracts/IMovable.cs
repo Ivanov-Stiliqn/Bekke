@@ -6,9 +6,13 @@ using System.Threading.Tasks;
 
 namespace HeroesOfFate.Contracts
 {
-    public interface ISkill
+    public interface IMovable
     {
-        int VoleyOfArrows();
-       
+        double X { get; set; }
+                        
+        double Y { get; set; }
+
+        void Move(double x,double y);
+
     }
 }

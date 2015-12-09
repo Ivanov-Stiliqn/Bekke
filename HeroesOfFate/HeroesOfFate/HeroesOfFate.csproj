@@ -47,6 +47,7 @@
     <Compile Include="Contracts\ICharacters\IWarrior.cs" />
     <Compile Include="Contracts\IMerchant.cs" />
     <Compile Include="Contracts\IMonster\IMonster.cs" />
+    <Compile Include="Contracts\IMovable.cs" />
     <Compile Include="Contracts\ISkill.cs" />
     <Compile Include="GameEngine\Engine.cs" />
     <Compile Include="MainProgram.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="Models\Monsters\Undead.cs" />
     <Compile Include="Models\Monsters\Wolf.cs" />
     <Compile Include="Models\NPC\Merchant.cs" />
+    <Compile Include="Models\Race.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

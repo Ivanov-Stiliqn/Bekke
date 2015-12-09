@@ -2,8 +2,11 @@
 
 namespace HeroesOfFate.Models.Characters
 {
-    public class Mage : Character, IMage
+    public class Mage : Hero, IMage
     {
+        private const double DamageDefault = 0;
+        private const double HealthDefault = 0;
+        private const double ArmorDefault = 0;
          
     }
 }

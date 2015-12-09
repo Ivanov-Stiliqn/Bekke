@@ -3,13 +3,8 @@ using HeroesOfFate.Contracts;
 
 namespace HeroesOfFate.Models
 {
-    public abstract class Character : ICharacter
+    public abstract class Character : ICharacter, IMovable
     {
-        private const double DamageDefault = 0;
-        private const double HealthDefault = 0;
-        private const double ArmorDefault = 0;
-        private const short LevelDefault = 1;
-        private const short ExpDefault = 0;
 
         private short exp;
         private short level;
@@ -18,8 +13,14 @@ namespace HeroesOfFate.Models
         private double armor;
         private bool isDead;
 
-        protected Character(double x,double y,short exp=ExpDefault,short level=LevelDefault,
-            double damage=DamageDefault,double health=HealthDefault,double armor=ArmorDefault)
+        protected Character(
+            double x,
+            double y,
+            double damage,
+            double health,
+            double armor,
+            short exp,
+            short level)
         {
             
             this.X = x;
@@ -72,7 +73,7 @@ namespace HeroesOfFate.Models
         }
 
         public double X { get; protected set; }
-
+                       
         public double Y { get; protected set; }
 
         public short Exp
@@ -105,5 +106,9 @@ namespace HeroesOfFate.Models
         {
             get { return this.isDead; }
         }
+
+
+        public abstract void Move(double x, double y);
+
     }
 }

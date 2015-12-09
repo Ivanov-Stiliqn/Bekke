@@ -4,11 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HeroesOfFate.Contracts
+namespace HeroesOfFate.Models
 {
-    public interface ISkill
+    public enum Race
     {
-        int VoleyOfArrows();
-       
+        Human,
+		Elf,
+		Orc,
+		Dwarf,
+		Warewolf
     }
 }

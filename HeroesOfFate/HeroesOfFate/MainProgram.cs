@@ -2,11 +2,11 @@
 
 namespace HeroesOfFate
 {
-    class MainProgram
+    public class MainProgram
     {
         static void Main()
         {
-
+            
         }
     }
 }
