@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EB7B2A95-7643-41CA-98A1-954D5F842658}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HeroesOfFate</RootNamespace>
+    <AssemblyName>HeroesOfFate</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Contracts\ICharacter\IArcher.cs" />
+    <Compile Include="Contracts\ICharacter\IMage.cs" />
+    <Compile Include="Contracts\ICharacter\IWarrior.cs" />
+    <Compile Include="Contracts\IMerchant.cs" />
+    <Compile Include="Contracts\IMonster\IMonster.cs" />
+    <Compile Include="GameEngine\Engine.cs" />
+    <Compile Include="MainProgram.cs" />
+    <Compile Include="Models\Character.cs" />
+    <Compile Include="Models\Characters\Archer.cs" />
+    <Compile Include="Models\Characters\Mage.cs" />
+    <Compile Include="Models\Characters\Warrior.cs" />
+    <Compile Include="Models\Item.cs" />
+    <Compile Include="Models\Items\Armor.cs" />
+    <Compile Include="Models\Items\Armors\Body.cs" />
+    <Compile Include="Models\Items\Armors\Boots.cs" />
+    <Compile Include="Models\Items\Armors\Gloves.cs" />
+    <Compile Include="Models\Items\Armors\Helm.cs" />
+    <Compile Include="Models\Items\Armors\Legs.cs" />
+    <Compile Include="Models\Items\Armors\Shield.cs" />
+    <Compile Include="Models\Items\Chest.cs" />
+    <Compile Include="Models\Items\Potion.cs" />
+    <Compile Include="Models\Items\Potions\AttackPotion.cs" />
+    <Compile Include="Models\Items\Potions\DefencePotion.cs" />
+    <Compile Include="Models\Items\Potions\ExpPotion.cs" />
+    <Compile Include="Models\Items\Potions\HealthPotion.cs" />
+    <Compile Include="Models\Items\Potions\ManaPotion.cs" />
+    <Compile Include="Models\Items\Weapon.cs" />
+    <Compile Include="Models\Items\Weapons\OneHWeapons\Axe.cs" />
+    <Compile Include="Models\Items\Weapons\OneHWeapons\Dagger.cs" />
+    <Compile Include="Models\Items\Weapons\OneHWeapons\HandCrossbow.cs" />
+    <Compile Include="Models\Items\Weapons\OneHWeapons\Mace.cs" />
+    <Compile Include="Models\Items\Weapons\OneHWeapons\SpellBook.cs" />
+    <Compile Include="Models\Items\Weapons\OneHWeapons\Sword.cs" />
+    <Compile Include="Models\Items\Weapons\OneHWeapons\Wand.cs" />
+    <Compile Include="Models\Items\Weapons\TwoHWeapons\Bow.cs" />
+    <Compile Include="Models\Items\Weapons\TwoHWeapons\Greataxe.cs" />
+    <Compile Include="Models\Items\Weapons\TwoHWeapons\Greatsword.cs" />
+    <Compile Include="Models\Items\Weapons\TwoHWeapons\Staff.cs" />
+    <Compile Include="Models\Monster.cs" />
+    <Compile Include="Models\Monsters\Boss.cs" />
+    <Compile Include="Models\Monsters\Goblin.cs" />
+    <Compile Include="Models\Monsters\Ogre.cs" />
+    <Compile Include="Models\Monsters\Troll.cs" />
+    <Compile Include="Models\Monsters\Undead.cs" />
+    <Compile Include="Models\Monsters\Wolf.cs" />
+    <Compile Include="Models\NPC\Merchant.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
