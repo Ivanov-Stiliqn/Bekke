@@ -14,8 +14,6 @@ namespace HeroesOfFate.Models
         private bool isDead;
 
         protected Character(
-            double x,
-            double y,
             double damage,
             double health,
             double armor,
@@ -23,8 +21,6 @@ namespace HeroesOfFate.Models
             short level)
         {
             
-            this.X = x;
-            this.Y = y;
             this.Exp = exp;
             this.Level = level;
             this.Damage = damage;
@@ -71,10 +67,6 @@ namespace HeroesOfFate.Models
                 this.armor = value;
             }
         }
-
-        public double X { get; protected set; }
-                       
-        public double Y { get; protected set; }
 
         public short Exp
         {

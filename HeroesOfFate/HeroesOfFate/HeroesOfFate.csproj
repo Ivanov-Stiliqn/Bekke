@@ -57,7 +57,7 @@
     <Compile Include="Models\Characters\Warrior.cs" />
     <Compile Include="Models\Hero.cs" />
     <Compile Include="Models\Item.cs" />
-    <Compile Include="Models\Items\Armor.cs" />
+    <Compile Include="Models\Items\Armors\Armor.cs" />
     <Compile Include="Models\Items\Armors\Body.cs" />
     <Compile Include="Models\Items\Armors\Boots.cs" />
     <Compile Include="Models\Items\Armors\Gloves.cs" />
@@ -65,13 +65,13 @@
     <Compile Include="Models\Items\Armors\Legs.cs" />
     <Compile Include="Models\Items\Armors\Shield.cs" />
     <Compile Include="Models\Items\Chest.cs" />
-    <Compile Include="Models\Items\Potion.cs" />
+    <Compile Include="Models\Items\Potions\Potion.cs" />
     <Compile Include="Models\Items\Potions\AttackPotion.cs" />
     <Compile Include="Models\Items\Potions\DefencePotion.cs" />
     <Compile Include="Models\Items\Potions\ExpPotion.cs" />
     <Compile Include="Models\Items\Potions\HealthPotion.cs" />
     <Compile Include="Models\Items\Potions\ManaPotion.cs" />
-    <Compile Include="Models\Items\Weapon.cs" />
+    <Compile Include="Models\Items\Weapons\Weapon.cs" />
     <Compile Include="Models\Items\Weapons\OneHWeapons\Axe.cs" />
     <Compile Include="Models\Items\Weapons\OneHWeapons\Dagger.cs" />
     <Compile Include="Models\Items\Weapons\OneHWeapons\HandCrossbow.cs" />
