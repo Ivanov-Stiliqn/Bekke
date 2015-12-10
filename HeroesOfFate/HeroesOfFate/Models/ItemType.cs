@@ -11,9 +11,9 @@ namespace HeroesOfFate.Models
         Helmet,
         Weapon,
         Shield,
+        Body,
+        Legs,
         Gloves,
         Boots
-
-
     }
 }

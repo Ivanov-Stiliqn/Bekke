@@ -12,6 +12,6 @@ namespace HeroesOfFate.Models
 		Elf,
 		Orc,
 		Dwarf,
-		Warewolf
+		Werewolf
     }
 }
