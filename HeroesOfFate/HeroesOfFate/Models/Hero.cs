@@ -7,7 +7,7 @@ using HeroesOfFate.Models.Items.Armors;
 
 namespace HeroesOfFate.Models
 {
-    public abstract class Hero : Character,IInventory,IMovable
+    public abstract class Hero : Character,IInventory
     {
         
         private const short LevelDefault = 1;
@@ -95,12 +95,6 @@ namespace HeroesOfFate.Models
             this.inventory.Remove(item);
         }
 
-
-        public void Move(double x, double y)
-        {
-            this.X = x;
-            this.Y = y;
-        }
 
         //TO DO : Equip two-handed weapon
         public void Equip(Item item)

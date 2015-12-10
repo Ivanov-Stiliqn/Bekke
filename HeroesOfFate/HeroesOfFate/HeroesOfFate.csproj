@@ -48,7 +48,6 @@
     <Compile Include="Contracts\IInventory.cs" />
     <Compile Include="Contracts\IMerchant.cs" />
     <Compile Include="Contracts\IMonster\IMonster.cs" />
-    <Compile Include="Contracts\IMovable.cs" />
     <Compile Include="Contracts\ISkill.cs" />
     <Compile Include="GameEngine\Engine.cs" />
     <Compile Include="MainProgram.cs" />
