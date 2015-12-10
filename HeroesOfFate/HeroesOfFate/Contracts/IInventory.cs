@@ -3,16 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HeroesOfFate.Models;
 
 namespace HeroesOfFate.Contracts
 {
-    public interface IMovable
+    public interface IInventory
     {
-        double X { get;  }
-                        
-        double Y { get;  }
+        void AddItemToInventory(Item item);
 
-        void Move(double x,double y);
-
+        void RemoveItemFromInventory(Item item);
     }
 }

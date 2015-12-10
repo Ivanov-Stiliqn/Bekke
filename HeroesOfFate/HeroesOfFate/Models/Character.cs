@@ -3,7 +3,7 @@ using HeroesOfFate.Contracts;
 
 namespace HeroesOfFate.Models
 {
-    public abstract class Character : ICharacter, IMovable
+    public abstract class Character : ICharacter
     {
 
         private short exp;
@@ -106,9 +106,6 @@ namespace HeroesOfFate.Models
         {
             get { return this.isDead; }
         }
-
-
-        public abstract void Move(double x, double y);
 
     }
 }

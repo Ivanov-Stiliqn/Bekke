@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using HeroesOfFate.Contracts;
+using HeroesOfFate.Models.Items.Armors;
 
 
 namespace HeroesOfFate.Models
 {
-    public abstract class Hero : Character
+    public abstract class Hero : Character,IInventory,IMovable
     {
         
         private const short LevelDefault = 1;
@@ -15,7 +17,7 @@ namespace HeroesOfFate.Models
         private string name;
         private List<Item> inventory;
         private double gold;
-
+        private List<Item> equipment; 
 
         protected Hero(
             string name,
@@ -32,9 +34,11 @@ namespace HeroesOfFate.Models
             :base(x, y,damage, health, armor,exp,level)
         {
             this.Name = name;
-            this.Inventory=new List<Item>();
+            this.inventory=new List<Item>();
             this.HeroRace = heroRace;
             this.Gold = gold;
+            this.equipment = new List<Item>();
+
         }
 
         public string Name 
@@ -54,22 +58,14 @@ namespace HeroesOfFate.Models
             }
        }
 
-        public IEnumerable Inventory { get; private set; }
-
-        public void AddItemToInventory(IEnumerable<Item> items)
+        public IEnumerable<Item> Inventory
         {
-            foreach (var item in items)
-            {
-                this.inventory.Add(item);
-            }
+            get { return this.inventory; }
         }
 
-        public void RemoveItemFromInventory(IEnumerable<Item> items)
+        public IEnumerable<Item> Equipment
         {
-            foreach (var item in items)
-            {
-                this.inventory.Remove(item);
-            }
+            get { return this.equipment; }
         }
 
         public double Gold 
@@ -88,10 +84,46 @@ namespace HeroesOfFate.Models
         public Race HeroRace { get; set; }
 
 
-        public override void Move(double x, double y)
+        public void AddItemToInventory(Item item)
+        {
+            this.inventory.Add(item);
+
+        }
+
+        public void RemoveItemFromInventory(Item item)
+        {
+            this.inventory.Remove(item);
+        }
+
+
+        public void Move(double x, double y)
         {
             this.X = x;
             this.Y = y;
+        }
+
+        //TO DO : Equip two-handed weapon
+        public void Equip(Item item)
+        {
+            bool isEquiped = false;
+
+            foreach (var equipedItem in this.equipment)
+            {
+                if (item.Type == equipedItem.Type)
+                {
+                    this.equipment.Remove(equipedItem);
+                    AddItemToInventory(equipedItem);
+
+                    this.equipment.Add(item);
+                    RemoveItemFromInventory(item);
+                    isEquiped = true;
+                }
+            }
+            if (!isEquiped)
+            {
+                this.equipment.Add(item);
+                RemoveItemFromInventory(item);
+            }
         }
     }
 }

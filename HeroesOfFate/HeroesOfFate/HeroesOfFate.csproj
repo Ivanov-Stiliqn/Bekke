@@ -45,6 +45,7 @@
     <Compile Include="Contracts\ICharacters\IArcher.cs" />
     <Compile Include="Contracts\ICharacters\IMage.cs" />
     <Compile Include="Contracts\ICharacters\IWarrior.cs" />
+    <Compile Include="Contracts\IInventory.cs" />
     <Compile Include="Contracts\IMerchant.cs" />
     <Compile Include="Contracts\IMonster\IMonster.cs" />
     <Compile Include="Contracts\IMovable.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="Models\Items\Weapons\TwoHWeapons\Greataxe.cs" />
     <Compile Include="Models\Items\Weapons\TwoHWeapons\Greatsword.cs" />
     <Compile Include="Models\Items\Weapons\TwoHWeapons\Staff.cs" />
+    <Compile Include="Models\ItemType.cs" />
     <Compile Include="Models\Monster.cs" />
     <Compile Include="Models\Monsters\Boss.cs" />
     <Compile Include="Models\Monsters\Goblin.cs" />
