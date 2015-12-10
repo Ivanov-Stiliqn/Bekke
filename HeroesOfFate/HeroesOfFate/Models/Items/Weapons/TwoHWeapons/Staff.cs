@@ -2,6 +2,8 @@
 {
     public class Staff : Weapon
     {
-         
+        public Staff(string id, double staffAttack, decimal price) : base(id, staffAttack, price)
+        {
+        }
     }
 }

@@ -2,11 +2,11 @@
 {
     public class Armor : Item
     {
-        public Armor(string id, double armorDefence) : base(id)
+        public Armor(string id, double armorDefence, decimal price) : base(id, price)
         {
-            ArmorDefence = armorDefence;
+            this.ArmorDefence = armorDefence;
         }
 
-        public double ArmorDefence;
+        public double ArmorDefence { get; set; }
     }
 }

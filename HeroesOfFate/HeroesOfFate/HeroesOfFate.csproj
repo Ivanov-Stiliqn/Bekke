@@ -51,12 +51,12 @@
     <Compile Include="Contracts\ISkill.cs" />
     <Compile Include="GameEngine\Engine.cs" />
     <Compile Include="MainProgram.cs" />
-    <Compile Include="Models\Character.cs" />
-    <Compile Include="Models\Characters\Archer.cs" />
-    <Compile Include="Models\Characters\Mage.cs" />
-    <Compile Include="Models\Characters\Warrior.cs" />
-    <Compile Include="Models\Hero.cs" />
-    <Compile Include="Models\Item.cs" />
+    <Compile Include="Models\Characters\Character.cs" />
+    <Compile Include="Models\Characters\Heroes\Archer.cs" />
+    <Compile Include="Models\Characters\Heroes\Mage.cs" />
+    <Compile Include="Models\Characters\Heroes\Warrior.cs" />
+    <Compile Include="Models\Characters\Heroes\Hero.cs" />
+    <Compile Include="Models\Items\Item.cs" />
     <Compile Include="Models\Items\Armors\Armor.cs" />
     <Compile Include="Models\Items\Armors\Body.cs" />
     <Compile Include="Models\Items\Armors\Boots.cs" />
@@ -83,16 +83,16 @@
     <Compile Include="Models\Items\Weapons\TwoHWeapons\Greataxe.cs" />
     <Compile Include="Models\Items\Weapons\TwoHWeapons\Greatsword.cs" />
     <Compile Include="Models\Items\Weapons\TwoHWeapons\Staff.cs" />
-    <Compile Include="Models\ItemType.cs" />
-    <Compile Include="Models\Monster.cs" />
-    <Compile Include="Models\Monsters\Boss.cs" />
-    <Compile Include="Models\Monsters\Goblin.cs" />
-    <Compile Include="Models\Monsters\Ogre.cs" />
-    <Compile Include="Models\Monsters\Troll.cs" />
-    <Compile Include="Models\Monsters\Undead.cs" />
-    <Compile Include="Models\Monsters\Wolf.cs" />
+    <Compile Include="Models\Items\ItemType.cs" />
+    <Compile Include="Models\Characters\Monsters\Monster.cs" />
+    <Compile Include="Models\Characters\Monsters\Boss.cs" />
+    <Compile Include="Models\Characters\Monsters\Goblin.cs" />
+    <Compile Include="Models\Characters\Monsters\Ogre.cs" />
+    <Compile Include="Models\Characters\Monsters\Troll.cs" />
+    <Compile Include="Models\Characters\Monsters\Undead.cs" />
+    <Compile Include="Models\Characters\Monsters\Wolf.cs" />
     <Compile Include="Models\NPC\Merchant.cs" />
-    <Compile Include="Models\Race.cs" />
+    <Compile Include="Models\Characters\Heroes\Race.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

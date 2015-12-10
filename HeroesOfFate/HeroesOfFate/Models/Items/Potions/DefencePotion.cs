@@ -2,6 +2,8 @@
 {
     public class DefencePotion : Potion
     {
-         
+        public DefencePotion(string id, double potionEffect, decimal price) : base(id, potionEffect, price)
+        {
+        }
     }
 }

@@ -2,11 +2,11 @@
 {
     public class Weapon : Item
     {
-        public Weapon(string id, double weaponAttack) : base(id)
+        public Weapon(string id, double weaponAttack, decimal price) : base(id, price)
         {
             WeaponAttack = weaponAttack;
         }
 
-        public double WeaponAttack;
+        public double WeaponAttack { get; set; }
     }
 }

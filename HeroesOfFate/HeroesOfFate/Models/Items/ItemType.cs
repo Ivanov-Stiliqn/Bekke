@@ -9,8 +9,8 @@ namespace HeroesOfFate.Models
     public enum ItemType
     {
         Helmet,
-        Weapon,
-        Shield,
+        MainHand,
+        OffHand,
         Body,
         Legs,
         Gloves,

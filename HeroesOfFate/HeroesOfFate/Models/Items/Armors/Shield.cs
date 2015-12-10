@@ -2,6 +2,9 @@
 {
     public class Shield : Armor
     {
-         
+        public Shield(string id, double shieldDefence, decimal price) : base(id, shieldDefence, price)
+        {
+            
+        }
     }
 }

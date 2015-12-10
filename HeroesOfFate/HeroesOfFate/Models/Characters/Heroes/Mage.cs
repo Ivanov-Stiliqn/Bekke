@@ -2,23 +2,18 @@
 
 namespace HeroesOfFate.Models.Characters
 {
-    public class Warrior : Hero, IWarrior
+    public class Mage : Hero, IMage
     {
         private const double DamageDefault = 0;
         private const double HealthDefault = 0;
         private const double ArmorDefault = 0;
+        private const double MageDmgRedDefault = 0.10;
 
-      public Warrior(
-            string name,
-            Race heroRace,
-            double damage,
-            double health,
-            double armor )
-            :base(name,heroRace,damage,health,armor)
+        public Mage(string name, Race heroRace)
+            :base(name,heroRace,DamageDefault,HealthDefault,ArmorDefault)
         {
                 
         }
-
-
+         
     }
 }

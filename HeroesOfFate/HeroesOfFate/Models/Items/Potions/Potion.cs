@@ -2,7 +2,7 @@
 {
     public class Potion : Item
     {
-        public Potion(string id, double potionEffect) : base(id)
+        public Potion(string id, double potionEffect, decimal price) : base(id, price)
         {
             PotionEffect = potionEffect;
         }

@@ -9,14 +9,10 @@ namespace HeroesOfFate.Models.Characters
         private const double DamageDefault = 0;
         private const double HealthDefault = 0;
         private const double ArmorDefault = 0;
+        private const double ArchDmgRedDefault = 0.15;
 
-        public Archer(
-            string name,
-            Race heroRace,
-            double damage,
-            double health,
-            double armor )
-            :base(name,heroRace,damage,health,armor)
+        public Archer(string name, Race heroRace)
+            :base(name,heroRace,DamageDefault,HealthDefault,ArmorDefault)
         {
                 
         }

@@ -10,7 +10,7 @@ namespace HeroesOfFate
     {
         static void Main()
         {
-            Archer archi=new Archer("archi",Race.Elf,23,49,23);
+            
         }
     }
 }
