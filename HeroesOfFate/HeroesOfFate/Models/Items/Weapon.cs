@@ -5,7 +5,7 @@
 
         public Weapon(string id, double weaponAttack) : base(id)
         {
-            WeaponAttack = weaponAttack;
+            this.WeaponAttack = weaponAttack;
         }
 
         public double WeaponAttack;

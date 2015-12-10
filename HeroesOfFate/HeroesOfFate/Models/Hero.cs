@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using HeroesOfFate.Contracts;
 using HeroesOfFate.Models.Items.Armors;
+using HeroesOfFate.Models.NPC;
 
 
 namespace HeroesOfFate.Models
@@ -15,14 +16,12 @@ namespace HeroesOfFate.Models
         private const double StartingGold = 0;
 
         private string name;
-        private List<Item> inventory;
+        private readonly List<Item> inventory;
         private double gold;
-        private List<Item> equipment; 
+        private readonly List<Item> equipment; 
 
         protected Hero(
             string name,
-            double x,
-            double y,  
             Race heroRace,
             double damage,
             double health,
@@ -31,7 +30,7 @@ namespace HeroesOfFate.Models
             short exp=ExpDefault, 
             short level=LevelDefault)
 
-            :base(x, y,damage, health, armor,exp,level)
+            :base(damage, health, armor,exp,level)
         {
             this.Name = name;
             this.inventory=new List<Item>();

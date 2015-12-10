@@ -2,17 +2,21 @@
 
 namespace HeroesOfFate.Models
 {
+    // TO DO : ADD VALIDATION
     public abstract class Item
     {
         private ItemType type;
+        private decimal price;
 
-        protected Item(string id)
+        protected Item(string id,decimal price)
         {
-            Id = id;
-            
+            this.Id = id;
+            this.Price = price;
         }
         public ItemType Type { get; set; }
 
         public string Id { get; set; }
+
+        public decimal Price { get; set; }
     }
 }
