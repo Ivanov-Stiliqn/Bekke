@@ -2,8 +2,9 @@
 {
     public class SpellBook : Weapon
     {
-        public SpellBook(string id, double spellBookAttack, decimal price) : base(id, spellBookAttack, price)
+        public SpellBook(ItemType type, string id, double spellBookAttack, decimal price) : base(type, id, spellBookAttack, price)
         {
+
         }
     }
 }

@@ -41,14 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\ICharacter.cs" />
+    <Compile Include="Contracts\ICharacters\ICharacter.cs" />
     <Compile Include="Contracts\ICharacters\IArcher.cs" />
     <Compile Include="Contracts\ICharacters\IMage.cs" />
     <Compile Include="Contracts\ICharacters\IWarrior.cs" />
-    <Compile Include="Contracts\IInventory.cs" />
+    <Compile Include="Contracts\ICharacters\IInventory.cs" />
     <Compile Include="Contracts\IMerchant.cs" />
     <Compile Include="Contracts\IMonster\IMonster.cs" />
-    <Compile Include="Contracts\ISkill.cs" />
     <Compile Include="GameEngine\Engine.cs" />
     <Compile Include="MainProgram.cs" />
     <Compile Include="Models\Characters\Character.cs" />

@@ -14,6 +14,7 @@ namespace HeroesOfFate.Models
         Body,
         Legs,
         Gloves,
-        Boots
+        Boots,
+        Potion
     }
 }

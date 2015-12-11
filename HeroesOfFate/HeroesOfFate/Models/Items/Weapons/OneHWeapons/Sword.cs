@@ -2,8 +2,9 @@
 {
     public class Sword : Weapon
     {
-        public Sword(string id, double swordAttack, decimal price) : base(id, swordAttack, price)
+        public Sword(ItemType type, string id, double swordAttack, decimal price) : base(type, id, swordAttack, price)
         {
+
         }
     }
 }

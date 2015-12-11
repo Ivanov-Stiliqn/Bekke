@@ -2,7 +2,7 @@
 {
     public class Armor : Item
     {
-        public Armor(string id, double armorDefence, decimal price) : base(id, price)
+        protected Armor(ItemType type, string id, double armorDefence, decimal price) : base(type, id, price)
         {
             this.ArmorDefence = armorDefence;
         }

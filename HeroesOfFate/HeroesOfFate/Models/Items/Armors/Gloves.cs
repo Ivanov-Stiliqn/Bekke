@@ -1,10 +1,8 @@
-﻿using System.Threading;
-
-namespace HeroesOfFate.Models.Items.Armors
+﻿namespace HeroesOfFate.Models.Items.Armors
 {
     public class Gloves : Armor
     {
-        public Gloves(string id,double glovesDefence, decimal price) : base(id, glovesDefence, price)
+        public Gloves(ItemType type,string id, double glovesDefence, decimal price) : base(type, id, glovesDefence, price)
         {
             
         }

@@ -2,7 +2,7 @@
 {
     public class Boots : Armor
     {
-        public Boots(string id, double bootsDefence, decimal price) : base(id, bootsDefence, price)
+        public Boots(ItemType type, string id, double bootsDefence, decimal price) : base(type, id, bootsDefence, price)
         {
             
         }

@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using HeroesOfFate.Contracts;
-using HeroesOfFate.Models.Items.Armors;
-using HeroesOfFate.Models.NPC;
+using HeroesOfFate.Models.Items;
 
-
-namespace HeroesOfFate.Models
+namespace HeroesOfFate.Models.Characters.Heroes
 {
     public abstract class Hero : Character,IInventory
     {
@@ -16,9 +13,7 @@ namespace HeroesOfFate.Models
         private const double StartingGold = 0;
 
         private string name;
-        private readonly List<Item> inventory;
         private double gold;
-        private readonly List<Item> equipment; 
 
         protected Hero(
             string name,
@@ -26,18 +21,17 @@ namespace HeroesOfFate.Models
             double damage,
             double health,
             double armor,
-            double gold=StartingGold,
-            short exp=ExpDefault, 
-            short level=LevelDefault)
+            double gold = StartingGold,
+            short exp = ExpDefault, 
+            short level = LevelDefault)
 
             :base(damage, health, armor,exp,level)
         {
             this.Name = name;
-            this.inventory=new List<Item>();
             this.HeroRace = heroRace;
+            this.Inventory = new List<Item>();
+            this.Equipment = new List<Item>();
             this.Gold = gold;
-            this.equipment = new List<Item>();
-
         }
 
         public string Name 
@@ -47,24 +41,28 @@ namespace HeroesOfFate.Models
             {
                 if (string.IsNullOrEmpty(value))
                 {
-                    throw new ArgumentNullException("Name cannot be null or empty !");
+                    throw new ArgumentNullException("hero name","Name cannot be null or empty !");
                 }
                 if (value.Length < 3)
                 {
-                    throw new ArgumentOutOfRangeException("Name length cannot be less than 3 symbols");
+                    throw new ArgumentOutOfRangeException("hero name length" ,"Name length cannot be less than 3 symbols");
                 }
                 this.name = value;
             }
        }
 
-        public IEnumerable<Item> Inventory
+        public List<Item> Inventory
         {
-            get { return this.inventory; }
+            get;
+            private set; 
+            
         }
 
-        public IEnumerable<Item> Equipment
+        public List<Item> Equipment
         {
-            get { return this.equipment; }
+            get;
+            private set; 
+            
         }
 
         public double Gold 
@@ -83,40 +81,37 @@ namespace HeroesOfFate.Models
         public Race HeroRace { get; set; }
 
 
-        public void AddItemToInventory(Item item)
-        {
-            this.inventory.Add(item);
+        public abstract void AddItemToInventory(Item item);
 
+        public abstract void RemoveItemFromInventory(Item item);
+
+        protected virtual void ApplyWeaponDmg(Weapon weapon)
+        {
+            this.Damage += weapon.WeaponAttack;
         }
 
-        public void RemoveItemFromInventory(Item item)
+        protected virtual void ApplyArmorValue(Armor armor)
         {
-            this.inventory.Remove(item);
+            this.Armor += armor.ArmorDefence;
         }
 
+        protected virtual void RemoveWeaponDmg(Weapon weapon)
+        {
+            this.Damage -= weapon.WeaponAttack;
+        }
 
+        protected virtual void RemoveArmorValue(Armor armor)
+        {
+            this.Armor -= armor.ArmorDefence;
+        }
+
+        public abstract void Equip(Item item);
         //TO DO : Equip two-handed weapon
-        public void Equip(Item item)
+
+        public override string ToString()
         {
-            bool isEquiped = false;
-
-            foreach (var equipedItem in this.equipment)
-            {
-                if (item.Type == equipedItem.Type)
-                {
-                    this.equipment.Remove(equipedItem);
-                    AddItemToInventory(equipedItem);
-
-                    this.equipment.Add(item);
-                    RemoveItemFromInventory(item);
-                    isEquiped = true;
-                }
-            }
-            if (!isEquiped)
-            {
-                this.equipment.Add(item);
-                RemoveItemFromInventory(item);
-            }
+            return string.Format("Name: {0}, Race: {1}, Damage: {2}, Armor: {3}, Health: {4}",
+                this.Name, this.HeroRace, this.Damage, this.Armor, Health);
         }
     }
 }

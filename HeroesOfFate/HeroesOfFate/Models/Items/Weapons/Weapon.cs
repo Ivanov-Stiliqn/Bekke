@@ -2,7 +2,7 @@
 {
     public class Weapon : Item
     {
-        public Weapon(string id, double weaponAttack, decimal price) : base(id, price)
+        protected Weapon(ItemType type, string id, double weaponAttack, decimal price) : base(type, id, price)
         {
             WeaponAttack = weaponAttack;
         }

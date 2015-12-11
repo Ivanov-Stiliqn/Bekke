@@ -2,7 +2,7 @@
 {
     public class Body : Armor
     {
-        public Body(string id, double bodyDefence, decimal price) : base(id, bodyDefence, price)
+        public Body(ItemType type, string id, double bodyDefence, decimal price) : base(type, id, bodyDefence, price)
         {
             
         }

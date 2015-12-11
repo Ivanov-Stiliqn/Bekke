@@ -2,7 +2,7 @@
 {
     public class Greataxe : Weapon
     {
-        public Greataxe(string id, double greataxeAttack, decimal price) : base(id, greataxeAttack, price)
+        public Greataxe(ItemType type, string id, double greataxeAttack, decimal price) : base(type, id, greataxeAttack, price)
         {
         }
     }

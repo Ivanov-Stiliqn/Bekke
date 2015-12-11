@@ -2,6 +2,7 @@
 {
     public interface IArcher
     {
-         
+        double AttackDamage { get; set; }
+        double ArmorDefence { get; set; }
     }
 }

@@ -2,7 +2,7 @@
 {
     public class Mace : Weapon
     {
-        public Mace(string id, double maceAttack, decimal price) : base(id, maceAttack, price)
+        public Mace(ItemType type, string id, double maceAttack, decimal price) : base(type, id, maceAttack, price)
         {
         }
     }
