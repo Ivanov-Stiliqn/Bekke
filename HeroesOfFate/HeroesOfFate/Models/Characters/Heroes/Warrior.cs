@@ -11,11 +11,13 @@ namespace HeroesOfFate.Models.Characters.Heroes
         private const double HealthDefault = 250;
         private const double ArmorDefault = 125;
         private const double WrrDmgRedDefault = 0.40;
+        private const double MaxHealthDefault = HealthDefault;
+        
 
         public Warrior(string name, Race heroRace)
-            :base(name,heroRace,DamageDefault,HealthDefault,ArmorDefault)
+            :base(name,heroRace,DamageDefault,HealthDefault,ArmorDefault,MaxHealthDefault)
         {
-
+            
         }
 
         public override string ToString()

@@ -11,7 +11,7 @@ namespace HeroesOfFate.Models
         private string id;
         private decimal price;
 
-        protected Item(ItemType type, double weaponAttack, double armorDefence, string id,decimal price)
+        protected Item(double weaponAttack, double armorDefence, string id,decimal price)
         {
             Type = type;
             WeaponAttack = weaponAttack;
@@ -20,7 +20,7 @@ namespace HeroesOfFate.Models
             this.Price = price;
         }
 
-        public ItemType Type { get { return type; } set { type = value; } }
+        public ItemType Type { get { return this.type; } set { this.type = value; } }
 
         public double WeaponAttack { get; set; }
 

@@ -14,9 +14,7 @@ namespace HeroesOfFate.Contracts
 
         double Armor { get; set; }
 
-        short Level { get; set; }
-
-        short Exp { get; set; }
+        int Level { get; set; }
 
         bool IsDead { get; }
     }

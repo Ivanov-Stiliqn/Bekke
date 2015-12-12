@@ -6,8 +6,8 @@
         private const double ArmorDefault = 0;
         private const double HealthEffect = 0;
 
-        public AttackPotion(ItemType type, string id, decimal price) 
-            : base(type, id, AttackDefault, ArmorDefault,HealthEffect, price)
+        public AttackPotion(string id, decimal price) 
+            : base(id, AttackDefault, ArmorDefault,HealthEffect, price)
         {
         }
     }

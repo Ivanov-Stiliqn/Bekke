@@ -5,6 +5,7 @@ using HeroesOfFate.Models.Characters.Heroes;
 using HeroesOfFate.Models.Items;
 using HeroesOfFate.Models.Items.Armors;
 using HeroesOfFate.Models.Items.Weapons.OneHWeapons;
+using HeroesOfFate.Models.Items.Weapons.TwoHWeapons;
 
 namespace HeroesOfFate
 {
@@ -16,21 +17,28 @@ namespace HeroesOfFate
 
             Console.WriteLine(warrior.ToString());
 
-            Weapon axe = new Axe(ItemType.MainHand, 100, "Laina", 15m);
-            Weapon sword = new Sword(ItemType.MainHand, 200, "laina 2", 10m);
-            Armor shield = new Shield(ItemType.OffHand, "more laina", 50, 5m);
+            Weapon axe = new Axe(100, "Laina", 15m);
+            Weapon greatSword = new Greatsword(200, "laina 2", 10m);
+            Armor shield = new Shield("more laina", 50, 5m);
+            Staff staff = new Staff(300,"Gandalf",330330);
 
-            warrior.AddItemToInventory(axe);
-            warrior.Equip(axe);
+
+            
+            warrior.AddItemToInventory(staff);
+            warrior.Equip(staff);
             Console.WriteLine(warrior.ToString());
 
-            warrior.AddItemToInventory(shield);
-            warrior.Equip(shield);
+            Armor armor=new Body("blqt",100,231);
+
+            warrior.AddItemToInventory(armor);
+            warrior.Equip(armor);
             Console.WriteLine(warrior.ToString());
 
-            warrior.AddItemToInventory(sword);
-            warrior.Equip(sword);
+            warrior.Exp = 799;
             Console.WriteLine(warrior.ToString());
+            Console.WriteLine(warrior.Exp);
+            Console.WriteLine(warrior.MaxHealth);
+            Console.WriteLine(warrior.Level);
         }
     }
 }

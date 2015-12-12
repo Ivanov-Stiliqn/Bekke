@@ -2,9 +2,9 @@
 {
     public class Shield : Armor
     {
-        public Shield(ItemType type, string id, double shieldDefence, decimal price) : base(type, id, shieldDefence, price)
+        public Shield(string id, double shieldDefence, decimal price) : base(id, shieldDefence, price)
         {
-            
+            this.Type = ItemType.OffHand;
         }
     }
 }

@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using HeroesOfFate.Contracts;
 using HeroesOfFate.Models.Items;
+using HeroesOfFate.Models.Items.Potions;
 
 namespace HeroesOfFate.Models.Characters.Heroes
 {
     public abstract class Hero : Character,IInventory
     {
         
-        private const short LevelDefault = 1;
-        private const short ExpDefault = 0;
+        private const int LevelDefault = 1;
         private const double StartingGold = 0;
-
+   
         private string name;
         private double gold;
+        private int exp;
         private readonly List<Item> inventory;
         private readonly List<Item> equipment; 
 
@@ -24,17 +25,19 @@ namespace HeroesOfFate.Models.Characters.Heroes
             double damage,
             double health,
             double armor,
-            double gold = StartingGold,
-            short exp = ExpDefault, 
-            short level = LevelDefault)
+            double maxHealth,
+            double gold = StartingGold, 
+            int level = LevelDefault)
 
-            :base(damage, health, armor,exp,level)
+            :base(damage, health, armor,level)
         {
             this.Name = name;
             this.HeroRace = heroRace;
             this.inventory = new List<Item>();
             this.equipment = new List<Item>();
             this.Gold = gold;
+            this.Exp = exp;
+            this.MaxHealth = maxHealth;
         }
 
         public string Name 
@@ -53,6 +56,28 @@ namespace HeroesOfFate.Models.Characters.Heroes
                 this.name = value;
             }
        }
+
+        public int Exp
+        {
+            get { return this.exp; }
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentOutOfRangeException("Experience cannot be negative");
+                }
+                if (value >= 100)
+                {
+                    this.LevelUp(value);
+                    
+                }
+                else
+                {
+                    this.exp = value;
+                }
+                
+            }
+        }
 
         public IEnumerable<Item> Inventory
         {
@@ -80,6 +105,10 @@ namespace HeroesOfFate.Models.Characters.Heroes
 
         public Race HeroRace { get; set; }
 
+        public double MaxHealth { get; set; }
+
+
+
         public void AddItemToInventory(Item item)
         {
             this.inventory.Add(item);
@@ -103,6 +132,26 @@ namespace HeroesOfFate.Models.Characters.Heroes
             this.Armor -= item.ArmorDefence;
         }
 
+        public void ApplyPotionEffect(Potion potion)
+        {
+            this.Damage += potion.WeaponAttack;
+            this.Armor += potion.ArmorDefence;
+            this.Health += potion.HealthEffect;
+
+            if (this.Health > this.MaxHealth)
+            {
+                this.Health = this.MaxHealth;
+            }
+
+        }
+
+        public void RemovePotionEffect(Potion potion)
+        {
+            this.Damage -= potion.WeaponAttack;
+            this.Armor -= potion.ArmorDefence;
+            this.Health -= potion.HealthEffect;
+        }
+
         public void Equip(Item item)
         {
             bool isEquiped = false;
@@ -111,6 +160,21 @@ namespace HeroesOfFate.Models.Characters.Heroes
             {
                 if (item.Type == equipedItem.Type)
                 {
+                    if (item.Type == ItemType.MainHand)
+                    {
+                        var weapon = new Weapon(item.WeaponAttack, item.Id, item.Price);
+                        if (!weapon.IsOneH)
+                        {
+                            Item shield = this.FindShield();
+                            if (shield != null)
+                            {
+                                this.equipment.Remove(shield);
+                                this.AddItemToInventory(shield);
+                                this.RemoveItemEffect(shield);
+                            }
+                        }
+                    }
+                   
                     this.equipment.Remove(equipedItem);
                     this.RemoveItemEffect(equipedItem);
                     this.AddItemToInventory(equipedItem);
@@ -123,10 +187,56 @@ namespace HeroesOfFate.Models.Characters.Heroes
 
             if (!isEquiped)
             {
+                if (item.Type == ItemType.OffHand)
+                {
+                    Weapon weapon = this.FindWeapon();
+                    if (weapon != null)
+                    {
+                        if (!weapon.IsOneH)
+                        {
+                            this.equipment.Remove(weapon);
+                            this.AddItemToInventory(weapon);
+                            this.RemoveItemEffect(weapon);
+                        }
+                    }
+                }
                 this.equipment.Add(item);
                 this.ApplyItemEffect(item);
                 this.RemoveItemFromInventory(item);
             }
+        }
+
+        private Item FindShield()
+        {
+            foreach (var item in this.equipment)
+            {
+                if (item.Type == ItemType.OffHand)
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
+
+        private Weapon FindWeapon()
+        {
+            foreach (var item in this.equipment)
+            {
+                if (item.Type == ItemType.MainHand)
+                {
+                    return (Weapon)item;
+                }
+            }
+            return null;
+        }
+
+
+        public void LevelUp(int value)
+        {
+            this.Level += value / 100;
+            this.exp = value % 100;
+            this.MaxHealth += (this.Level-1)*10;
+            this.Health = this.MaxHealth;
         }
 
         public override string ToString()

@@ -70,10 +70,8 @@
     <Compile Include="Models\Items\Potions\HealthPotion.cs" />
     <Compile Include="Models\Items\Weapons\Weapon.cs" />
     <Compile Include="Models\Items\Weapons\OneHWeapons\Axe.cs" />
-    <Compile Include="Models\Items\Weapons\OneHWeapons\Dagger.cs" />
     <Compile Include="Models\Items\Weapons\OneHWeapons\HandCrossbow.cs" />
     <Compile Include="Models\Items\Weapons\OneHWeapons\Mace.cs" />
-    <Compile Include="Models\Items\Weapons\OneHWeapons\SpellBook.cs" />
     <Compile Include="Models\Items\Weapons\OneHWeapons\Sword.cs" />
     <Compile Include="Models\Items\Weapons\OneHWeapons\Wand.cs" />
     <Compile Include="Models\Items\Weapons\TwoHWeapons\Bow.cs" />

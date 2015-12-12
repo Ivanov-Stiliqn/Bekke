@@ -1,14 +1,19 @@
 ﻿namespace HeroesOfFate.Models.Items
 {
-    public abstract class Weapon : Item
+    public class Weapon : Item
     {
         private const double ArmorDefault = 0;
+        private bool isOneH;
 
-        protected Weapon(ItemType type, double weaponAttack, string id, decimal price, bool isOneH) : base(type,weaponAttack, ArmorDefault, id, price)
+        public Weapon(double weaponAttack, string id, decimal price) : base(weaponAttack, ArmorDefault, id, price)
         {
-            IsOneH = isOneH;
+            this.Type = ItemType.MainHand;
         }
 
-        public bool IsOneH { get; set; }
+        public bool IsOneH
+        {
+            get { return this.isOneH; }
+            set { this.isOneH = value; }
+        }
     }
 }

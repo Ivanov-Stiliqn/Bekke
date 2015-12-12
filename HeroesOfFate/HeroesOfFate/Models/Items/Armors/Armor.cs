@@ -4,7 +4,7 @@
     {
         private const double AttackDefault = 0;
 
-        protected Armor(ItemType type, string id, double armorDefence, decimal price) : base(type, AttackDefault, armorDefence, id, price)
+        protected Armor(string id, double armorDefence, decimal price) : base(AttackDefault, armorDefence, id, price)
         {
             
         }

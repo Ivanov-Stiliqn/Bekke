@@ -2,9 +2,9 @@
 {
     public class Gloves : Armor
     {
-        public Gloves(ItemType type,string id, double glovesDefence, decimal price) : base(type, id, glovesDefence, price)
+        public Gloves(string id, double glovesDefence, decimal price) : base(id, glovesDefence, price)
         {
-            
+            this.Type = ItemType.Gloves;
         }
     }
 }

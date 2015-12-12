@@ -2,9 +2,9 @@
 {
     public class Helm : Armor
     {
-        public Helm(ItemType type, string id, double helmDefence, decimal price) : base(type, id, helmDefence, price)
+        public Helm(string id, double helmDefence, decimal price) : base(id, helmDefence, price)
         {
-            
+            this.Type = ItemType.Helmet;
         }
     }
 }

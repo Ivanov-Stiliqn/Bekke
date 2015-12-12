@@ -5,9 +5,7 @@ namespace HeroesOfFate.Models
 {
     public abstract class Character : ICharacter
     {
-
-        private short exp;
-        private short level;
+        private int level;
         private double damage;
         private double health;
         private double armor;
@@ -17,11 +15,9 @@ namespace HeroesOfFate.Models
             double damage,
             double health,
             double armor,
-            short exp,
-            short level)
+            int level)
         {
             
-            this.Exp = exp;
             this.Level = level;
             this.Damage = damage;
             this.Health = health;
@@ -68,20 +64,7 @@ namespace HeroesOfFate.Models
             }
         }
 
-        public short Exp
-        {
-            get { return this.exp; }
-            set
-            {
-                if (value < 0)
-                {
-                    throw new ArgumentOutOfRangeException("Experience cannot be negative");
-                }
-                this.exp = value;
-            }
-        }
-
-        public short Level
+        public int Level
         {
             get { return this.level; }
             set

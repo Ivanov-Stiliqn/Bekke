@@ -6,8 +6,8 @@
         private const double MonsterHealthDefault = 0;
         private const double MonsterArmorDefault = 0;
 
-        public Ogre(short exp = 0, short level = 1) 
-            : base(MonsterDamageDefault, MonsterHealthDefault, MonsterArmorDefault, exp, level)
+        public Ogre(int level = 1) 
+            : base(MonsterDamageDefault, MonsterHealthDefault, MonsterArmorDefault, level)
         {
         }
     }

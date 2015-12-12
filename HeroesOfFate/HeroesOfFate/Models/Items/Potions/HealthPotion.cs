@@ -4,10 +4,10 @@
     {
         private const double AttackDefault = 0;
         private const double ArmorDefault = 0;
-        private const double HealthEffect = 150;
+        private const double HealthEffectDefault = 150;
 
-        public HealthPotion(ItemType type, string id, double potionEffect, decimal price) 
-            : base(type, id, AttackDefault, ArmorDefault, HealthEffect, price)
+        public HealthPotion(string id, decimal price) 
+            : base(id, AttackDefault, ArmorDefault, HealthEffectDefault, price)
         {
         }
     }

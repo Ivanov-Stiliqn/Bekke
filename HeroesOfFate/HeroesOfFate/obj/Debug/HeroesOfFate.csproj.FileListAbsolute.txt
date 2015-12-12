@@ -7,3 +7,8 @@ C:\Users\Dochko\Documents\GitHub\Bekke\HeroesOfFate\HeroesOfFate\bin\Debug\Heroe
 C:\Users\Dochko\Documents\GitHub\Bekke\HeroesOfFate\HeroesOfFate\bin\Debug\HeroesOfFate.pdb
 C:\Users\Dochko\Documents\GitHub\Bekke\HeroesOfFate\HeroesOfFate\obj\Debug\HeroesOfFate.exe
 C:\Users\Dochko\Documents\GitHub\Bekke\HeroesOfFate\HeroesOfFate\obj\Debug\HeroesOfFate.pdb
+C:\Users\AboveAll\Desktop\Bekke\HeroesOfFate\HeroesOfFate\bin\Debug\HeroesOfFate.exe
+C:\Users\AboveAll\Desktop\Bekke\HeroesOfFate\HeroesOfFate\bin\Debug\HeroesOfFate.pdb
+C:\Users\AboveAll\Desktop\Bekke\HeroesOfFate\HeroesOfFate\obj\Debug\HeroesOfFate.csprojResolveAssemblyReference.cache
+C:\Users\AboveAll\Desktop\Bekke\HeroesOfFate\HeroesOfFate\obj\Debug\HeroesOfFate.exe
+C:\Users\AboveAll\Desktop\Bekke\HeroesOfFate\HeroesOfFate\obj\Debug\HeroesOfFate.pdb

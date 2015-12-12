@@ -2,11 +2,9 @@
 {
     public class Greataxe : Weapon
     {
-        private const bool IsOneH = false;
-
-        public Greataxe(ItemType type, double weaponAttack, string id, decimal price) : base(type, weaponAttack, id, price, IsOneH)
+        public Greataxe(double weaponAttack, string id, decimal price) : base(weaponAttack, id, price)
         {
-
+            this.IsOneH = false;
         }
     }
 }

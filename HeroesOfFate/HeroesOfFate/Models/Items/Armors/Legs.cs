@@ -2,9 +2,9 @@
 {
     public class Legs : Armor
     {
-        public Legs(ItemType type, string id, double legsDefence, decimal price) : base(type, id, legsDefence, price)
+        public Legs(string id, double legsDefence, decimal price) : base(id, legsDefence, price)
         {
-            
+            this.Type = ItemType.Legs;
         }
     }
 }
