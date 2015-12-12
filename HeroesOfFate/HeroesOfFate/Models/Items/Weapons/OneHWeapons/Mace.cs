@@ -2,8 +2,11 @@
 {
     public class Mace : Weapon
     {
-        public Mace(ItemType type, string id, double maceAttack, decimal price) : base(type, id, maceAttack, price)
+        private const bool IsOneH = true;
+
+        public Mace(ItemType type, double weaponAttack, string id, decimal price) : base(type, weaponAttack, id, price, IsOneH)
         {
+
         }
     }
 }

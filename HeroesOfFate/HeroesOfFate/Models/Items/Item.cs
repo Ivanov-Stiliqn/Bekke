@@ -6,17 +6,25 @@ namespace HeroesOfFate.Models
     public abstract class Item
     {
         private ItemType type;
+        private double weaponAttack;
+        private double armorDefence;
         private string id;
         private decimal price;
 
-        protected Item(ItemType type, string id,decimal price)
+        protected Item(ItemType type, double weaponAttack, double armorDefence, string id,decimal price)
         {
             Type = type;
+            WeaponAttack = weaponAttack;
+            ArmorDefence = armorDefence;
             this.Id = id;
             this.Price = price;
         }
 
         public ItemType Type { get { return type; } set { type = value; } }
+
+        public double WeaponAttack { get; set; }
+
+        public double ArmorDefence { get; set; }
 
         public string Id
         {

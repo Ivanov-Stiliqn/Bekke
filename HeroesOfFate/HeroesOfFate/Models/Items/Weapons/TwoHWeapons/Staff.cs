@@ -2,8 +2,11 @@
 {
     public class Staff : Weapon
     {
-        public Staff(ItemType type, string id, double staffAttack, decimal price) : base(type, id, staffAttack, price)
+        private const bool IsOneH = false;
+
+        public Staff(ItemType type, double weaponAttack, string id, decimal price) : base(type, weaponAttack, id, price, IsOneH)
         {
+
         }
     }
 }

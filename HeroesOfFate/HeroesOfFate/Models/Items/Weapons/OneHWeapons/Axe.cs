@@ -2,9 +2,11 @@
 {
     public class Axe : Weapon
     {
-        public Axe(ItemType type, string id, double axeAttack, decimal price) : base(type, id, axeAttack, price)
-        {
+        private const bool IsOneH = true;
 
+        public Axe(ItemType type, double weaponAttack, string id, decimal price) : base(type, weaponAttack, id, price, IsOneH)
+        {
+            
         }
     }
 }

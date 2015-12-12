@@ -2,8 +2,11 @@
 {
     public class Greatsword : Weapon
     {
-        public Greatsword(ItemType type, string id, double greatswordAttack, decimal price) : base(type, id, greatswordAttack, price)
+        private const bool IsOneH = false;
+
+        public Greatsword(ItemType type, double weaponAttack, string id, decimal price) : base(type, weaponAttack, id, price, IsOneH)
         {
+
         }
     }
 }

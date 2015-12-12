@@ -16,27 +16,20 @@ namespace HeroesOfFate
 
             Console.WriteLine(warrior.ToString());
 
-            Item axe = new Axe(ItemType.MainHand, "Skulllaina", 10, 15m);
-            Item axe2 = new Axe(ItemType.MainHand, "LainaLaina", 30, 15m);
-            Item body = new Body(ItemType.Body, "Armor", 50, 10m);
-            Item body2 = new Body(ItemType.Body, "Laina", 100, 15m);
-            Item sword = new Sword(ItemType.MainHand, "Sword", 50, 10m);
-            Item helm = new Helm(ItemType.Helmet, "Cais", 10, 15m);
+            Weapon axe = new Axe(ItemType.MainHand, 100, "Laina", 15m);
+            Weapon sword = new Sword(ItemType.MainHand, 200, "laina 2", 10m);
+            Armor shield = new Shield(ItemType.OffHand, "more laina", 50, 5m);
 
             warrior.AddItemToInventory(axe);
             warrior.Equip(axe);
             Console.WriteLine(warrior.ToString());
 
-            warrior.AddItemToInventory(axe2);
-            warrior.Equip(axe2);
+            warrior.AddItemToInventory(shield);
+            warrior.Equip(shield);
             Console.WriteLine(warrior.ToString());
 
-            warrior.AddItemToInventory(body);
-            warrior.Equip(body);
-            Console.WriteLine(warrior.ToString());
-
-            warrior.AddItemToInventory(helm);
-            warrior.Equip(helm);
+            warrior.AddItemToInventory(sword);
+            warrior.Equip(sword);
             Console.WriteLine(warrior.ToString());
         }
     }

@@ -67,9 +67,7 @@
     <Compile Include="Models\Items\Potions\Potion.cs" />
     <Compile Include="Models\Items\Potions\AttackPotion.cs" />
     <Compile Include="Models\Items\Potions\DefencePotion.cs" />
-    <Compile Include="Models\Items\Potions\ExpPotion.cs" />
     <Compile Include="Models\Items\Potions\HealthPotion.cs" />
-    <Compile Include="Models\Items\Potions\ManaPotion.cs" />
     <Compile Include="Models\Items\Weapons\Weapon.cs" />
     <Compile Include="Models\Items\Weapons\OneHWeapons\Axe.cs" />
     <Compile Include="Models\Items\Weapons\OneHWeapons\Dagger.cs" />

@@ -2,7 +2,9 @@
 {
     public class SpellBook : Weapon
     {
-        public SpellBook(ItemType type, string id, double spellBookAttack, decimal price) : base(type, id, spellBookAttack, price)
+        private const bool IsOneH = true;
+
+        public SpellBook(ItemType type, double weaponAttack, string id, decimal price) : base(type, weaponAttack, id, price, IsOneH)
         {
 
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using HeroesOfFate.Contracts;
 using HeroesOfFate.Models.Items;
 
@@ -14,6 +15,8 @@ namespace HeroesOfFate.Models.Characters.Heroes
 
         private string name;
         private double gold;
+        private readonly List<Item> inventory;
+        private readonly List<Item> equipment; 
 
         protected Hero(
             string name,
@@ -29,8 +32,8 @@ namespace HeroesOfFate.Models.Characters.Heroes
         {
             this.Name = name;
             this.HeroRace = heroRace;
-            this.Inventory = new List<Item>();
-            this.Equipment = new List<Item>();
+            this.inventory = new List<Item>();
+            this.equipment = new List<Item>();
             this.Gold = gold;
         }
 
@@ -51,17 +54,14 @@ namespace HeroesOfFate.Models.Characters.Heroes
             }
        }
 
-        public List<Item> Inventory
+        public IEnumerable<Item> Inventory
         {
-            get;
-            private set; 
-            
+            get { return inventory; }
         }
 
-        public List<Item> Equipment
+        public IEnumerable<Item> Equipment
         {
-            get;
-            private set; 
+            get { return equipment; } 
             
         }
 
@@ -80,33 +80,54 @@ namespace HeroesOfFate.Models.Characters.Heroes
 
         public Race HeroRace { get; set; }
 
-
-        public abstract void AddItemToInventory(Item item);
-
-        public abstract void RemoveItemFromInventory(Item item);
-
-        protected virtual void ApplyWeaponDmg(Weapon weapon)
+        public void AddItemToInventory(Item item)
         {
-            this.Damage += weapon.WeaponAttack;
+            this.inventory.Add(item);
+
         }
 
-        protected virtual void ApplyArmorValue(Armor armor)
+        public void RemoveItemFromInventory(Item item)
         {
-            this.Armor += armor.ArmorDefence;
+            this.inventory.Remove(item);
         }
 
-        protected virtual void RemoveWeaponDmg(Weapon weapon)
+        protected void ApplyItemEffect(Item item)
         {
-            this.Damage -= weapon.WeaponAttack;
+            this.Damage += item.WeaponAttack;
+            this.Armor += item.ArmorDefence;
         }
 
-        protected virtual void RemoveArmorValue(Armor armor)
+        protected void RemoveItemEffect(Item item)
         {
-            this.Armor -= armor.ArmorDefence;
+            this.Damage -= item.WeaponAttack;
+            this.Armor -= item.ArmorDefence;
         }
 
-        public abstract void Equip(Item item);
-        //TO DO : Equip two-handed weapon
+        public void Equip(Item item)
+        {
+            bool isEquiped = false;
+
+            foreach (Item equipedItem in this.equipment.ToList())
+            {
+                if (item.Type == equipedItem.Type)
+                {
+                    this.equipment.Remove(equipedItem);
+                    this.RemoveItemEffect(equipedItem);
+                    this.AddItemToInventory(equipedItem);
+                    this.equipment.Add(item);
+                    this.ApplyItemEffect(item);
+                    this.RemoveItemFromInventory(item);
+                    isEquiped = true;
+                }
+            }
+
+            if (!isEquiped)
+            {
+                this.equipment.Add(item);
+                this.ApplyItemEffect(item);
+                this.RemoveItemFromInventory(item);
+            }
+        }
 
         public override string ToString()
         {

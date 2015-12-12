@@ -2,11 +2,12 @@
 {
     public class Potion : Item
     {
-        protected Potion(ItemType type, string id, double potionEffect, decimal price) : base(type, id, price)
+        protected Potion(ItemType type, string id, double weaponAttack, double armorDefence, double healthEffect, decimal price) 
+            : base(type, weaponAttack, armorDefence,id, price)
         {
-            PotionEffect = potionEffect;
+            HealthEffect = healthEffect;
         }
 
-        public double PotionEffect;
+        public double HealthEffect { get; set; }
     }
 }

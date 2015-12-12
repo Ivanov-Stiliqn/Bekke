@@ -2,7 +2,12 @@
 {
     public class HealthPotion : Potion
     {
-        public HealthPotion(ItemType type, string id, double potionEffect, decimal price) : base(type, id, potionEffect, price)
+        private const double AttackDefault = 0;
+        private const double ArmorDefault = 0;
+        private const double HealthEffect = 150;
+
+        public HealthPotion(ItemType type, string id, double potionEffect, decimal price) 
+            : base(type, id, AttackDefault, ArmorDefault, HealthEffect, price)
         {
         }
     }

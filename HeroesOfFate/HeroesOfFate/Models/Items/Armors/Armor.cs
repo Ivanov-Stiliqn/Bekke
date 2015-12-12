@@ -1,12 +1,12 @@
 ﻿namespace HeroesOfFate.Models.Items
 {
-    public class Armor : Item
+    public abstract class Armor : Item
     {
-        protected Armor(ItemType type, string id, double armorDefence, decimal price) : base(type, id, price)
-        {
-            this.ArmorDefence = armorDefence;
-        }
+        private const double AttackDefault = 0;
 
-        public double ArmorDefence { get; set; }
+        protected Armor(ItemType type, string id, double armorDefence, decimal price) : base(type, AttackDefault, armorDefence, id, price)
+        {
+            
+        }
     }
 }

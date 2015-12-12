@@ -2,7 +2,9 @@
 {
     public class Wand : Weapon
     {
-        public Wand(ItemType type, string id, double wandAttack, decimal price) : base(type, id, wandAttack, price)
+        private const bool IsOneH = true;
+
+        public Wand(ItemType type, double weaponAttack, string id, decimal price) : base(type, weaponAttack, id, price, IsOneH)
         {
 
         }
