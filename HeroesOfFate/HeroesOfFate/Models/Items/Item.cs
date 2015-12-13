@@ -13,9 +13,9 @@ namespace HeroesOfFate.Models
 
         protected Item(double weaponAttack, double armorDefence, string id,decimal price)
         {
-            Type = type;
-            WeaponAttack = weaponAttack;
-            ArmorDefence = armorDefence;
+            this.Type = type;
+            this.WeaponAttack = weaponAttack;
+            this.ArmorDefence = armorDefence;
             this.Id = id;
             this.Price = price;
         }
