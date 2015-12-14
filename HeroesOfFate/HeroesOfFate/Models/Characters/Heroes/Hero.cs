@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using HeroesOfFate.Contracts;
+using HeroesOfFate.Contracts.ICharacters;
 using HeroesOfFate.Events;
 using HeroesOfFate.Models.Items;
 using HeroesOfFate.Models.Items.Potions;
+using HeroesOfFate.Models.Items.Weapons;
 
 namespace HeroesOfFate.Models.Characters.Heroes
 {
@@ -67,18 +68,16 @@ namespace HeroesOfFate.Models.Characters.Heroes
             {
                 if (value < 0)
                 {
-                    throw new ArgumentOutOfRangeException("Experience cannot be negative");
+                    throw new ArgumentOutOfRangeException("hero exp" ,"Experience cannot be negative");
                 }
                 if (value >= 100)
                 {
                     this.LevelUp(value);
-                    
                 }
                 else
                 {
                     this.exp = value;
                 }
-                
             }
         }
 
@@ -100,7 +99,7 @@ namespace HeroesOfFate.Models.Characters.Heroes
             {
                 if (value < 0)
                 {
-                    throw new ArgumentOutOfRangeException("Gold cannot be negative");
+                    throw new ArgumentOutOfRangeException("hero gold" ,"Gold cannot be negative");
                 }
                 this.gold = value;
             }
@@ -115,7 +114,6 @@ namespace HeroesOfFate.Models.Characters.Heroes
         public void AddItemToInventory(Item item)
         {
             this.inventory.Add(item);
-
         }
 
         public void RemoveItemFromInventory(Item item)
@@ -233,7 +231,6 @@ namespace HeroesOfFate.Models.Characters.Heroes
             return null;
         }
 
-
         public void LevelUp(int value)
         {
             this.Level += value / 100;
@@ -255,7 +252,7 @@ namespace HeroesOfFate.Models.Characters.Heroes
         public override string ToString()
         {
             return string.Format("Name: {0}, Race: {1}, Damage: {2}, Armor: {3}, Health: {4}",
-                this.Name, this.HeroRace, this.Damage, this.Armor, Health);
+                this.Name, this.HeroRace, this.Damage, this.Armor, this.Health);
         }
     }
 }

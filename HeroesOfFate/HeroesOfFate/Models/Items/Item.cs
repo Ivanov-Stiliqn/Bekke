@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Security.AccessControl;
 
-namespace HeroesOfFate.Models
+namespace HeroesOfFate.Models.Items
 {
     public abstract class Item
     {
@@ -22,9 +21,17 @@ namespace HeroesOfFate.Models
 
         public ItemType Type { get { return this.type; } set { this.type = value; } }
 
-        public double WeaponAttack { get; set; }
+        public double WeaponAttack
+        {
+            get { return this.weaponAttack; }
+            set { this.weaponAttack = value; }
+        }
 
-        public double ArmorDefence { get; set; }
+        public double ArmorDefence
+        {
+            get { return this.armorDefence; }
+            set { this.armorDefence = value; } 
+        }
 
         public string Id
         {
@@ -37,7 +44,6 @@ namespace HeroesOfFate.Models
                 }
                 id = value;
             }
-            
         }
 
         public decimal Price

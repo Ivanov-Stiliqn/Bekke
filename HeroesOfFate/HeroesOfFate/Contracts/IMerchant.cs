@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using HeroesOfFate.Models;
+using HeroesOfFate.Models.Items;
 
 namespace HeroesOfFate.Contracts
 {

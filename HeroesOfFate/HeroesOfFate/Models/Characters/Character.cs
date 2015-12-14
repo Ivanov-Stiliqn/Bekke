@@ -1,7 +1,7 @@
 ﻿using System;
-using HeroesOfFate.Contracts;
+using HeroesOfFate.Contracts.ICharacters;
 
-namespace HeroesOfFate.Models
+namespace HeroesOfFate.Models.Characters
 {
     public abstract class Character : ICharacter
     {

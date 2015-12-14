@@ -1,4 +1,4 @@
-﻿namespace HeroesOfFate.Models.Items
+﻿namespace HeroesOfFate.Models.Items.Weapons
 {
     public class Weapon : Item
     {

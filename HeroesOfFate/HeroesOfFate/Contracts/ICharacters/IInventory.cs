@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using HeroesOfFate.Models;
+﻿using HeroesOfFate.Models.Items;
 
-namespace HeroesOfFate.Contracts
+namespace HeroesOfFate.Contracts.ICharacters
 {
     public interface IInventory
     {

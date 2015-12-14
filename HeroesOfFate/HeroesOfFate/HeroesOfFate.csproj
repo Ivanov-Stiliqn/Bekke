@@ -57,6 +57,8 @@
     <Compile Include="Models\Characters\Heroes\Mage.cs" />
     <Compile Include="Models\Characters\Heroes\Warrior.cs" />
     <Compile Include="Models\Characters\Heroes\Hero.cs" />
+    <Compile Include="Models\Items\Chests\Chest.cs" />
+    <Compile Include="Models\Items\Chests\GoldChest.cs" />
     <Compile Include="Models\Items\Item.cs" />
     <Compile Include="Models\Items\Armors\Armor.cs" />
     <Compile Include="Models\Items\Armors\Body.cs" />
@@ -65,7 +67,7 @@
     <Compile Include="Models\Items\Armors\Helm.cs" />
     <Compile Include="Models\Items\Armors\Legs.cs" />
     <Compile Include="Models\Items\Armors\Shield.cs" />
-    <Compile Include="Models\Items\Chest.cs" />
+    <Compile Include="Models\Items\Chests\ItemChest.cs" />
     <Compile Include="Models\Items\Potions\Potion.cs" />
     <Compile Include="Models\Items\Potions\AttackPotion.cs" />
     <Compile Include="Models\Items\Potions\DefencePotion.cs" />

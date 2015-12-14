@@ -1,9 +1,9 @@
-﻿namespace HeroesOfFate.Models.Monsters
+﻿namespace HeroesOfFate.Models.Characters.Monsters
 {
     public class Troll : Monster
     {
-        private const double MonsterDamageDefault = 0;
-        private const double MonsterHealthDefault = 0;
+        private const double MonsterDamageDefault = 60;
+        private const double MonsterHealthDefault = 150;
         private const double MonsterArmorDefault = 0;
 
         public Troll(int level = 1) 

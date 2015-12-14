@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using HeroesOfFate.Models;
 using HeroesOfFate.Models.Characters;
 using HeroesOfFate.Models.Characters.Heroes;
+using HeroesOfFate.Models.Characters.Monsters;
 using HeroesOfFate.Models.Items;
 using HeroesOfFate.Models.Items.Armors;
 using HeroesOfFate.Models.Items.Weapons.OneHWeapons;
 using HeroesOfFate.Models.Items.Weapons.TwoHWeapons;
-using HeroesOfFate.Models.Monsters;
 
 namespace HeroesOfFate
 {
@@ -25,7 +25,8 @@ namespace HeroesOfFate
                 new Undead()
             };
 
-            warrior.ChangedLevel += (sender, eventArgs) => monsters.ForEach(m => m.Level = eventArgs.Level);
+            warrior.ChangedLevel += (sender, eventArgs) => 
+            monsters.ForEach(m => m.LevelUp(eventArgs.Level));
 
             warrior.Exp = 700;
             Console.WriteLine(warrior.Level);
@@ -43,15 +44,12 @@ namespace HeroesOfFate
                 Console.WriteLine(monster.Level);
             }
 
-
             //Console.WriteLine(warrior.ToString());
 
             //Weapon axe = new Axe(100, "Laina", 15m);
             //Weapon greatSword = new Greatsword(200, "laina 2", 10m);
             //Armor shield = new Shield("more laina", 50, 5m);
             //Staff staff = new Staff(300,"Gandalf",330330);
-
-
 
             //warrior.AddItemToInventory(staff);
             //warrior.Equip(staff);

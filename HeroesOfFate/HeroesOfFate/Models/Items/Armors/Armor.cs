@@ -1,4 +1,4 @@
-﻿namespace HeroesOfFate.Models.Items
+﻿namespace HeroesOfFate.Models.Items.Armors
 {
     public abstract class Armor : Item
     {
