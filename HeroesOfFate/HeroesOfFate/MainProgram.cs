@@ -8,6 +8,7 @@ using HeroesOfFate.Models.Items;
 using HeroesOfFate.Models.Items.Armors;
 using HeroesOfFate.Models.Items.Weapons.OneHWeapons;
 using HeroesOfFate.Models.Items.Weapons.TwoHWeapons;
+using HeroesOfFate.GameEngine;
 
 namespace HeroesOfFate
 {
@@ -15,6 +16,7 @@ namespace HeroesOfFate
     {
         static void Main()
         {
+            Engine.GameStart();
             Warrior warrior = new Warrior("Todar", Race.Orc);
 
             List<Monster>monsters=new List<Monster>

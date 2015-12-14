@@ -1,11 +1,7 @@
-<<<<<<< HEAD
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace HeroesOfFate.GameEngine
-=======
 ﻿namespace HeroesOfFate.GameEngine
->>>>>>> 2a4d919b54031fd1274f8302035774384bde1748
 {
     public static class Engine
     {
