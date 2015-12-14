@@ -48,6 +48,8 @@
     <Compile Include="Contracts\ICharacters\IInventory.cs" />
     <Compile Include="Contracts\IMerchant.cs" />
     <Compile Include="Contracts\IMonster\IMonster.cs" />
+    <Compile Include="Events\HeroChangeLevelEventArgs.cs" />
+    <Compile Include="Events\HeroLevelChangeEventHandler.cs" />
     <Compile Include="GameEngine\Engine.cs" />
     <Compile Include="MainProgram.cs" />
     <Compile Include="Models\Characters\Character.cs" />

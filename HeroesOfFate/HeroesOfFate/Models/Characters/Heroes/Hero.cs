@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using HeroesOfFate.Contracts;
+using HeroesOfFate.Events;
 using HeroesOfFate.Models.Items;
 using HeroesOfFate.Models.Items.Potions;
 
@@ -12,7 +13,9 @@ namespace HeroesOfFate.Models.Characters.Heroes
         
         private const int LevelDefault = 1;
         private const double StartingGold = 0;
-   
+
+        public event HeroLevelChangeEventHandler ChangedLevel;
+
         private string name;
         private double gold;
         private int exp;
@@ -237,6 +240,16 @@ namespace HeroesOfFate.Models.Characters.Heroes
             this.exp = value % 100;
             this.MaxHealth += (this.Level-1)*10;
             this.Health = this.MaxHealth;
+
+            OnLevelChange(this,new HeroChangeLevelEventArgs(this.Level));
+        }
+
+        private void OnLevelChange(object sender,HeroChangeLevelEventArgs eventArgs)
+        {
+            if (this.ChangedLevel != null)
+            {
+                this.ChangedLevel(sender, eventArgs);
+            }
         }
 
         public override string ToString()
