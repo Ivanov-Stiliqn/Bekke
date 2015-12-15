@@ -41,13 +41,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\ICharacters\ICharacter.cs" />
-    <Compile Include="Contracts\ICharacters\IArcher.cs" />
-    <Compile Include="Contracts\ICharacters\IMage.cs" />
-    <Compile Include="Contracts\ICharacters\IWarrior.cs" />
-    <Compile Include="Contracts\ICharacters\IInventory.cs" />
-    <Compile Include="Contracts\IMerchant.cs" />
-    <Compile Include="Contracts\IMonster\IMonster.cs" />
+    <Compile Include="Contracts\Item Contracts\IChest.cs" />
+    <Compile Include="Contracts\Character Contracts\ICharacter.cs" />
+    <Compile Include="Contracts\Character Contracts\Hero Contracts\IArcher.cs" />
+    <Compile Include="Contracts\Item Contracts\IGoldChest.cs" />
+    <Compile Include="Contracts\Character Contracts\Hero Contracts\IHero.cs" />
+    <Compile Include="Contracts\Item Contracts\IItemChest.cs" />
+    <Compile Include="Contracts\Character Contracts\Hero Contracts\IMage.cs" />
+    <Compile Include="Contracts\Character Contracts\Hero Contracts\IWarrior.cs" />
+    <Compile Include="Contracts\Character Contracts\Hero Contracts\IInventory.cs" />
+    <Compile Include="Contracts\Item Contracts\IItem.cs" />
+    <Compile Include="Contracts\Character Contracts\IMerchant.cs" />
+    <Compile Include="Contracts\Character Contracts\Monster Contracts\IMonster.cs" />
     <Compile Include="Events\HeroChangeLevelEventArgs.cs" />
     <Compile Include="Events\HeroLevelChangeEventHandler.cs" />
     <Compile Include="GameEngine\DrawScreen.cs" />
@@ -97,6 +102,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

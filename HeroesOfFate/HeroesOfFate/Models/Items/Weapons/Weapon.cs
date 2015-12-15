@@ -5,7 +5,8 @@
         private const double ArmorDefault = 0;
         private bool isOneH;
 
-        public Weapon(double weaponAttack, string id, decimal price) : base(weaponAttack, ArmorDefault, id, price)
+        public Weapon(string id, double weaponAttack, decimal price) 
+            : base(id, weaponAttack, ArmorDefault, price)
         {
             this.Type = ItemType.MainHand;
         }

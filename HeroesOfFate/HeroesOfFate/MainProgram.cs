@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using HeroesOfFate.Models;
-using HeroesOfFate.Models.Characters;
+using HeroesOfFate.Contracts;
+using HeroesOfFate.GameEngine;
 using HeroesOfFate.Models.Characters.Heroes;
 using HeroesOfFate.Models.Characters.Monsters;
-using HeroesOfFate.Models.Items;
-using HeroesOfFate.Models.Items.Armors;
 using HeroesOfFate.Models.Items.Weapons.OneHWeapons;
 using HeroesOfFate.Models.Items.Weapons.TwoHWeapons;
-using HeroesOfFate.GameEngine;
 
 namespace HeroesOfFate
 {
@@ -16,7 +13,8 @@ namespace HeroesOfFate
     {
         static void Main()
         {
-            Engine.GameStart();
+            //Engine.GameStart();
+
             Warrior warrior = new Warrior("Todar", Race.Orc);
 
             List<Monster>monsters=new List<Monster>
@@ -31,19 +29,20 @@ namespace HeroesOfFate
             monsters.ForEach(m => m.LevelUp(eventArgs.Level));
 
             warrior.Exp = 700;
-            Console.WriteLine(warrior.Level);
+            Console.WriteLine(warrior.ToString());
             Console.WriteLine();
 
             foreach (var monster in monsters)
             {
-                Console.WriteLine(monster.Level);
+                Console.WriteLine(monster.ToString());
             }
-
             Console.WriteLine();
+
             warrior.Exp += 500;
+            Console.WriteLine(warrior.ToString());
             foreach (var monster in monsters)
             {
-                Console.WriteLine(monster.Level);
+                Console.WriteLine(monster.ToString());
             }
 
             //Console.WriteLine(warrior.ToString());

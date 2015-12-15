@@ -2,14 +2,19 @@
 {
     public class Boss : Monster
     {
-        private const double MonsterDamageDefault = 200;
+        private const double MonsterDamageMinDefault = 100;
+        private const double MonsterDamageMaxDefault = 200;
         private const double MonsterHealthDefault = 400;
-        private const double MonsterArmorDefault = 0;
 
-        public Boss(int level = 1) 
-            : base(MonsterDamageDefault, MonsterHealthDefault, MonsterArmorDefault, level)
+        public Boss() 
+            : base(MonsterHealthDefault, MonsterDamageMinDefault, MonsterDamageMaxDefault)
         {
 
+        }
+
+        public override string ToString()
+        {
+            return string.Format(base.ToString());
         }
     }
 }

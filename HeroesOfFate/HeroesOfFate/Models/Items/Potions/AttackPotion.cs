@@ -9,6 +9,7 @@
         public AttackPotion(string id, decimal price) 
             : base(id, AttackDefault, ArmorDefault,HealthEffectDefault, price)
         {
+
         }
     }
 }

@@ -1,17 +1,16 @@
 ﻿using System.Collections.Generic;
 using HeroesOfFate.Contracts;
-using HeroesOfFate.Models.Items;
 
 namespace HeroesOfFate.Models.NPC
 {
     public class Merchant : IMerchant
     {
-        public Merchant(List<Item>items)
+        public Merchant(List<IItem> items)
         {
             this.MerchantItems = items;
         }
 
-        public List<Item> MerchantItems { get; set; }
+        public List<IItem> MerchantItems { get; set; }
 
     }
 }

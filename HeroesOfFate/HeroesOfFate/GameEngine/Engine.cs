@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-﻿namespace HeroesOfFate.GameEngine
+namespace HeroesOfFate.GameEngine
 {
     public static class Engine
     {
@@ -19,8 +19,11 @@ using System.Collections.Generic;
             {
                 DrawScreen.AddLineToBuffer(ref DrawScreen.area1, v);
             }
+
             DrawScreen.drawScreen();
+
             int i = 0;
+
             while (true)
             {
                 i++;
@@ -66,8 +69,8 @@ using System.Collections.Generic;
                 //
                 DrawScreen.drawScreen();
             }
-
         }
+
         private static void CheckValidMapMove(int hight, int width)
         {
             if ((heroPosition[0] > hight || heroPosition[1] > width) || (heroPosition[0] <= 0 || heroPosition[1] <= 0))
@@ -75,6 +78,7 @@ using System.Collections.Generic;
                 throw new ArgumentException("Outside Map boundaries!");
             }
         }
+
         private static bool CheckForWallsInPAth(List<string> Map, int[] oldPosition, int[] newPosition)
         {
             if (oldPosition[0] < newPosition[0] || oldPosition[1] < newPosition[1])
@@ -119,6 +123,7 @@ using System.Collections.Generic;
 
             return true;
         }
+
         private static int SpecialSymbolReach(char symbol, string command)
         {
             switch (symbol)
@@ -137,6 +142,7 @@ using System.Collections.Generic;
                     return 0;
             }
         }
+
         private static List<string> HeroMove(List<string> oldMap, int[] oldPosition, int[] newPosition, string command)
         {
             char[] tempMapOldLine = oldMap[oldPosition[0] - 1].ToCharArray();
@@ -158,6 +164,7 @@ using System.Collections.Generic;
                 return oldMap;
             }
         }
+
         private static void changeHeroCoordinates(int steps, string direction)
         {
             if (direction == "left") heroPosition[1] -= steps;
@@ -169,5 +176,7 @@ using System.Collections.Generic;
                 throw new ArgumentException("Enter valid direction!");
             }
         }
+        
+        
     }
 }

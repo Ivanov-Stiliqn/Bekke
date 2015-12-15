@@ -2,13 +2,19 @@
 {
     public class Wolf : Monster
     {
-        private const double MonsterDamageDefault = 20;
-        private const double MonsterHealthDefault = 50;
-        private const double MonsterArmorDefault = 0;
+        private const double MonsterDamageMinDefault = 20;
+        private const double MonsterDamageMaxDefault = 40;
+        private const double MonsterHealthDefault = 80;
 
-        public Wolf(int level = 1) 
-            : base(MonsterDamageDefault, MonsterHealthDefault, MonsterArmorDefault,level)
+        public Wolf()
+            : base(MonsterHealthDefault, MonsterDamageMinDefault, MonsterDamageMaxDefault)
         {
+
+        }
+
+        public override string ToString()
+        {
+            return string.Format(base.ToString());
         }
     }
 }

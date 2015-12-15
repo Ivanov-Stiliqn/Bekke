@@ -2,7 +2,8 @@
 {
     public class Mace : Weapon
     {
-        public Mace(double weaponAttack, string id, decimal price) : base(weaponAttack, id, price)
+        public Mace(string id, double weaponAttack, decimal price) 
+            : base(id, weaponAttack, price)
         {
             this.IsOneH = true;
         }

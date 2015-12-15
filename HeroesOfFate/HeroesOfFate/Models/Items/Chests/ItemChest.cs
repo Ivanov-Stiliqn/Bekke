@@ -1,22 +1,23 @@
 ﻿using System.Collections.Generic;
+using HeroesOfFate.Contracts;
 
 namespace HeroesOfFate.Models.Items.Chests
 {
-    public class ItemChest : Chest
+    public class ItemChest : Chest, IItemChest
     {
-        private readonly List<Item> lootTable;
+        private readonly List<IItem> lootTable;
 
         public ItemChest(string id) : base(id)
         {
-            this.lootTable = new List<Item>();
+            this.lootTable = new List<IItem>();
         }
 
-        public IEnumerable<Item> LootTable
+        public IEnumerable<IItem> LootTable
         {
             get { return this.lootTable; }
         }
 
-        public void AddItemToChest(Item item)
+        public void AddItemToChest(IItem item)
         {
             this.lootTable.Add(item);
         }

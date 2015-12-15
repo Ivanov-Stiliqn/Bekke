@@ -1,12 +1,8 @@
-﻿namespace HeroesOfFate.Contracts.ICharacters
+﻿namespace HeroesOfFate.Contracts
 {
     public interface ICharacter
     {
-        double Damage { get; set; }
-
         double Health { get; set; }
-
-        double Armor { get; set; }
 
         int Level { get; set; }
 

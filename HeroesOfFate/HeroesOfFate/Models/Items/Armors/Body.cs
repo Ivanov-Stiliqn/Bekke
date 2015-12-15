@@ -2,7 +2,8 @@
 {
     public class Body : Armor
     {
-        public Body(string id, double bodyDefence, decimal price) : base(id, bodyDefence, price)
+        public Body(string id, double armorDefence, decimal price) 
+            : base(id, armorDefence, price)
         {
             this.Type = ItemType.Body;
         }

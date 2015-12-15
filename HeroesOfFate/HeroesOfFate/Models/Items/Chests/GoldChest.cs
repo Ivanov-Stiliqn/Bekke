@@ -1,6 +1,8 @@
-﻿namespace HeroesOfFate.Models.Items.Chests
+﻿using HeroesOfFate.Contracts;
+
+namespace HeroesOfFate.Models.Items.Chests
 {
-    public class GoldChest : Chest
+    public class GoldChest : Chest, IGoldChest
     {
         private double gold;
         private double exp;

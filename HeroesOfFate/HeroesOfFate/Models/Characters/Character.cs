@@ -1,40 +1,40 @@
 ﻿using System;
-using HeroesOfFate.Contracts.ICharacters;
+using HeroesOfFate.Contracts;
 
 namespace HeroesOfFate.Models.Characters
 {
     public abstract class Character : ICharacter
     {
         private int level;
-        private double damage;
         private double health;
-        private double armor;
+        private double damageMin;
+        private double damageMax;
         private bool isDead;
 
         protected Character(
-            double damage,
+            int level,
             double health,
-            double armor,
-            int level)
+            double damageMin,
+            double damageMax)
         {
-            
+
             this.Level = level;
-            this.Damage = damage;
+            this.DamageMin = damageMin;
+            this.DamageMax = damageMax;
             this.Health = health;
-            this.Armor = armor;
             this.isDead = false;
         }
 
-        public double Damage 
+        public int Level
         {
-            get { return this.damage; }
+            get { return this.level; }
             set
             {
                 if (value < 0)
                 {
-                    throw new ArgumentOutOfRangeException("Damage cannot be neggative !");
+                    throw new ArgumentOutOfRangeException("level", "Level cannot be negative");
                 }
-                this.damage = value;
+                this.level = value;
             }
         }
 
@@ -51,29 +51,29 @@ namespace HeroesOfFate.Models.Characters
             }
         }
 
-        public double Armor
+        public double DamageMin
         {
-            get { return this.armor; }
+            get { return this.damageMin; }
             set
             {
-                if (value < 0)
+                if (value <= 0)
                 {
-                    throw new ArgumentOutOfRangeException("Armor cannot be neggative !");
+                    throw new ArgumentOutOfRangeException("minimum damage", "Damage cannot be 0 or negative !");
                 }
-                this.armor = value;
-            }
+                this.damageMin = value;
+            } 
         }
 
-        public int Level
+        public double DamageMax
         {
-            get { return this.level; }
+            get { return this.damageMax; }
             set
             {
-                if (value < 0)
+                if (value <= 0)
                 {
-                    throw new ArgumentOutOfRangeException("Level cannot be negative");
+                    throw new ArgumentOutOfRangeException("maximum damage", "Damage cannot be 0 or negative !");
                 }
-                this.level = value;
+                this.damageMax = value;
             }
         }
 
@@ -81,6 +81,5 @@ namespace HeroesOfFate.Models.Characters
         {
             get { return this.isDead; }
         }
-
     }
 }

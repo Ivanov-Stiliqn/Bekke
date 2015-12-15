@@ -1,19 +1,19 @@
-﻿using System;
-using System.Linq;
-using HeroesOfFate.Contracts.ICharacters;
-using HeroesOfFate.Models.Items;
+﻿using HeroesOfFate.Contracts;
+using HeroesOfFate.Models.Items.Armors;
+using HeroesOfFate.Models.Items.Weapons.OneHWeapons;
 
 namespace HeroesOfFate.Models.Characters.Heroes
 {
     public class Warrior : Hero, IWarrior
     {
-        private const double DamageDefault = 75;
+        private const double DamageMinDefault = 25;
+        private const double DamageMaxDefault = 75;
         private const double HealthDefault = 250;
         private const double ArmorDefault = 125;
         private const double MaxHealthDefault = HealthDefault;
         
         public Warrior(string name, Race heroRace)
-            :base(name,heroRace,DamageDefault,HealthDefault,ArmorDefault,MaxHealthDefault)
+            :base(name, heroRace, DamageMinDefault, DamageMaxDefault, HealthDefault, ArmorDefault, MaxHealthDefault)
         {
             
         }

@@ -1,19 +1,18 @@
-﻿using System;
-using System.Linq;
-using HeroesOfFate.Contracts.ICharacters;
-using HeroesOfFate.Models.Items;
+﻿using HeroesOfFate.Contracts;
+using HeroesOfFate.Models.Items.Weapons.TwoHWeapons;
 
 namespace HeroesOfFate.Models.Characters.Heroes
 {
     public class Archer : Hero, IArcher
     {
-        private const double DamageDefault = 100;
+        private const double DamageMinDefault = 75;
+        private const double DamageMaxDefault = 100;
         private const double HealthDefault = 200;
         private const double ArmorDefault = 100;
         private const double MaxHealthDefault = HealthDefault;
 
         public Archer(string name, Race heroRace)
-            : base(name, heroRace, DamageDefault, HealthDefault, ArmorDefault,MaxHealthDefault)
+            : base(name, heroRace, DamageMinDefault, DamageMaxDefault, HealthDefault, ArmorDefault, MaxHealthDefault)
         {
             
         }

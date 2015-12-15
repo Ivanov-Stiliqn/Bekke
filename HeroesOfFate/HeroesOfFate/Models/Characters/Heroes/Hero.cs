@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using HeroesOfFate.Contracts.ICharacters;
+using HeroesOfFate.Contracts;
 using HeroesOfFate.Events;
 using HeroesOfFate.Models.Items;
 using HeroesOfFate.Models.Items.Potions;
@@ -9,7 +9,7 @@ using HeroesOfFate.Models.Items.Weapons;
 
 namespace HeroesOfFate.Models.Characters.Heroes
 {
-    public abstract class Hero : Character,IInventory
+    public abstract class Hero : Character, IInventory
     {
         
         private const int LevelDefault = 1;
@@ -18,27 +18,28 @@ namespace HeroesOfFate.Models.Characters.Heroes
         public event HeroLevelChangeEventHandler ChangedLevel;
 
         private string name;
+        private double armor;
         private double gold;
         private int exp;
-        private readonly List<Item> inventory;
-        private readonly List<Item> equipment; 
+        private readonly List<IItem> inventory;
+        private readonly List<IItem> equipment; 
 
         protected Hero(
             string name,
             Race heroRace,
-            double damage,
+            double damageMin,
+            double damageMax,
             double health,
             double armor,
             double maxHealth,
-            double gold = StartingGold, 
-            int level = LevelDefault)
-
-            :base(damage, health, armor,level)
+            double gold = StartingGold) 
+                : base(LevelDefault, health, damageMin, damageMax)
         {
             this.Name = name;
+            this.Armor = armor;
             this.HeroRace = heroRace;
-            this.inventory = new List<Item>();
-            this.equipment = new List<Item>();
+            this.inventory = new List<IItem>();
+            this.equipment = new List<IItem>();
             this.Gold = gold;
             this.Exp = exp;
             this.MaxHealth = maxHealth;
@@ -59,7 +60,13 @@ namespace HeroesOfFate.Models.Characters.Heroes
                 }
                 this.name = value;
             }
-       }
+        }
+
+        public double Armor
+        {
+            get { return this.armor; }
+            set { this.armor = value; }
+        }
 
         public int Exp
         {
@@ -81,14 +88,14 @@ namespace HeroesOfFate.Models.Characters.Heroes
             }
         }
 
-        public IEnumerable<Item> Inventory
+        public IEnumerable<IItem> Inventory
         {
-            get { return inventory; }
+            get { return this.inventory; }
         }
 
-        public IEnumerable<Item> Equipment
+        public IEnumerable<IItem> Equipment
         {
-            get { return equipment; } 
+            get { return this.equipment; } 
             
         }
 
@@ -111,31 +118,34 @@ namespace HeroesOfFate.Models.Characters.Heroes
 
 
 
-        public void AddItemToInventory(Item item)
+        public void AddItemToInventory(IItem item)
         {
             this.inventory.Add(item);
         }
 
-        public void RemoveItemFromInventory(Item item)
+        public void RemoveItemFromInventory(IItem item)
         {
             this.inventory.Remove(item);
         }
 
-        protected void ApplyItemEffect(Item item)
+        protected void ApplyItemEffect(IItem item)
         {
-            this.Damage += item.WeaponAttack;
+            this.DamageMin += item.WeaponAttack;
+            this.DamageMax += item.WeaponAttack;
             this.Armor += item.ArmorDefence;
         }
 
-        protected void RemoveItemEffect(Item item)
+        protected void RemoveItemEffect(IItem item)
         {
-            this.Damage -= item.WeaponAttack;
+            this.DamageMin -= item.WeaponAttack;
+            this.DamageMax -= item.WeaponAttack;
             this.Armor -= item.ArmorDefence;
         }
 
         public void ApplyPotionEffect(Potion potion)
         {
-            this.Damage += potion.WeaponAttack;
+            this.DamageMin += potion.WeaponAttack;
+            this.DamageMax += potion.WeaponAttack;
             this.Armor += potion.ArmorDefence;
             this.Health += potion.HealthEffect;
 
@@ -148,25 +158,26 @@ namespace HeroesOfFate.Models.Characters.Heroes
 
         public void RemovePotionEffect(Potion potion)
         {
-            this.Damage -= potion.WeaponAttack;
+            this.DamageMin -= potion.WeaponAttack;
+            this.DamageMax -= potion.WeaponAttack;
             this.Armor -= potion.ArmorDefence;
             this.Health -= potion.HealthEffect;
         }
 
-        public void Equip(Item item)
+        public void Equip(IItem item)
         {
             bool isEquiped = false;
 
-            foreach (Item equipedItem in this.equipment.ToList())
+            foreach (IItem equipedItem in this.equipment.ToList())
             {
                 if (item.Type == equipedItem.Type)
                 {
                     if (item.Type == ItemType.MainHand)
                     {
-                        var weapon = new Weapon(item.WeaponAttack, item.Id, item.Price);
+                        var weapon = new Weapon(item.Id, item.WeaponAttack, item.Price);
                         if (!weapon.IsOneH)
                         {
-                            Item shield = this.FindShield();
+                            IItem shield = this.FindShield();
                             if (shield != null)
                             {
                                 this.equipment.Remove(shield);
@@ -207,7 +218,7 @@ namespace HeroesOfFate.Models.Characters.Heroes
             }
         }
 
-        private Item FindShield()
+        private IItem FindShield()
         {
             foreach (var item in this.equipment)
             {
@@ -235,7 +246,7 @@ namespace HeroesOfFate.Models.Characters.Heroes
         {
             this.Level += value / 100;
             this.exp = value % 100;
-            this.MaxHealth += (this.Level-1)*10;
+            this.MaxHealth += (this.Level-1) * 10;
             this.Health = this.MaxHealth;
 
             OnLevelChange(this,new HeroChangeLevelEventArgs(this.Level));
@@ -251,8 +262,8 @@ namespace HeroesOfFate.Models.Characters.Heroes
 
         public override string ToString()
         {
-            return string.Format("Name: {0}, Race: {1}, Damage: {2}, Armor: {3}, Health: {4}",
-                this.Name, this.HeroRace, this.Damage, this.Armor, this.Health);
+            return string.Format("{0}\nRace: {1}\nProffesion: {2}\nLevel: {3}\nHP: {4}\nDamage: ({5} , {6})\nArmor: {7}\n",
+                this.Name, this.HeroRace,this.GetType().Name, this.Level,this.Health, this.DamageMin, this.DamageMax, this.Armor);
         }
     }
 }

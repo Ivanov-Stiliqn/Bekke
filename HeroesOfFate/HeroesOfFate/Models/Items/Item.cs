@@ -1,8 +1,9 @@
 ﻿using System;
+using HeroesOfFate.Contracts;
 
 namespace HeroesOfFate.Models.Items
 {
-    public abstract class Item
+    public abstract class Item : IItem
     {
         private ItemType type;
         private double weaponAttack;
@@ -10,16 +11,21 @@ namespace HeroesOfFate.Models.Items
         private string id;
         private decimal price;
 
-        protected Item(double weaponAttack, double armorDefence, string id,decimal price)
+        protected Item(string id, double weaponAttack, double armorDefence, decimal price)
         {
             this.Type = type;
+            this.Id = id;
             this.WeaponAttack = weaponAttack;
             this.ArmorDefence = armorDefence;
-            this.Id = id;
             this.Price = price;
         }
 
-        public ItemType Type { get { return this.type; } set { this.type = value; } }
+        public ItemType Type
+        {
+            get { return this.type; }
+            set { this.type = value; } 
+            
+        }
 
         public double WeaponAttack
         {

@@ -1,6 +1,8 @@
-﻿namespace HeroesOfFate.Models.Items.Chests
+﻿using HeroesOfFate.Contracts;
+
+namespace HeroesOfFate.Models.Items.Chests
 {
-    public abstract class Chest
+    public abstract class Chest : IChest
     {
         private string id;
 

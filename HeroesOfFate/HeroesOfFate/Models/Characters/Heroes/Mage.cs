@@ -1,19 +1,18 @@
-﻿using System;
-using System.Linq;
-using HeroesOfFate.Contracts.ICharacters;
-using HeroesOfFate.Models.Items;
+﻿using HeroesOfFate.Contracts;
+using HeroesOfFate.Models.Items.Weapons.TwoHWeapons;
 
 namespace HeroesOfFate.Models.Characters.Heroes
 {
     public class Mage : Hero, IMage
     {
-        private const double DamageDefault = 125;
+        private const double DamageMinDefault = 75;
+        private const double DamageMaxDefault = 125;
         private const double HealthDefault = 150;
         private const double ArmorDefault = 75;
         private const double MaxHealthDefault = HealthDefault;
         
         public Mage(string name, Race heroRace)
-            : base(name, heroRace, DamageDefault, HealthDefault, ArmorDefault,MaxHealthDefault)
+            : base(name, heroRace, DamageMinDefault, DamageMaxDefault, HealthDefault, ArmorDefault,MaxHealthDefault)
         {
             
         }

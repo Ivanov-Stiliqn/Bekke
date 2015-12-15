@@ -2,7 +2,8 @@
 {
     public class Sword : Weapon
     {
-        public Sword(double weaponAttack, string id, decimal price) : base(weaponAttack, id, price)
+        public Sword(string id, double weaponAttack, decimal price) 
+            : base(id, weaponAttack, price)
         {
             this.IsOneH = true;
         }
