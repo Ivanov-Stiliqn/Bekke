@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using HeroesOfFate.Contracts;
+using HeroesOfFate.Contracts.FactoryContracts;
+using HeroesOfFate.Contracts.Item_Contracts;
+using HeroesOfFate.Factories;
 using HeroesOfFate.GameEngine;
 using HeroesOfFate.Models.Characters.Heroes;
 using HeroesOfFate.Models.Characters.Monsters;
@@ -11,62 +15,29 @@ namespace HeroesOfFate
 {
     public class MainProgram
     {
-        static void Main()
+        
+
+        public static void Main()
         {
-            //Engine.GameStart();
+            //After creating hero implement the bottom commentar. It automaticly create items and add
+            //them to the loot table of the monsters. The monster automaticly level up with the event below!
+            ///////////////////////////////////////////////////////////////////////////////////////////////
+            //warrior.ChangedLevel += (sender, eventArgs) => 
+            //monsters.ForEach(m => m.LevelUp(eventArgs.Level));
+            //core.ImplementItems();
 
-            Warrior warrior = new Warrior("Todar", Race.Orc);
+            Core core = new Core();
+            Warrior mecho=new Warrior("Mecan",Race.Dwarf);
 
-            List<Monster>monsters=new List<Monster>
-            {
-                new Ogre(),
-                new Troll(),
-                new Wolf(),
-                new Undead()
-            };
+            IItem bradva=new Axe("hui",30,200);
 
-            warrior.ChangedLevel += (sender, eventArgs) => 
-            monsters.ForEach(m => m.LevelUp(eventArgs.Level));
+            mecho.AddItemToInventory(bradva);
+            mecho.Equip(bradva);
+            Console.WriteLine(mecho.ToString());
 
-            warrior.Exp = 700;
-            Console.WriteLine(warrior.ToString());
-            Console.WriteLine();
-
-            foreach (var monster in monsters)
-            {
-                Console.WriteLine(monster.ToString());
-            }
-            Console.WriteLine();
-
-            warrior.Exp += 500;
-            Console.WriteLine(warrior.ToString());
-            foreach (var monster in monsters)
-            {
-                Console.WriteLine(monster.ToString());
-            }
-
-            //Console.WriteLine(warrior.ToString());
-
-            //Weapon axe = new Axe(100, "Laina", 15m);
-            //Weapon greatSword = new Greatsword(200, "laina 2", 10m);
-            //Armor shield = new Shield("more laina", 50, 5m);
-            //Staff staff = new Staff(300,"Gandalf",330330);
-
-            //warrior.AddItemToInventory(staff);
-            //warrior.Equip(staff);
-            //Console.WriteLine(warrior.ToString());
-
-            //Armor armor=new Body("blqt",100,231);
-
-            //warrior.AddItemToInventory(armor);
-            //warrior.Equip(armor);
-            //Console.WriteLine(warrior.ToString());
-
-            //warrior.Exp = 799;
-            //Console.WriteLine(warrior.ToString());
-            //Console.WriteLine(warrior.Exp);
-            //Console.WriteLine(warrior.MaxHealth);
-            //Console.WriteLine(warrior.Level);
+            
         }
+
+        
     }
 }

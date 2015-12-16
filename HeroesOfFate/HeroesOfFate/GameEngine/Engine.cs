@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace HeroesOfFate.GameEngine
 {
@@ -176,7 +177,5 @@ namespace HeroesOfFate.GameEngine
                 throw new ArgumentException("Enter valid direction!");
             }
         }
-        
-        
     }
 }

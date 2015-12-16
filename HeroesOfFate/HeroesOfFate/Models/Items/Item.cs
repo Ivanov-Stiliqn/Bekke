@@ -6,17 +6,13 @@ namespace HeroesOfFate.Models.Items
     public abstract class Item : IItem
     {
         private ItemType type;
-        private double weaponAttack;
-        private double armorDefence;
         private string id;
         private decimal price;
 
-        protected Item(string id, double weaponAttack, double armorDefence, decimal price)
+        protected Item(string id,decimal price)
         {
             this.Type = type;
             this.Id = id;
-            this.WeaponAttack = weaponAttack;
-            this.ArmorDefence = armorDefence;
             this.Price = price;
         }
 
@@ -25,18 +21,6 @@ namespace HeroesOfFate.Models.Items
             get { return this.type; }
             set { this.type = value; } 
             
-        }
-
-        public double WeaponAttack
-        {
-            get { return this.weaponAttack; }
-            set { this.weaponAttack = value; }
-        }
-
-        public double ArmorDefence
-        {
-            get { return this.armorDefence; }
-            set { this.armorDefence = value; } 
         }
 
         public string Id
@@ -64,5 +48,11 @@ namespace HeroesOfFate.Models.Items
                 price = value;
             }
         }
+
+        public double WeaponAttack { get; set; }
+
+        public double ArmorDefence { get; set; }
+
+        public double HealthEffect { get; set; }
     }
 }

@@ -23,22 +23,5 @@ namespace HeroesOfFate.Contracts
 
         double MaxHealth { get; set; }
 
-        void AddItemToInventory(IItem item);
-
-        void RemoveItemFromInventory(IItem item);
-
-        void ApplyItemEffect(IItem item);
-
-        void RemoveItemEffect(IItem item);
-
-        void ApplyPotionEffect(Potion potion);
-
-        void RemovePotionEffect(Potion potion);
-
-        void Equip(IItem item);
-
-        void LevelUp(int value);
-
-        void OnLevelChange(object sender, HeroChangeLevelEventArgs eventArgs);
     }
 }

@@ -1,20 +1,17 @@
-﻿namespace HeroesOfFate.Models.Items.Weapons
+﻿using HeroesOfFate.Contracts.Item_Contracts;
+
+namespace HeroesOfFate.Models.Items.Weapons
 {
-    public class Weapon : Item
+    public class Weapon : Item,IWeapon
     {
-        private const double ArmorDefault = 0;
-        private bool isOneH;
 
         public Weapon(string id, double weaponAttack, decimal price) 
-            : base(id, weaponAttack, ArmorDefault, price)
+            : base(id, price)
         {
             this.Type = ItemType.MainHand;
+            this.WeaponAttack = weaponAttack;
         }
 
-        public bool IsOneH
-        {
-            get { return this.isOneH; }
-            set { this.isOneH = value; }
-        }
+        public bool IsOneH { get; set; }
     }
 }

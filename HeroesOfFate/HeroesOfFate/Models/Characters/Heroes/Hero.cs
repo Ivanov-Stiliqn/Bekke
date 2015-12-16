@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using HeroesOfFate.Contracts;
+using HeroesOfFate.Contracts.Item_Contracts;
 using HeroesOfFate.Events;
 using HeroesOfFate.Models.Items;
 using HeroesOfFate.Models.Items.Potions;
@@ -130,8 +131,12 @@ namespace HeroesOfFate.Models.Characters.Heroes
 
         protected void ApplyItemEffect(IItem item)
         {
-            this.DamageMin += item.WeaponAttack;
-            this.DamageMax += item.WeaponAttack;
+            if (item is IWeapon)
+            {
+                
+                this.DamageMin += item.WeaponAttack;
+                this.DamageMax += item.WeaponAttack;
+            }
             this.Armor += item.ArmorDefence;
         }
 

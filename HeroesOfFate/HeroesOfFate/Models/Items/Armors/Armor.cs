@@ -1,13 +1,14 @@
-﻿namespace HeroesOfFate.Models.Items.Armors
+﻿using HeroesOfFate.Contracts.Item_Contracts;
+
+namespace HeroesOfFate.Models.Items.Armors
 {
-    public class Armor : Item
+    public class Armor : Item, IArmor
     {
-        private const double AttackDefault = 0;
 
         protected Armor(string id, double armorDefence, decimal price) 
-            : base(id, AttackDefault, armorDefence, price)
+            : base(id, price)
         {
-            
+            this.ArmorDefence = armorDefence;
         }
     }
 }

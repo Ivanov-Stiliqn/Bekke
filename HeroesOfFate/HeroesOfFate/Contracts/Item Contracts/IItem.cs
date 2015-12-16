@@ -10,6 +10,8 @@ namespace HeroesOfFate.Contracts
 
         double ArmorDefence{ get; set; }
 
+        double HealthEffect { get; set; }
+
         string Id { get; set; }
 
         decimal Price { get; set; }

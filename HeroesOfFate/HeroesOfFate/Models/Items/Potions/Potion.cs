@@ -1,14 +1,13 @@
-﻿namespace HeroesOfFate.Models.Items.Potions
-{
-    public class Potion : Item
-    {
-        protected Potion(string id, double weaponAttack, double armorDefence, double healthEffect, decimal price) 
-            : base(id, weaponAttack, armorDefence, price)
-        {
-            this.HealthEffect = healthEffect;
-            this.Type = ItemType.Potion;
-        }
+﻿using HeroesOfFate.Contracts.Item_Contracts;
 
-        public double HealthEffect { get; set; }
+namespace HeroesOfFate.Models.Items.Potions
+{
+    public class Potion : Item,IPotion
+    {
+        protected Potion(string id, decimal price) 
+            : base(id, price)
+        {
+            this.Type = ItemType.Potion;
+        }   
     }
 }

@@ -41,6 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\FactoryContracts\IArmorFactory.cs" />
+    <Compile Include="Contracts\FactoryContracts\IPotionFactory.cs" />
+    <Compile Include="Contracts\FactoryContracts\IWeaponFactory.cs" />
+    <Compile Include="Contracts\IDeffence.cs" />
+    <Compile Include="Contracts\IDamage.cs" />
+    <Compile Include="Contracts\IHealth.cs" />
+    <Compile Include="Contracts\Item Contracts\IArmor.cs" />
     <Compile Include="Contracts\Item Contracts\IChest.cs" />
     <Compile Include="Contracts\Character Contracts\ICharacter.cs" />
     <Compile Include="Contracts\Character Contracts\Hero Contracts\IArcher.cs" />
@@ -53,8 +60,15 @@
     <Compile Include="Contracts\Item Contracts\IItem.cs" />
     <Compile Include="Contracts\Character Contracts\IMerchant.cs" />
     <Compile Include="Contracts\Character Contracts\Monster Contracts\IMonster.cs" />
+    <Compile Include="Contracts\Item Contracts\IPotion.cs" />
+    <Compile Include="Contracts\Item Contracts\IWeapon.cs" />
     <Compile Include="Events\HeroChangeLevelEventArgs.cs" />
     <Compile Include="Events\HeroLevelChangeEventHandler.cs" />
+    <Compile Include="Factories\ArmorFactory.cs" />
+    <Compile Include="Factories\PotionFactory.cs" />
+    <Compile Include="Factories\WeaponFactory.cs" />
+    <Compile Include="GameEngine\Core.cs" />
+    <Compile Include="GameEngine\Database.cs" />
     <Compile Include="GameEngine\DrawScreen.cs" />
     <Compile Include="GameEngine\Engine.cs" />
     <Compile Include="MainProgram.cs" />
@@ -104,7 +118,9 @@
     <None Include="App.config" />
     <None Include="ClassDiagram1.cd" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="resources\items.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
