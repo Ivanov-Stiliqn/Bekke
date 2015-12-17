@@ -12,7 +12,7 @@ namespace HeroesOfFate.GameEngine
         public static List<string> AddMap()
         {
             List<string> map = new List<string>();
-            using (StreamReader file = new StreamReader("map.txt"))
+            using (StreamReader file = new StreamReader("..\\..\\resources\\map.txt"))
             {
                 string line;
                 while ((line = file.ReadLine()) != null)

@@ -16,8 +16,6 @@ namespace HeroesOfFate
 {
     public class MainProgram
     {
-
-
         public static void Main()
         {
             //After creating hero implement the bottom commentar. It automaticly create items and add

@@ -11,6 +11,7 @@ namespace HeroesOfFate.GameEngine
         private static char specSymbol = '═';
         private static char wallSymbol = '█';
 
+
         public static void GameStart()
         {
             Console.WindowHeight = 40;

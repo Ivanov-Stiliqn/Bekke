@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using HeroesOfFate.Contracts;
 using HeroesOfFate.Contracts.FactoryContracts;
 using HeroesOfFate.Factories;
@@ -17,14 +18,16 @@ namespace HeroesOfFate.GameEngine
 {
     public class Core
     {
-        private IWeaponFactory weaponFactory = new WeaponFactory();
-        private IArmorFactory armorFactory = new ArmorFactory();
-        private IPotionFactory potionFactory = new PotionFactory();
-        private Database database = new Database();
-        private ConsoleReader reader = new ConsoleReader();
-        private ConsoleWriter writer = new ConsoleWriter();
+        private readonly IWeaponFactory weaponFactory = new WeaponFactory();
+        private readonly IArmorFactory armorFactory = new ArmorFactory();
+        private readonly IPotionFactory potionFactory = new PotionFactory();
+        private readonly Database database = new Database();
+        private readonly ConsoleReader reader = new ConsoleReader();
+        private readonly ConsoleWriter writer = new ConsoleWriter();
         private Hero hero;
 
+
+        //Method for starting the game
         public void Run()
         {
             while (true)
@@ -35,6 +38,8 @@ namespace HeroesOfFate.GameEngine
 
         private void StartScreen()
         {
+            Console.Clear();
+
             StringBuilder chooseOption = new StringBuilder();
 
             string title = "Heroes Of Fate";
@@ -63,6 +68,7 @@ namespace HeroesOfFate.GameEngine
             }
         }
 
+        //Hero creation screen leading to the map screen
         private void CreateHero()
         {
             Console.Clear();
@@ -118,6 +124,7 @@ namespace HeroesOfFate.GameEngine
             }
         }
 
+        //Commands info screen leading back to the start screen
         private void CommandsInfo()
         {
             Console.Clear();
@@ -149,7 +156,7 @@ namespace HeroesOfFate.GameEngine
             }
         }
 
-        //Starting point of the whole class
+        //Populating items in the game and inserting them to the monsters and item chests
         public void ImplementItems()
         {
             using (StreamReader file = new StreamReader("..\\..\\resources\\items.txt"))
@@ -168,9 +175,18 @@ namespace HeroesOfFate.GameEngine
                         monster.AddItemToLootTable(item);
                     }
                 }
+
+                foreach (var chest in this.database.ItemChests)
+                {
+                    foreach (var item in this.database.Items)
+                    {
+                        chest.AddItemToChest(item);
+                    }
+                }
             }
         }
 
+        //Loading the items from prewritten text file
         private void ParseInputData(string[] inputArgs)
         {
             string itemType = inputArgs[0];
@@ -200,6 +216,7 @@ namespace HeroesOfFate.GameEngine
             }
         }
 
+        //The method for getting random loot from monsters and item chests
         public IItem LootRandomItem()
         {
             Random random=new Random();
