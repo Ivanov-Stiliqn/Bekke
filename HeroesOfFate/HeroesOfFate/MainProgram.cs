@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using HeroesOfFate.Contracts;
 using HeroesOfFate.Contracts.FactoryContracts;
 using HeroesOfFate.Contracts.Item_Contracts;
@@ -15,7 +16,7 @@ namespace HeroesOfFate
 {
     public class MainProgram
     {
-        
+
 
         public static void Main()
         {
@@ -27,17 +28,8 @@ namespace HeroesOfFate
             //core.ImplementItems();
 
             Core core = new Core();
-            Warrior mecho=new Warrior("Mecan",Race.Dwarf);
 
-            IItem bradva=new Axe("hui",30,200);
-
-            mecho.AddItemToInventory(bradva);
-            mecho.Equip(bradva);
-            Console.WriteLine(mecho.ToString());
-
-            
+            core.Run();
         }
-
-        
     }
 }

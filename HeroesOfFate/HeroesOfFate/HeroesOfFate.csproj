@@ -71,6 +71,8 @@
     <Compile Include="GameEngine\Database.cs" />
     <Compile Include="GameEngine\DrawScreen.cs" />
     <Compile Include="GameEngine\Engine.cs" />
+    <Compile Include="GameEngine\IO\ConsoleReader.cs" />
+    <Compile Include="GameEngine\IO\ConsoleWriter.cs" />
     <Compile Include="MainProgram.cs" />
     <Compile Include="Models\Characters\Character.cs" />
     <Compile Include="Models\Characters\Heroes\Archer.cs" />
