@@ -94,30 +94,33 @@ namespace HeroesOfFate.GameEngine
             {
                 case "warrior":
                     if (inputParams[2] == "human") { hero = new Warrior(inputParams[1], Race.Human);}
-                    if (inputParams[2] == "elf") { hero = new Warrior(inputParams[1], Race.Elf); }
-                    if (inputParams[2] == "orc") { hero = new Warrior(inputParams[1], Race.Orc); }
-                    if (inputParams[2] == "dwarf") { hero = new Warrior(inputParams[1], Race.Dwarf); }
-                    if (inputParams[2] == "werewolf") { hero = new Warrior(inputParams[1], Race.Werewolf); }
+                    else if (inputParams[2] == "elf") { hero = new Warrior(inputParams[1], Race.Elf); }
+                    else if (inputParams[2] == "orc") { hero = new Warrior(inputParams[1], Race.Orc); }
+                    else if (inputParams[2] == "dwarf") { hero = new Warrior(inputParams[1], Race.Dwarf); }
+                    else if (inputParams[2] == "werewolf") { hero = new Warrior(inputParams[1], Race.Werewolf); }
+                    else { throw  new ArgumentException("No such race !");}
                     this.ImplementItems();
                     Engine.GameStart();
                     break;
 
                 case "archer":
                     if (inputParams[2] == "human") { hero = new Archer(inputParams[1], Race.Human); }
-                    if (inputParams[2] == "elf") { hero = new Archer(inputParams[1], Race.Elf); }
-                    if (inputParams[2] == "orc") { hero = new Archer(inputParams[1], Race.Orc); }
-                    if (inputParams[2] == "dwarf") { hero = new Archer(inputParams[1], Race.Dwarf); }
-                    if (inputParams[2] == "werewolf") { hero = new Archer(inputParams[1], Race.Werewolf); }
+                    else if (inputParams[2] == "elf") { hero = new Archer(inputParams[1], Race.Elf); }
+                    else if (inputParams[2] == "orc") { hero = new Archer(inputParams[1], Race.Orc); }
+                    else if (inputParams[2] == "dwarf") { hero = new Archer(inputParams[1], Race.Dwarf); }
+                    else if (inputParams[2] == "werewolf") { hero = new Archer(inputParams[1], Race.Werewolf); }
+                    else { throw new ArgumentException("No such race !"); }
                     this.ImplementItems();
                     Engine.GameStart();
                     break;
 
                 case "mage":
                     if (inputParams[2] == "human") { hero = new Mage(inputParams[1], Race.Human); }
-                    if (inputParams[2] == "elf") { hero = new Mage(inputParams[1], Race.Elf); }
-                    if (inputParams[2] == "orc") { hero = new Mage(inputParams[1], Race.Orc); }
-                    if (inputParams[2] == "dwarf") { hero = new Mage(inputParams[1], Race.Dwarf); }
-                    if (inputParams[2] == "werewolf") { hero = new Mage(inputParams[1], Race.Werewolf); }
+                    else if (inputParams[2] == "elf") { hero = new Mage(inputParams[1], Race.Elf); }
+                    else if (inputParams[2] == "orc") { hero = new Mage(inputParams[1], Race.Orc); }
+                    else if (inputParams[2] == "dwarf") { hero = new Mage(inputParams[1], Race.Dwarf); }
+                    else if (inputParams[2] == "werewolf") { hero = new Mage(inputParams[1], Race.Werewolf); }
+                    else { throw new ArgumentException("No such race !"); }
                     this.ImplementItems();
                     Engine.GameStart();
                     break;
