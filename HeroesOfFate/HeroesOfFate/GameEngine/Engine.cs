@@ -40,7 +40,7 @@ namespace HeroesOfFate.GameEngine
                         changeHeroCoordinates(int.Parse(splitCommand[1]), splitCommand[2]);
                         CheckValidMapMove(map.Count, map[0].Length);
                         HeroMove(map, tempposition, heroPosition, splitCommand[2], hero);
-                        if ((hero.Health + int.Parse(splitCommand[2]) * 5) > hero.MaxHealth) hero.Health += int.Parse(splitCommand[2]) * 5; //Health regen per move
+                        if ((hero.Health + int.Parse(splitCommand[2]) * 5) <= hero.MaxHealth) hero.Health += int.Parse(splitCommand[2]) * 5; //Health regen per move
                         else hero.Health = hero.MaxHealth;
                     }
                     catch (ArgumentException e)
