@@ -100,7 +100,7 @@ namespace HeroesOfFate.GameEngine
                     else if (inputParams[2] == "werewolf") { hero = new Warrior(inputParams[1], Race.Werewolf); }
                     else { throw  new ArgumentException("No such race !");}
                     this.ImplementItems();
-                    Engine.GameStart(hero);
+                    Engine.GameStart(ref hero);
                     break;
 
                 case "archer":
@@ -111,7 +111,7 @@ namespace HeroesOfFate.GameEngine
                     else if (inputParams[2] == "werewolf") { hero = new Archer(inputParams[1], Race.Werewolf); }
                     else { throw new ArgumentException("No such race !"); }
                     this.ImplementItems();
-                    Engine.GameStart(hero);
+                    Engine.GameStart(ref hero);
                     break;
 
                 case "mage":
@@ -122,7 +122,7 @@ namespace HeroesOfFate.GameEngine
                     else if (inputParams[2] == "werewolf") { hero = new Mage(inputParams[1], Race.Werewolf); }
                     else { throw new ArgumentException("No such race !"); }
                     this.ImplementItems();
-                    Engine.GameStart(hero);
+                    Engine.GameStart(ref hero);
                     break;
             }
         }
