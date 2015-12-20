@@ -130,7 +130,7 @@ namespace HeroesOfFate.GameEngine
                     else specSymbol = '═';
                     return 1;
                 case '§':
-                    DrawScreen.AddLineToBuffer(ref DrawScreen.area2, "You faced The demon and you died !!!");
+                    //DrawScreen.AddLineToBuffer(ref DrawScreen.area2, "You faced The demon and you died !!!");
                     BattleScreen.StartBattle(hero);
                     Environment.Exit(0);
                     return 2;

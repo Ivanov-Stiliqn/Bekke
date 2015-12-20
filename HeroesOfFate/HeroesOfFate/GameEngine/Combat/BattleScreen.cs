@@ -16,33 +16,53 @@ namespace HeroesOfFate.GameEngine.Combat
         private static List<string> commandShow = new List<string>();
         public static void StartBattle(Hero hero)
         {
+            ScreenClear();
             Random rnd = new Random();
             int monsterChoice = rnd.Next(1, 6);
             Monster monster = monsterSelect(monsterChoice);
             ScreenUpdate(hero, monster);
             DrawBattle();
-            while (true)
+            bool check = true;
+            while (check)
             {
                 try
                 {
-                    uint command = uint.Parse(Console.ReadLine());
+                    int command = int.Parse(Console.ReadLine());
                     switch (command)
                     {
                         case 1:
                             DrawScreen.AddLineToBuffer(ref battleArea2, "You hitted your opponent for x amount of damage!");
-                            ScreenUpdate(hero, monster);
+                            HeroHit(ref monster, rnd.Next((int)hero.DamageMin, (int)hero.DamageMax + 1));// damage must be converted to int instead of double !!!
+                            if (monster.Health > 0)
+                            {
+                                DrawScreen.AddLineToBuffer(ref battleArea2, "Monster hitted you for x amount of damage!");
+                                MonsterHit(ref hero, rnd.Next((int)monster.DamageMin, (int)monster.DamageMax + 1));
+                                if (hero.Health <= 0)
+                                {
+                                    DrawScreen.AddLineToBuffer(ref battleArea2, "Game Over! You have been defeated.");
+                                    updateHPBar(hero, monster);
+                                    check = false;
+                                }
+                                else
+                                {
+                                    updateHPBar(hero, monster);
+                                }
+                            }
+                            else
+                            {
+                                DrawScreen.AddLineToBuffer(ref battleArea2, "Monster is dead!!");
+                                updateHPBar(hero, monster);
+                                check = false;
+                            }
                             break;
                         case 2:
                             DrawScreen.AddLineToBuffer(ref battleArea2, "You used y and did strong hit to your opponent for x amount of damage!");
-                            ScreenUpdate(hero, monster);
                             break;
                         case 3:
                             DrawScreen.AddLineToBuffer(ref battleArea2, "You used potion to restore x amount of HP");
-                            ScreenUpdate(hero, monster);
                             break;
                         case 4:
                             DrawScreen.AddLineToBuffer(ref battleArea2, "You used special hit wich did x amount of damage!");
-                            ScreenUpdate(hero, monster);
                             break;
                         case 0:
                             break;
@@ -51,7 +71,7 @@ namespace HeroesOfFate.GameEngine.Combat
                             break;
                     }
                     DrawBattle();
-                    if (command == 0) break;
+                    if (command == 0) check = false;
                 }
                 catch (FormatException)
                 {
@@ -65,6 +85,14 @@ namespace HeroesOfFate.GameEngine.Combat
                 }
             }
             
+        }
+        private static void HeroHit(ref Monster monster, int damage)
+        {
+            monster.Health -= damage;
+        }
+        private static void MonsterHit(ref Hero hero, int damage)
+        {
+            hero.Health -= damage;
         }
         private static Monster monsterSelect(int number)
         {
@@ -91,9 +119,13 @@ namespace HeroesOfFate.GameEngine.Combat
             }
             return monster;
         }
+        private static void updateHPBar(Hero hero, Monster monster)
+        {
+            var i = battleArea1.FindIndex(x => x.Contains("HP:"));
+            battleArea1[i] = " ".PadLeft(4, ' ') + ("HP: " + hero.Health).PadRight(50, ' ') + "HP: " + monster.Health;
+        }
         private static void ScreenUpdate(Hero hero, Monster monster)
         {
-            ScreenClear();
             fillArea(hero, monster);
             CommandsShow();
             combineArea();
@@ -120,14 +152,14 @@ namespace HeroesOfFate.GameEngine.Combat
         }
         private static void CommandsShow()
         {
+            DrawScreen.AddLineToBuffer(ref commandShow, "1.Normal hit.");
+            DrawScreen.AddLineToBuffer(ref commandShow, "2.Use Crush.");
+            DrawScreen.AddLineToBuffer(ref commandShow, "3.Use HP potion.");
+            DrawScreen .AddLineToBuffer(ref commandShow, "4.Use Ultimate skill.");
             for (int i = 0; i < 5; i++)
             {
-                commandShow.Add(Environment.NewLine);
+                DrawScreen.AddLineToBuffer(ref commandShow, Environment.NewLine);
             }
-            commandShow.Add("4.Use Ultimate skill.");
-            commandShow.Add("3.Use HP potion.");
-            commandShow.Add("2.Use Crush.");
-            commandShow.Add("1.Normal hit.");
         }
         private static void combineArea()
         {

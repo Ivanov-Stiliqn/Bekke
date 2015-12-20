@@ -8,7 +8,7 @@ namespace HeroesOfFate.GameEngine
     {
         public static List<string> area1 = new List<string>();
         public static List<string> area2 = new List<string>();
-        static int areaHeights = (Console.WindowHeight - 2) / 2;
+        const int areaHeights = (40 - 2) / 2;
         public static List<string> AddMap()
         {
             List<string> map = new List<string>();
