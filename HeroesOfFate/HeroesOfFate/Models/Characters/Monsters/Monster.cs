@@ -53,8 +53,7 @@ namespace HeroesOfFate.Models.Characters.Monsters
         //Test !!!
         public override string ToString()
         {
-            return string.Format("{0}\nLevel: {1}\nHP: {2}\nDamage: ({3} , {4})\n",
-                this.GetType().Name, this.Level, this.Health, this.DamageMin, this.DamageMax);
+            return string.Format(this.GetType().Name);
         }
         //Test !!!
     }

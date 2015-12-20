@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using HeroesOfFate.GameEngine.Combat;
+using HeroesOfFate.Models.Characters.Heroes;
 
 namespace HeroesOfFate.GameEngine
 {
@@ -13,7 +14,7 @@ namespace HeroesOfFate.GameEngine
         private static char wallSymbol = '█';
 
 
-        public static void GameStart()
+        public static void GameStart(Hero hero)
         {
             Console.WindowHeight = 40;
             Console.WindowWidth = 90;
@@ -38,7 +39,7 @@ namespace HeroesOfFate.GameEngine
                     {
                         changeHeroCoordinates(int.Parse(splitCommand[1]), splitCommand[2]);
                         CheckValidMapMove(map.Count, map[0].Length);
-                        HeroMove(map, tempposition, heroPosition, splitCommand[2]);
+                        HeroMove(map, tempposition, heroPosition, splitCommand[2], hero);
                     }
                     catch (ArgumentException e)
                     {
@@ -119,7 +120,7 @@ namespace HeroesOfFate.GameEngine
             return true;
         }
 
-        private static int SpecialSymbolReach(char symbol, string command)// special symbols what to do when you find one
+        private static int SpecialSymbolReach(char symbol, string command, Hero hero)// special symbols what to do when you find one
         {
             switch (symbol)
             {
@@ -130,7 +131,7 @@ namespace HeroesOfFate.GameEngine
                     return 1;
                 case '§':
                     DrawScreen.AddLineToBuffer(ref DrawScreen.area2, "You faced The demon and you died !!!");
-                    BattleScreen.StartBattle();
+                    BattleScreen.StartBattle(hero);
                     Environment.Exit(0);
                     return 2;
                 default:
@@ -138,7 +139,7 @@ namespace HeroesOfFate.GameEngine
             }
         }
 
-        private static List<string> HeroMove(List<string> oldMap, int[] oldPosition, int[] newPosition, string command) // moving method
+        private static List<string> HeroMove(List<string> oldMap, int[] oldPosition, int[] newPosition, string command, Hero hero) // moving method
         {
             char[] tempMapOldLine = oldMap[oldPosition[0] - 1].ToCharArray();
             char[] tempMapNewLine = oldMap[newPosition[0] - 1].ToCharArray();
@@ -151,7 +152,7 @@ namespace HeroesOfFate.GameEngine
 
                 tempMapOldLine[oldPosition[1] - 1] = specSymbol;
                 oldMap[oldPosition[0] - 1] = new string(tempMapOldLine);
-                int temp = SpecialSymbolReach(tempMapNewLine[newPosition[1] - 1], command);
+                int temp = SpecialSymbolReach(tempMapNewLine[newPosition[1] - 1], command, hero);
                 if (temp == 0) specSymbol = tempMapNewLine[newPosition[1] - 1];
                 tempMapNewLine = oldMap[newPosition[0] - 1].ToCharArray();
                 tempMapNewLine[newPosition[1] - 1] = '©';
