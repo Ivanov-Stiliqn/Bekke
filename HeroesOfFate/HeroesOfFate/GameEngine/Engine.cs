@@ -7,7 +7,7 @@ namespace HeroesOfFate.GameEngine
 {
     public static class Engine
     {
-        private static List<string> map = DrawScreen.AddMap();
+        private static List<string> map = DrawScreen.AddMap();// adding map to the game
         private static int[] heroPosition = { 5, 1 };
         private static char specSymbol = '═';
         private static char wallSymbol = '█';
@@ -18,23 +18,21 @@ namespace HeroesOfFate.GameEngine
             Console.WindowHeight = 40;
             Console.WindowWidth = 90;
             
-            foreach (string v in map)
+            foreach (string v in map)// loading the map to be printed
             {
                 DrawScreen.AddLineToBuffer(ref DrawScreen.area1, v);
             }
 
             DrawScreen.drawScreen(DrawScreen.area1, DrawScreen.area2);
 
-            int i = 0;
 
             while (true)
             {
-                i++;
                 string command = Console.ReadLine();
                 string[] splitCommand = command.Split(' ');
-                if (splitCommand[0] == "move")
+                if (splitCommand[0] == "move")//will be replaced with switch(splitCommand[0]) 
                 {
-                    DrawScreen.AddLineToBuffer(ref DrawScreen.area2, command);
+                    DrawScreen.AddLineToBuffer(ref DrawScreen.area2, command); //output here "command"
                     int[] tempposition = { heroPosition[0], heroPosition[1] };
                     try
                     {
@@ -63,18 +61,12 @@ namespace HeroesOfFate.GameEngine
                 {
                     DrawScreen.AddLineToBuffer(ref DrawScreen.area2, "Please enter valid command!");
                 }
-                if (splitCommand[0] == "exit") break;
-                // jumb between areas
-                //if (i % 2 == 0)
-                //    AddLineToBuffer(ref area1, Console.ReadLine());
-                //else
-                //    AddLineToBuffer(ref area2, Console.ReadLine());
-                //
+                if (splitCommand[0] == "exit") break;// this will be in the switch-case
                 DrawScreen.drawScreen(DrawScreen.area1, DrawScreen.area2);
             }
         }
 
-        private static void CheckValidMapMove(int hight, int width)
+        private static void CheckValidMapMove(int hight, int width)//check if move is outside the map
         {
             if ((heroPosition[0] > hight || heroPosition[1] > width) || (heroPosition[0] <= 0 || heroPosition[1] <= 0))
             {
@@ -82,7 +74,7 @@ namespace HeroesOfFate.GameEngine
             }
         }
 
-        private static bool CheckForWallsInPAth(List<string> Map, int[] oldPosition, int[] newPosition)
+        private static bool CheckForWallsInPAth(List<string> Map, int[] oldPosition, int[] newPosition)//checking if there is a wall on the road
         {
             if (oldPosition[0] < newPosition[0] || oldPosition[1] < newPosition[1])
             {
@@ -127,7 +119,7 @@ namespace HeroesOfFate.GameEngine
             return true;
         }
 
-        private static int SpecialSymbolReach(char symbol, string command)
+        private static int SpecialSymbolReach(char symbol, string command)// special symbols what to do when you find one
         {
             switch (symbol)
             {
@@ -146,11 +138,11 @@ namespace HeroesOfFate.GameEngine
             }
         }
 
-        private static List<string> HeroMove(List<string> oldMap, int[] oldPosition, int[] newPosition, string command)
+        private static List<string> HeroMove(List<string> oldMap, int[] oldPosition, int[] newPosition, string command) // moving method
         {
             char[] tempMapOldLine = oldMap[oldPosition[0] - 1].ToCharArray();
             char[] tempMapNewLine = oldMap[newPosition[0] - 1].ToCharArray();
-            if (!CheckForWallsInPAth(oldMap, oldPosition, newPosition))//wallSymbol == tempMapNewLine[newPosition[1] - 1])
+            if (!CheckForWallsInPAth(oldMap, oldPosition, newPosition))
             {
                 throw new ArgumentException("You can`t go there !");
             }
@@ -168,7 +160,7 @@ namespace HeroesOfFate.GameEngine
             }
         }
 
-        private static void changeHeroCoordinates(int steps, string direction)
+        private static void changeHeroCoordinates(int steps, string direction) 
         {
             if (direction == "left") heroPosition[1] -= steps;
             else if (direction == "right") heroPosition[1] += steps;

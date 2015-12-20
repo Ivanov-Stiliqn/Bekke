@@ -43,7 +43,8 @@ namespace HeroesOfFate.GameEngine
             }
 
             int currentLine = areaHeights - 1;
-
+            
+            //draw first area
             for (int i = 0; i < areaSelect1.Count; i++)
             {
                 Console.SetCursorPosition(0, currentLine - (i + 1));
@@ -52,6 +53,7 @@ namespace HeroesOfFate.GameEngine
             }
 
             currentLine = (areaHeights * 2);
+            //draw second area
             for (int i = 0; i < areaSelect2.Count; i++)
             {
                 Console.SetCursorPosition(0, currentLine - (i + 1));
