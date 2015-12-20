@@ -31,7 +31,7 @@ namespace HeroesOfFate.GameEngine
                 areaBuffer.RemoveAt(areaHeights - 1);
             }
         }
-        public static void drawScreen()
+        public static void drawScreen(List<string> areaSelect1, List<string> areaSelect2)
         {
             Console.Clear();
 
@@ -44,18 +44,18 @@ namespace HeroesOfFate.GameEngine
 
             int currentLine = areaHeights - 1;
 
-            for (int i = 0; i < area1.Count; i++)
+            for (int i = 0; i < areaSelect1.Count; i++)
             {
                 Console.SetCursorPosition(0, currentLine - (i + 1));
-                Console.WriteLine(area1[i]);
+                Console.WriteLine(areaSelect1[i]);
 
             }
 
             currentLine = (areaHeights * 2);
-            for (int i = 0; i < area2.Count; i++)
+            for (int i = 0; i < areaSelect2.Count; i++)
             {
                 Console.SetCursorPosition(0, currentLine - (i + 1));
-                Console.WriteLine(area2[i]);
+                Console.WriteLine(areaSelect2[i]);
             }
 
             Console.SetCursorPosition(0, Console.WindowHeight - 1);

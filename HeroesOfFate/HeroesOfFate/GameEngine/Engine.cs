@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using HeroesOfFate.GameEngine.Combat;
 
 namespace HeroesOfFate.GameEngine
 {
@@ -22,7 +23,7 @@ namespace HeroesOfFate.GameEngine
                 DrawScreen.AddLineToBuffer(ref DrawScreen.area1, v);
             }
 
-            DrawScreen.drawScreen();
+            DrawScreen.drawScreen(DrawScreen.area1, DrawScreen.area2);
 
             int i = 0;
 
@@ -69,7 +70,7 @@ namespace HeroesOfFate.GameEngine
                 //else
                 //    AddLineToBuffer(ref area2, Console.ReadLine());
                 //
-                DrawScreen.drawScreen();
+                DrawScreen.drawScreen(DrawScreen.area1, DrawScreen.area2);
             }
         }
 
@@ -137,7 +138,7 @@ namespace HeroesOfFate.GameEngine
                     return 1;
                 case '§':
                     DrawScreen.AddLineToBuffer(ref DrawScreen.area2, "You faced The demon and you died !!!");
-                    DrawScreen.drawScreen();
+                    BattleScreen.StartBattle();
                     Environment.Exit(0);
                     return 2;
                 default:

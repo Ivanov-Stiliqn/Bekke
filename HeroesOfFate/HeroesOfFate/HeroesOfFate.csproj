@@ -68,6 +68,7 @@
     <Compile Include="Factories\ArmorFactory.cs" />
     <Compile Include="Factories\PotionFactory.cs" />
     <Compile Include="Factories\WeaponFactory.cs" />
+    <Compile Include="GameEngine\Combat\BattleScreen.cs" />
     <Compile Include="GameEngine\Core.cs" />
     <Compile Include="GameEngine\Database.cs" />
     <Compile Include="GameEngine\DrawScreen.cs" />
