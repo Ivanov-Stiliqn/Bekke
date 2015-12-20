@@ -88,14 +88,14 @@ namespace HeroesOfFate.GameEngine
                 if (oldPosition[0] == newPosition[0])
                 {
                     char[] tempMapOldLine = Map[oldPosition[0] - 1].ToCharArray();
-                    for (int i = oldPosition[1] - 1; i < newPosition[1] - 1; i++)
+                    for (int i = oldPosition[1] - 1; i <= newPosition[1] - 1; i++)
                     {
                         if (tempMapOldLine[i] == wallSymbol) return false;
                     }
                 }
                 else
                 {
-                    for (int i = oldPosition[0] - 1; i < newPosition[0] - 1; i++)
+                    for (int i = oldPosition[0] - 1; i <= newPosition[0] - 1; i++)
                     {
                         char[] tempMapOldLine = Map[i].ToCharArray();
                         if (tempMapOldLine[oldPosition[1] - 1] == wallSymbol) return false;
@@ -108,14 +108,14 @@ namespace HeroesOfFate.GameEngine
                 if (oldPosition[0] == newPosition[0])
                 {
                     char[] tempMapOldLine = Map[oldPosition[0] - 1].ToCharArray();
-                    for (int i = newPosition[1] - 1; i < oldPosition[1] - 1; i++)
+                    for (int i = newPosition[1] - 1; i <= oldPosition[1] - 1; i++)
                     {
                         if (tempMapOldLine[i] == wallSymbol) return false;
                     }
                 }
                 else
                 {
-                    for (int i = newPosition[0] - 1; i < oldPosition[0] - 1; i++)
+                    for (int i = newPosition[0] - 1; i <= oldPosition[0] - 1; i++)
                     {
                         char[] tempMapOldLine = Map[i].ToCharArray();
                         if (tempMapOldLine[oldPosition[1] - 1] == wallSymbol) return false;
