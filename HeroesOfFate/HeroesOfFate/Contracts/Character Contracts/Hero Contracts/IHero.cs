@@ -5,7 +5,7 @@ using HeroesOfFate.Models.Items.Potions;
 
 namespace HeroesOfFate.Contracts
 {
-    public interface IHero
+    public interface IHero : ICharacter
     {
         string Name { get; set; }
 
@@ -22,6 +22,8 @@ namespace HeroesOfFate.Contracts
         Race HeroRace { get; set; }
 
         double MaxHealth { get; set; }
+
+        void StandartItems();
 
     }
 }

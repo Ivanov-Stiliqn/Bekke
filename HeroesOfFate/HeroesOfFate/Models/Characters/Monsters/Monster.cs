@@ -7,9 +7,11 @@ namespace HeroesOfFate.Models.Characters.Monsters
     {
         private const short MonsterLevelDefault = 1;
         private const double GoldRewardDefault = 50;
+        private const int ExpirienceRewardDefault = 2;
 
         private readonly List<IItem> lootTable;
         private double goldReward;
+        private int expirienceReward;
 
         protected Monster(
             double damageMin,
@@ -20,6 +22,7 @@ namespace HeroesOfFate.Models.Characters.Monsters
         {
             this.lootTable = new List<IItem>();
             this.GoldReward = GoldRewardDefault;
+            this.ExpirienceReward = (int)((ExpirienceRewardDefault * this.Health) * 0.40);
         }
 
         public IEnumerable<IItem> LootTable
@@ -33,13 +36,19 @@ namespace HeroesOfFate.Models.Characters.Monsters
             set { this.goldReward = value; }
         }
 
-        public void LevelUp(int level)
+        public int ExpirienceReward
+        {
+            get { return this.expirienceReward; }
+            set { this.expirienceReward = value; }
+        }
+
+        public void LevelUp(int level, int levelGained)
         {
             this.Level = level;
-            this.DamageMin += 5 * level;
-            this.DamageMax += 5 * level;
-            this.Health += 10 * level;
-            this.GoldReward += 25 * level;
+            this.DamageMin += 10 * levelGained;
+            this.DamageMax += 10 * levelGained;
+            this.Health += 25 * levelGained;
+            this.GoldReward += 30 * levelGained;
         }
 
         public void AddItemToLootTable(params IItem[] items)

@@ -20,10 +20,12 @@ namespace HeroesOfFate.Models.Characters.Heroes
 
         private string name;
         private double armor;
+        private double armorRed;
+        private double maxHealth;
         private double gold;
         private int exp;
         private readonly List<IItem> inventory;
-        private readonly List<IItem> equipment; 
+        private readonly List<IItem> equipment;
 
         protected Hero(
             string name,
@@ -32,12 +34,14 @@ namespace HeroesOfFate.Models.Characters.Heroes
             double damageMax,
             double health,
             double armor,
+            double armorRed,
             double maxHealth,
             double gold = StartingGold) 
                 : base(LevelDefault, health, damageMin, damageMax)
         {
             this.Name = name;
             this.Armor = armor;
+            this.ArmorRed = armorRed;
             this.HeroRace = heroRace;
             this.inventory = new List<IItem>();
             this.equipment = new List<IItem>();
@@ -62,12 +66,32 @@ namespace HeroesOfFate.Models.Characters.Heroes
                 this.name = value;
             }
         }
-
         public double Armor
         {
             get { return this.armor; }
-            set { this.armor = value; }
+            set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentOutOfRangeException("armor value", "Armor cannot be 0 or negative !");
+                }
+                this.armor = value; 
+                
+            }
         }
+
+        public double ArmorRed
+        {
+            get { return this.armorRed; }
+            set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentOutOfRangeException("armor red value", "Armor red cannot be 0 or negative !");
+                }
+                this.armorRed = value; 
+            }
+        } 
 
         public int Exp
         {
@@ -115,7 +139,18 @@ namespace HeroesOfFate.Models.Characters.Heroes
 
         public Race HeroRace { get; set; }
 
-        public double MaxHealth { get; set; }
+        public double MaxHealth
+        {
+            get { return this.maxHealth; }
+            set
+            {
+                if (value < this.Health)
+                {
+                    throw new ArgumentOutOfRangeException("max health", "Max health cannot be lower than current health");
+                }
+                this.maxHealth = value;
+            }
+        }
 
 
 
@@ -166,7 +201,6 @@ namespace HeroesOfFate.Models.Characters.Heroes
             this.DamageMin -= potion.WeaponAttack;
             this.DamageMax -= potion.WeaponAttack;
             this.Armor -= potion.ArmorDefence;
-            this.Health -= potion.HealthEffect;
         }
 
         public void Equip(IItem item)
@@ -179,8 +213,8 @@ namespace HeroesOfFate.Models.Characters.Heroes
                 {
                     if (item.Type == ItemType.MainHand)
                     {
-                        var weapon = new Weapon(item.Id, item.WeaponAttack, item.Price);
-                        if (!weapon.IsOneH)
+                        //var weapon = new Weapon(item.Id, item.WeaponAttack, item.Price);
+                        if (!item.IsOneH)
                         {
                             IItem shield = this.FindShield();
                             if (shield != null)
@@ -249,12 +283,13 @@ namespace HeroesOfFate.Models.Characters.Heroes
 
         public void LevelUp(int value)
         {
+            int currentLevel = this.Level;
             this.Level += value / 100;
             this.exp = value % 100;
-            this.MaxHealth += (this.Level-1) * 10;
+            this.MaxHealth += 20 * (value / 100);
             this.Health = this.MaxHealth;
 
-            OnLevelChange(this,new HeroChangeLevelEventArgs(this.Level));
+            OnLevelChange(this,new HeroChangeLevelEventArgs(this.Level, this.Level - currentLevel));
         }
 
         private void OnLevelChange(object sender,HeroChangeLevelEventArgs eventArgs)
@@ -265,10 +300,12 @@ namespace HeroesOfFate.Models.Characters.Heroes
             }
         }
 
+        protected abstract void StandartItems();
+
         public override string ToString()
         {
-            return string.Format("{0}\nRace: {1}\nProffesion: {2}\nLevel: {3}\nHP: {4}\nDamage: ({5} , {6})\nArmor: {7}\n",
-                this.Name, this.HeroRace,this.GetType().Name, this.Level,this.Health, this.DamageMin, this.DamageMax, this.Armor);
+            return string.Format("{0}\nRace: {1}\nProffesion: {2}\nLevel: {3}\nExp: {8}\nHP: {4}\nDamage: ({5} , {6})\nArmor: {7}\nGold: {9}",
+                this.Name, this.HeroRace,this.GetType().Name, this.Level,this.Health, this.DamageMin, this.DamageMax, this.Armor,this.Exp, this.Gold);
         }
     }
 }

@@ -10,11 +10,21 @@ namespace HeroesOfFate.Models.Characters.Heroes
         private const double HealthDefault = 150;
         private const double ArmorDefault = 75;
         private const double MaxHealthDefault = HealthDefault;
+        private const double ArmorReduction = 0.03;
+
         
+
         public Mage(string name, Race heroRace)
-            : base(name, heroRace, DamageMinDefault, DamageMaxDefault, HealthDefault, ArmorDefault,MaxHealthDefault)
+            : base(name, heroRace, DamageMinDefault, DamageMaxDefault, HealthDefault, ArmorDefault, ArmorReduction, MaxHealthDefault)
         {
-            
+            this.StandartItems();
+        }
+
+        protected override void StandartItems()
+        {
+            IItem staff = new Staff("Wooden staff", 30, 15);
+            AddItemToInventory(staff);
+            Equip(staff);
         }
 
         public override string ToString()

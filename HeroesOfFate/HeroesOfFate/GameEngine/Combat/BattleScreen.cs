@@ -1,65 +1,83 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HeroesOfFate.Contracts;
 using HeroesOfFate.GameEngine;
 using HeroesOfFate.Models.Characters.Heroes;
 using HeroesOfFate.Models.Characters.Monsters;
+using HeroesOfFate.Models.Items.Potions;
 
 namespace HeroesOfFate.GameEngine.Combat
 {
-    public static class BattleScreen
+    public class BattleScreen
     {
-        private static List<string> battleArea1 = new List<string>();
-        private static List<string> battleArea2 = new List<string>();
-        private static List<string> commandShow = new List<string>();
-        public static void StartBattle(Hero hero)
+        private List<string> battleArea1 = new List<string>();
+        private List<string> battleArea2 = new List<string>();
+        private List<string> commandShow = new List<string>();
+        private Core core;
+
+
+        public BattleScreen(Core core)
+        {
+            this.core = core;
+
+        }
+
+        public void StartBattle()
         {
             ScreenClear();
+            core.MonsterFactory();
+            List<IMonster> monsters = core.Database.Monsters.ToList();
             Random rnd = new Random();
-            int monsterChoice = rnd.Next(1, 6);
-            Monster monster = monsterSelect(monsterChoice);
-            ScreenUpdate(hero, monster);
+            int monsterChoice = rnd.Next(0, 5);
+            IMonster monster = this.MonsterSelect(monsterChoice, monsters);
+            //core.Hero.Exp += 200;
+            double monsterMaxHealth = monster.Health;
+            ScreenUpdate(core.Hero, monster);
             DrawBattle();
             bool check = true;
             while (check)
             {
                 try
                 {
+                    int dmg;
                     int command = int.Parse(Console.ReadLine());
                     switch (command)
                     {
                         case 1:
-                            DrawScreen.AddLineToBuffer(ref battleArea2, "You hitted your opponent for x amount of damage!");
-                            HeroHit(ref monster, rnd.Next((int)hero.DamageMin, (int)hero.DamageMax + 1));// damage must be converted to int instead of double !!!
+                            dmg = HeroHit(ref monster, rnd.Next((int)core.Hero.DamageMin, (int)core.Hero.DamageMax + 1));// damage must be converted to int instead of double !!!
+                            DrawScreen.AddLineToBuffer(ref battleArea2, "You hitted your opponent for " + dmg + " amount of damage!");
                             if (monster.Health > 0)
                             {
-                                DrawScreen.AddLineToBuffer(ref battleArea2, "Monster hitted you for x amount of damage!");
-                                MonsterHit(ref hero, rnd.Next((int)monster.DamageMin, (int)monster.DamageMax + 1));
-                                if (hero.Health <= 0)
-                                {
-                                    DrawScreen.AddLineToBuffer(ref battleArea2, "Game Over! You have been defeated.");
-                                    updateHPBar(hero, monster);
-                                    check = false;
-                                }
-                                else
-                                {
-                                    updateHPBar(hero, monster);
-                                }
+                                check = this.MonsterDoDamage(rnd, monster, check);
                             }
                             else
                             {
-                                DrawScreen.AddLineToBuffer(ref battleArea2, "Monster is dead!!");
-                                updateHPBar(hero, monster);
-                                check = false;
+                                check = this.BattleEnd(monster, check, monsterMaxHealth);
                             }
                             break;
                         case 2:
                             DrawScreen.AddLineToBuffer(ref battleArea2, "You used y and did strong hit to your opponent for x amount of damage!");
                             break;
                         case 3:
-                            DrawScreen.AddLineToBuffer(ref battleArea2, "You used potion to restore x amount of HP");
+                            var healthPotion = core.Hero.Inventory.FirstOrDefault(x => x is HealthPotion);
+                            if (healthPotion != null)
+                            {
+                                DrawScreen.AddLineToBuffer(ref battleArea2,
+                                    "You used potion to restore 100 amount of HP");
+
+                                core.Hero.ApplyPotionEffect((HealthPotion)healthPotion);
+                                core.Hero.RemoveItemFromInventory(healthPotion);
+                            }
+                            else
+                            {
+                                DrawScreen.AddLineToBuffer(ref battleArea2,
+                                  "You dont have any HP potions");
+                            }
+                            check = this.MonsterDoDamage(rnd, monster, check);
                             break;
                         case 4:
                             DrawScreen.AddLineToBuffer(ref battleArea2, "You used special hit wich did x amount of damage!");
@@ -72,6 +90,11 @@ namespace HeroesOfFate.GameEngine.Combat
                     }
                     DrawBattle();
                     if (command == 0) check = false;
+                    if (check == false)
+                    {
+                        Console.Write("Press any key to continue...");
+                        Console.ReadKey();
+                    }
                 }
                 catch (FormatException)
                 {
@@ -86,56 +109,83 @@ namespace HeroesOfFate.GameEngine.Combat
             }
             
         }
-        private static void HeroHit(ref Monster monster, int damage)
+
+        private bool BattleEnd(IMonster monster, bool check, double monsterMaxHealth)
+        {
+            DrawScreen.AddLineToBuffer(ref battleArea2, "Monster is dead!!");
+            core.Hero.Exp += monster.ExpirienceReward;
+            core.Hero.Gold += monster.GoldReward;
+            DrawScreen.AddLineToBuffer(ref battleArea2,
+                "You earned " + monster.ExpirienceReward + " Exp, and " + monster.GoldReward + " gold.");
+            this.UpdateHpBar(core.Hero, monster);
+            try
+            {
+                var item = core.LootRandomItem();
+                DrawScreen.AddLineToBuffer(ref battleArea2, item.Id);
+            }
+            catch (ArgumentException e)
+            {
+                DrawScreen.AddLineToBuffer(ref battleArea2, e.Message);
+            }
+            check = false;
+            monster.Health = monsterMaxHealth;
+            return check;
+        }
+
+        private bool MonsterDoDamage(Random rnd, IMonster monster, bool check)
+        {
+            int dmg;
+            dmg = this.MonsterHit(core.Hero, rnd.Next((int) monster.DamageMin, (int) monster.DamageMax + 1));
+            DrawScreen.AddLineToBuffer(ref battleArea2,
+                "Monster hitted you for " + (dmg - (core.Hero.Armor*core.Hero.ArmorRed)) + " amount of damage!");
+            if (core.Hero.Health <= 0)
+            {
+                DrawScreen.AddLineToBuffer(ref battleArea2, "Game Over! You have been defeated.");
+                this.UpdateHpBar(core.Hero, monster);
+                check = false;
+            }
+            else
+            {
+                this.UpdateHpBar(core.Hero, monster);
+            }
+            return check;
+        }
+
+        private int HeroHit(ref IMonster monster, int damage)
         {
             monster.Health -= damage;
+            if (monster.Health < 0) monster.Health = 0;
+            return damage;
         }
-        private static void MonsterHit(ref Hero hero, int damage)
+        private int MonsterHit(Hero hero, int damage)
         {
-            hero.Health -= damage;
+            hero.Health -= damage - (hero.Armor * hero.ArmorRed);
+            if (hero.Health < 0) hero.Health = 0;
+            return damage;
         }
-        private static Monster monsterSelect(int number)
+        private IMonster MonsterSelect(int number, List<IMonster> monsters)
         {
-            Monster monster = null;
-            switch (number)
-            {
-                case 1:
-                    monster = new Goblin();
-                    break;
-                case 2:
-                    monster = new Ogre();
-                    break;
-                case 3:
-                    monster = new Troll();
-                    break;
-                case 4:
-                    monster = new Undead();
-                    break;
-                case 5:
-                    monster = new Wolf();
-                    break;
-                default:
-                    break;
-            }
+            IMonster monster = monsters[number];
+            core.ImplementItems();
             return monster;
         }
-        private static void updateHPBar(Hero hero, Monster monster)
+        private void UpdateHpBar(Hero hero, IMonster monster)
         {
             var i = battleArea1.FindIndex(x => x.Contains("HP:"));
             battleArea1[i] = " ".PadLeft(4, ' ') + ("HP: " + hero.Health).PadRight(50, ' ') + "HP: " + monster.Health;
         }
-        private static void ScreenUpdate(Hero hero, Monster monster)
+        private void ScreenUpdate(Hero hero, IMonster monster)
         {
-            fillArea(hero, monster);
-            CommandsShow();
-            combineArea();
+            this.FillArea(hero, monster);
+            this.CommandsShow();
+            this.CombineArea();
         }
-        private static void ScreenClear()
+        private void ScreenClear()
         {
             battleArea1.Clear();
             battleArea2.Clear();
         }
-        private static void fillArea(Hero hero, Monster monster)
+        private void FillArea(Hero hero, IMonster monster)
         {
             DrawScreen.AddLineToBuffer(ref battleArea1, Environment.NewLine);
             DrawScreen.AddLineToBuffer(ref battleArea1,
@@ -144,13 +194,15 @@ namespace HeroesOfFate.GameEngine.Combat
                 " ".PadLeft(4, ' ') + ("Damage " + hero.DamageMin + " - " + hero.DamageMax).PadRight(50, ' ') + "Damage " + monster.DamageMin + " - " + monster.DamageMax);
             DrawScreen.AddLineToBuffer(ref battleArea1,
                 " ".PadLeft(4, ' ') + ("HP: " + hero.Health).PadRight(50, ' ') + "HP: " + monster.Health);
-            for (int i = 0; i < 3; i++)
+            DrawScreen.AddLineToBuffer(ref battleArea1,
+                " ".PadLeft(4, ' ') + ("LVL: " + hero.Level).PadRight(50, ' ') + "LVL: " + monster.Level);
+            for (int i = 0; i < 2; i++)
             {
                 DrawScreen.AddLineToBuffer(ref battleArea1, Environment.NewLine);
             }
             DrawScreen.AddLineToBuffer(ref battleArea1, new string('-', 90));
         }
-        private static void CommandsShow()
+        private void CommandsShow()
         {
             DrawScreen.AddLineToBuffer(ref commandShow, "1.Normal hit.");
             DrawScreen.AddLineToBuffer(ref commandShow, "2.Use Crush.");
@@ -161,12 +213,12 @@ namespace HeroesOfFate.GameEngine.Combat
                 DrawScreen.AddLineToBuffer(ref commandShow, Environment.NewLine);
             }
         }
-        private static void combineArea()
+        private void CombineArea()
         {
             var temp = commandShow.Concat(battleArea1);
             battleArea1 = temp.ToList();
         }
-        private static void DrawBattle()
+        private void DrawBattle()
         {
             DrawScreen.drawScreen(battleArea1, battleArea2);
         }

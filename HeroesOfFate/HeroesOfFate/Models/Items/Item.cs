@@ -49,10 +49,17 @@ namespace HeroesOfFate.Models.Items
             }
         }
 
+        public virtual bool IsOneH { get; set; }
+        //TODO: validation
         public double WeaponAttack { get; set; }
 
         public double ArmorDefence { get; set; }
 
         public double HealthEffect { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("Type: {0}, Name: {1}", this.GetType().Name, this.Id);
+        }
     }
 }

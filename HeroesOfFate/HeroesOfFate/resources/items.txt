@@ -1,4 +1,5 @@
 ﻿potion healthPotion megakruv 50
-weapon axe machkator 30 0 250
-weapon sword ishivator 50 0 300
+weapon axe machkator 30 250
+weapon sword ishivator 50 300
 armor body bronq 50 500
+armor boots galoshi 10 50

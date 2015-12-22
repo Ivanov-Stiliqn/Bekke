@@ -18,16 +18,9 @@ namespace HeroesOfFate
     {
         public static void Main()
         {
-            //After creating hero implement the bottom commentar. It automaticly create items and add
-            //them to the loot table of the monsters. The monster automaticly level up with the event below!
-            ///////////////////////////////////////////////////////////////////////////////////////////////
-            //warrior.ChangedLevel += (sender, eventArgs) => 
-            //monsters.ForEach(m => m.LevelUp(eventArgs.Level));
-            //core.ImplementItems();
-
-            Core core = new Core();
-
-            core.Run();
+            Engine.GameStart();
         }
     }
 }
+//TODO: (skill, merchant) optional, exceptions !!!, validation !!!, new map, add items
+// softuni.bg

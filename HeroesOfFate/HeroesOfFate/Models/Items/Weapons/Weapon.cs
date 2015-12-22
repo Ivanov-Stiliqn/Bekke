@@ -12,6 +12,11 @@ namespace HeroesOfFate.Models.Items.Weapons
             this.WeaponAttack = weaponAttack;
         }
 
-        public bool IsOneH { get; set; }
+        public override bool IsOneH { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("{0}, Damage: {1}, Price: {2}", base.ToString(), WeaponAttack, Price);
+        }
     }
 }

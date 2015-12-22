@@ -13,6 +13,7 @@ using HeroesOfFate.Factories;
 using HeroesOfFate.GameEngine.IO;
 using HeroesOfFate.GameEngine;
 using HeroesOfFate.Models.Characters.Heroes;
+using HeroesOfFate.Models.Characters.Monsters;
 
 namespace HeroesOfFate.GameEngine
 {
@@ -27,13 +28,35 @@ namespace HeroesOfFate.GameEngine
         private Hero hero;
 
 
+
+        public Core()
+        {
+            this.Hero = hero;
+            this.Database = database;
+
+        }
+
+        public Hero Hero
+        {
+            get { return this.hero; }
+            set { this.hero = value; }
+        }
+
+        public Database Database { get; set; }
+        
         //Method for starting the game
         public void Run()
         {
-            while (true)
+            this.StartScreen();
+
+
+            Hero.ChangedLevel += (sender, eventArgs) =>
             {
-                this.StartScreen();
-            }
+                foreach (var m in Database.Monsters)
+                {
+                    m.LevelUp(eventArgs.Level, eventArgs.LevelsGained);
+                }
+            };
         }
 
         private void StartScreen()
@@ -68,6 +91,7 @@ namespace HeroesOfFate.GameEngine
             }
         }
 
+
         //Hero creation screen leading to the map screen
         private void CreateHero()
         {
@@ -93,42 +117,38 @@ namespace HeroesOfFate.GameEngine
             switch (inputParams[0])
             {
                 case "warrior":
-                    if (inputParams[2] == "human") { hero = new Warrior(inputParams[1], Race.Human);}
-                    else if (inputParams[2] == "elf") { hero = new Warrior(inputParams[1], Race.Elf); }
-                    else if (inputParams[2] == "orc") { hero = new Warrior(inputParams[1], Race.Orc); }
-                    else if (inputParams[2] == "dwarf") { hero = new Warrior(inputParams[1], Race.Dwarf); }
-                    else if (inputParams[2] == "werewolf") { hero = new Warrior(inputParams[1], Race.Werewolf); }
+                    if (inputParams[2] == "human") { this.Hero = new Warrior(inputParams[1], Race.Human);}
+                    else if (inputParams[2] == "elf") { this.Hero = new Warrior(inputParams[1], Race.Elf); }
+                    else if (inputParams[2] == "orc") { this.Hero = new Warrior(inputParams[1], Race.Orc); }
+                    else if (inputParams[2] == "dwarf") { this.Hero = new Warrior(inputParams[1], Race.Dwarf); }
+                    else if (inputParams[2] == "werewolf") { this.Hero = new Warrior(inputParams[1], Race.Werewolf); }
                     else { throw  new ArgumentException("No such race !");}
-                    this.ImplementItems();
-                    Engine.GameStart(ref hero);
+
                     break;
 
                 case "archer":
-                    if (inputParams[2] == "human") { hero = new Archer(inputParams[1], Race.Human); }
-                    else if (inputParams[2] == "elf") { hero = new Archer(inputParams[1], Race.Elf); }
-                    else if (inputParams[2] == "orc") { hero = new Archer(inputParams[1], Race.Orc); }
-                    else if (inputParams[2] == "dwarf") { hero = new Archer(inputParams[1], Race.Dwarf); }
-                    else if (inputParams[2] == "werewolf") { hero = new Archer(inputParams[1], Race.Werewolf); }
+                    if (inputParams[2] == "human") { this.Hero = new Archer(inputParams[1], Race.Human); }
+                    else if (inputParams[2] == "elf") { this.Hero = new Archer(inputParams[1], Race.Elf); }
+                    else if (inputParams[2] == "orc") { this.Hero = new Archer(inputParams[1], Race.Orc); }
+                    else if (inputParams[2] == "dwarf") { this.Hero = new Archer(inputParams[1], Race.Dwarf); }
+                    else if (inputParams[2] == "werewolf") { this.Hero = new Archer(inputParams[1], Race.Werewolf); }
                     else { throw new ArgumentException("No such race !"); }
-                    this.ImplementItems();
-                    Engine.GameStart(ref hero);
+
                     break;
 
                 case "mage":
-                    if (inputParams[2] == "human") { hero = new Mage(inputParams[1], Race.Human); }
-                    else if (inputParams[2] == "elf") { hero = new Mage(inputParams[1], Race.Elf); }
-                    else if (inputParams[2] == "orc") { hero = new Mage(inputParams[1], Race.Orc); }
-                    else if (inputParams[2] == "dwarf") { hero = new Mage(inputParams[1], Race.Dwarf); }
-                    else if (inputParams[2] == "werewolf") { hero = new Mage(inputParams[1], Race.Werewolf); }
+                    if (inputParams[2] == "human") { this.Hero = new Mage(inputParams[1], Race.Human); }
+                    else if (inputParams[2] == "elf") { this.Hero = new Mage(inputParams[1], Race.Elf); }
+                    else if (inputParams[2] == "orc") { this.Hero = new Mage(inputParams[1], Race.Orc); }
+                    else if (inputParams[2] == "dwarf") { this.Hero = new Mage(inputParams[1], Race.Dwarf); }
+                    else if (inputParams[2] == "werewolf") { this.Hero = new Mage(inputParams[1], Race.Werewolf); }
                     else { throw new ArgumentException("No such race !"); }
-                    this.ImplementItems();
-                    Engine.GameStart(ref hero);
                     break;
             }
         }
 
         //Commands info screen leading back to the start screen
-        private void CommandsInfo()
+        public void CommandsInfo()
         {
             Console.Clear();
             StringBuilder output = new StringBuilder();
@@ -136,6 +156,7 @@ namespace HeroesOfFate.GameEngine
 
             output.AppendLine("Those are the ingame commands:");
             output.AppendLine("-move (number of steps) (direction) - the number must be integer,\n the directions can be: right/left/up/down");
+            output.AppendLine("-Info - view hero information");
             output.AppendLine("-inventory - view the equipted items and the inventory of the hero");
             output.AppendLine("-exit - quits the current game" + Environment.NewLine);
             output.AppendLine("Use \"back\" to go to the Start Screen again or\n \"quit\" to exit(the monster will find you never the less).");
@@ -219,17 +240,26 @@ namespace HeroesOfFate.GameEngine
             }
         }
 
+        public void MonsterFactory()
+        {
+            this.database.AddMonster(new Goblin(), new Ogre(), new Troll(), new Undead(), new Wolf());
+        }
+
         //The method for getting random loot from monsters and item chests
         public IItem LootRandomItem()
         {
-            Random random=new Random();
+            Random random = new Random();
 
-            int result = random.Next(-5, this.database.Items.Count());
+            int result = random.Next( 0, this.database.Items.Count());
 
-            if (result <0)
+            if (result < 0)
             {
-                return null;
+                throw new ArgumentException("You have no luck and looted nothing!!");
             }
+
+            this.Hero.AddItemToInventory(this.database.GetitemByIndex(result));
+            
+
             return this.database.GetitemByIndex(result);
         }
     }

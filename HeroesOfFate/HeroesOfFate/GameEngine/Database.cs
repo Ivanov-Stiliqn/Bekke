@@ -36,9 +36,12 @@ namespace HeroesOfFate.GameEngine
             get { return itemChests; }
         } 
 
-        public void AddMonster(IMonster monster)
+        public void AddMonster(params IMonster[] monsters)
         {
-            this.monsters.Add(monster);
+            foreach (var monster in monsters)
+            {
+                this.monsters.Add(monster);
+            }
         }
 
         public void AddItem(IItem item)

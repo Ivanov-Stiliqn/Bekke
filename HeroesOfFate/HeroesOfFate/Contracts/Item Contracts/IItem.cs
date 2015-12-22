@@ -15,5 +15,7 @@ namespace HeroesOfFate.Contracts
         string Id { get; set; }
 
         decimal Price { get; set; }
+
+        bool IsOneH { get; set; }
     }
 }
