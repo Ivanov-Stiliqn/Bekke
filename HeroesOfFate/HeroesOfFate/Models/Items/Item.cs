@@ -20,7 +20,14 @@ namespace HeroesOfFate.Models.Items
         public ItemType Type
         {
             get { return this.type; }
-            set { this.type = value; } 
+            set 
+            {
+                if (value == null)
+                {
+                    throw new ArgumentException(string.Format(ExceptionConstants.NullOrEmptyException, "Item type"));
+                }
+                this.type = value; 
+            } 
             
         }
 

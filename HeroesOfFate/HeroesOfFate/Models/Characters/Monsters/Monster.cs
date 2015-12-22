@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using HeroesOfFate.Contracts;
+using HeroesOfFate.GameEngine;
 
 namespace HeroesOfFate.Models.Characters.Monsters
 {
@@ -33,13 +35,27 @@ namespace HeroesOfFate.Models.Characters.Monsters
         public double GoldReward
         {
             get { return this.goldReward; }
-            set { this.goldReward = value; }
+            set 
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentException(string.Format(ExceptionConstants.NullOrNegativeException, "Gold reward"));
+                }
+                this.goldReward = value; 
+            }
         }
 
         public int ExpirienceReward
         {
             get { return this.expirienceReward; }
-            set { this.expirienceReward = value; }
+            set 
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentException(string.Format(ExceptionConstants.NullOrNegativeException, "Expirience reward"));
+                }
+                this.expirienceReward = value; 
+            }
         }
 
         public void LevelUp(int level, int levelGained)

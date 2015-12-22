@@ -1,4 +1,6 @@
-﻿using HeroesOfFate.Contracts;
+﻿using System;
+using HeroesOfFate.Contracts;
+using HeroesOfFate.GameEngine;
 
 namespace HeroesOfFate.Models.Items.Chests
 {
@@ -14,7 +16,14 @@ namespace HeroesOfFate.Models.Items.Chests
         public string Id
         {
             get { return this.id; }
-            set { this.id = value; }
+            set 
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException(string.Format(ExceptionConstants.NullOrEmptyException, "Chest ID"));
+                }
+                this.id = value; 
+            }
         }
     }
 }
