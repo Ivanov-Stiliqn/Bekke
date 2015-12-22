@@ -192,9 +192,10 @@ namespace HeroesOfFate.GameEngine.Combat
             if (core.Hero.Health <= 0)
             {
                 DrawScreen.AddLineToBuffer(ref battleArea2, "Game Over! You have been defeated.");
+                DrawScreen.drawScreen(battleArea1, battleArea2);
                 Environment.Exit(0);
-                this.UpdateHpBar(core.Hero, monster);
-                check = false;
+                //this.UpdateHpBar(core.Hero, monster);
+                //check = false;
             }
             else
             {
