@@ -297,6 +297,7 @@ namespace HeroesOfFate.GameEngine
                     DrawScreen.AddLineToBuffer(ref DrawScreen.area2, Environment.NewLine);
                     DrawScreen.AddLineToBuffer(ref DrawScreen.area2, "YOU HAVE WON THE GAME !! CONGRATZ !!");
                     DrawScreen.AddLineToBuffer(ref DrawScreen.area2, Environment.NewLine);
+                    DrawScreen.drawScreen(Info(), DrawScreen.area2);
                     Environment.Exit(0);
                     return 3;
                 default:
