@@ -7,6 +7,7 @@ using HeroesOfFate.Events;
 using HeroesOfFate.Models.Items;
 using HeroesOfFate.Models.Items.Potions;
 using HeroesOfFate.Models.Items.Weapons;
+using HeroesOfFate.GameEngine;
 
 namespace HeroesOfFate.Models.Characters.Heroes
 {
@@ -57,11 +58,11 @@ namespace HeroesOfFate.Models.Characters.Heroes
             {
                 if (string.IsNullOrEmpty(value))
                 {
-                    throw new ArgumentNullException("hero name","Name cannot be null or empty !");
+                    throw new ArgumentNullException(string.Format(ExceptionConstants.NullOrNegativeException, "Hero name"));
                 }
                 if (value.Length < 3)
                 {
-                    throw new ArgumentOutOfRangeException("hero name length" ,"Name length cannot be less than 3 symbols");
+                    throw new ArgumentOutOfRangeException(string.Format(ExceptionConstants.LessThanException, "Hero name", "3 symbols."));
                 }
                 this.name = value;
             }
@@ -73,7 +74,7 @@ namespace HeroesOfFate.Models.Characters.Heroes
             {
                 if (value <= 0)
                 {
-                    throw new ArgumentOutOfRangeException("armor value", "Armor cannot be 0 or negative !");
+                    throw new ArgumentOutOfRangeException(string.Format(ExceptionConstants.NullOrNegativeException, "Armor value"));
                 }
                 this.armor = value; 
                 
@@ -87,7 +88,7 @@ namespace HeroesOfFate.Models.Characters.Heroes
             {
                 if (value <= 0)
                 {
-                    throw new ArgumentOutOfRangeException("armor red value", "Armor red cannot be 0 or negative !");
+                    throw new ArgumentOutOfRangeException(string.Format(ExceptionConstants.NullOrNegativeException, "Armor red value"));
                 }
                 this.armorRed = value; 
             }
@@ -100,7 +101,7 @@ namespace HeroesOfFate.Models.Characters.Heroes
             {
                 if (value < 0)
                 {
-                    throw new ArgumentOutOfRangeException("hero exp" ,"Experience cannot be negative");
+                    throw new ArgumentOutOfRangeException(string.Format(ExceptionConstants.NullOrNegativeException, "Hero exp"));
                 }
                 if (value >= 100)
                 {
@@ -131,7 +132,7 @@ namespace HeroesOfFate.Models.Characters.Heroes
             {
                 if (value < 0)
                 {
-                    throw new ArgumentOutOfRangeException("hero gold" ,"Gold cannot be negative");
+                    throw new ArgumentOutOfRangeException(string.Format(ExceptionConstants.NullOrNegativeException, "Hero gold"));
                 }
                 this.gold = value;
             }
@@ -146,7 +147,7 @@ namespace HeroesOfFate.Models.Characters.Heroes
             {
                 if (value < this.Health)
                 {
-                    throw new ArgumentOutOfRangeException("max health", "Max health cannot be lower than current health");
+                    throw new ArgumentOutOfRangeException(string.Format(ExceptionConstants.LessThanException, "Hero maxhealth", "hero health"));
                 }
                 this.maxHealth = value;
             }

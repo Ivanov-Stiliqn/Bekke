@@ -38,27 +38,33 @@ namespace HeroesOfFate.GameEngine
             {
                 string command = Console.ReadLine();
                 string[] splitCommand = command.Split(' ');
-                switch (splitCommand[0])
+                try
                 {
-                    case "move":
-                        Move(command, splitCommand);
-                        break;
-                    case "inventory":
-                        DrawScreen.AddLineToBuffer(ref DrawScreen.area2, Environment.NewLine);
-                        DrawScreen.AddLineToBuffer(ref DrawScreen.area2, "Your inventory.. make your choice.(press help for info)");
-                        InventoryWork();
-                        break;
-                    case "info":
-                        DrawScreen.drawScreen(Info(), DrawScreen.area2);
-                        Console.Write("Press any key to continue...");
-                        Console.ReadKey();
-                        break;
-                    case "exit":
-                        Environment.Exit(0);
-                        break;
-                    default:
-                        DrawScreen.AddLineToBuffer(ref DrawScreen.area2, "Please enter valid command!");
-                        break;
+                    switch (splitCommand[0])
+                    {
+                        case "move":
+                            Move(command, splitCommand);
+                            break;
+                        case "inventory":
+                            DrawScreen.AddLineToBuffer(ref DrawScreen.area2, Environment.NewLine);
+                            DrawScreen.AddLineToBuffer(ref DrawScreen.area2, "Your inventory.. make your choice.(press help for info)");
+                            InventoryWork();
+                            break;
+                        case "info":
+                            DrawScreen.drawScreen(Info(), DrawScreen.area2);
+                            Console.Write("Press any key to continue...");
+                            Console.ReadKey();
+                            break;
+                        case "exit":
+                            Environment.Exit(0);
+                            break;
+                        default:
+                            throw new ArgumentException(ExceptionConstants.InvalidCommandException);
+                    }
+                }
+                catch (ArgumentException e)
+                {
+                    DrawScreen.AddLineToBuffer(ref DrawScreen.area2, e.Message);
                 }
                 DrawScreen.drawScreen(DrawScreen.area1, DrawScreen.area2);
             }
@@ -83,22 +89,28 @@ namespace HeroesOfFate.GameEngine
             {
                 string[] inputArgs = Console.ReadLine().Split(' ');
 
-                switch (inputArgs[0])
+                try
                 {
-                    case "equip":
-                        core.Hero.Equip(core.Hero.Inventory.ElementAt(int.Parse(inputArgs[1]) - 1));
-                        break;
-                    case "help":
-                        DrawInventory(HelpArea(), inputArgs[0]);
-                        Console.Write("Press any key to continue...");
-                        Console.ReadKey();
-                        break;
-                    case "back":
-                        check = false;
-                        break;
-                    default:
-                        DrawScreen.AddLineToBuffer(ref DrawScreen.area2, "Invalid command.");
-                        break;
+                    switch (inputArgs[0])
+                    {
+                        case "equip":
+                            core.Hero.Equip(core.Hero.Inventory.ElementAt(int.Parse(inputArgs[1]) - 1));
+                            break;
+                        case "help":
+                            DrawInventory(HelpArea(), inputArgs[0]);
+                            Console.Write("Press any key to continue...");
+                            Console.ReadKey();
+                            break;
+                        case "back":
+                            check = false;
+                            break;
+                        default:
+                            throw new ArgumentException(ExceptionConstants.InvalidCommandException);
+                    }
+                }
+                catch (ArgumentException e)
+                {
+                    DrawScreen.AddLineToBuffer(ref DrawScreen.area2, e.Message);
                 }
                 DrawInventory(null, "");
             }
@@ -247,6 +259,8 @@ namespace HeroesOfFate.GameEngine
                     return 1;
                 case '§':
                     //DrawScreen.AddLineToBuffer(ref DrawScreen.area2, "You faced The demon and you died !!!");
+                    if (command == "up" || command == "down") specSymbol = '║';
+                    else specSymbol = '═';
                     BattleScreen battle = new BattleScreen(core);
                     battle.StartBattle();
                     //Environment.Exit(0);

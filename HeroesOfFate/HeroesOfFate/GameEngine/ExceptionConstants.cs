@@ -10,5 +10,9 @@
         internal const string CharCreationException = "{0} is not Valid. Enter data again.";
         internal const string InvalidItemException = "{0} does not exist at current time.";
         internal const string NothingLootedException = "No luck with loot. Try harder next time.";
+        internal const string NullOrNegativeException = "{0} can`t be null or negative.";
+        internal const string LessThanException = "{0} can`t be less than {1}";
+        internal const string NullOrEmptyException = "{0} can`t be null or empty";
+        internal const string MissingException = "There is no such {0} in the game";
     }
 }

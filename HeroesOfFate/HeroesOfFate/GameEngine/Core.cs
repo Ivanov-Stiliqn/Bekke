@@ -285,7 +285,7 @@ namespace HeroesOfFate.GameEngine
         {
             Random random = new Random();
 
-            int result = random.Next( -2, this.database.Items.Count());
+            int result = random.Next( (0 - (this.database.Items.Count() / 2)), this.database.Items.Count());
 
             if (result < 0)
             {
