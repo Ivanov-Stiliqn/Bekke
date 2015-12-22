@@ -287,7 +287,6 @@ namespace HeroesOfFate.GameEngine
                     else specSymbol = '═';
                     BattleScreen battle = new BattleScreen(core, 0);
                     battle.StartBattle();
-                    //Environment.Exit(0);
                     return 2;
                 case bossSymbol:
                     DrawScreen.AddLineToBuffer(ref DrawScreen.area2, string.Format(ExceptionConstants.SomethingHappen, "Boss", "start fighting"));
@@ -295,6 +294,10 @@ namespace HeroesOfFate.GameEngine
                     else specSymbol = '═';
                     BattleScreen bossBattle = new BattleScreen(core, 1);
                     bossBattle.StartBattle();
+                    DrawScreen.AddLineToBuffer(ref DrawScreen.area2, Environment.NewLine);
+                    DrawScreen.AddLineToBuffer(ref DrawScreen.area2, "YOU HAVE WON THE GAME !! CONGRATZ !!");
+                    DrawScreen.AddLineToBuffer(ref DrawScreen.area2, Environment.NewLine);
+                    Environment.Exit(0);
                     return 3;
                 default:
                     return 0;
