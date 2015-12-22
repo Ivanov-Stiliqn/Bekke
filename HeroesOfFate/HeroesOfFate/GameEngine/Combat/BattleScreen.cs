@@ -18,11 +18,13 @@ namespace HeroesOfFate.GameEngine.Combat
         private List<string> battleArea2 = new List<string>();
         private List<string> commandShow = new List<string>();
         private Core core;
+        private int monsterCheck;
 
 
-        public BattleScreen(Core core)
+        public BattleScreen(Core core, int monsterCheck)
         {
             this.core = core;
+            this.monsterCheck = monsterCheck;
 
         }
 
@@ -32,9 +34,17 @@ namespace HeroesOfFate.GameEngine.Combat
             core.MonsterFactory();
             List<IMonster> monsters = core.Database.Monsters.ToList();
             Random rnd = new Random();
-            int monsterChoice = rnd.Next(0, 5);
-            IMonster monster = this.MonsterSelect(monsterChoice, monsters);
-            //core.Hero.Exp += 200;
+            IMonster monster;
+            if (monsterCheck == 0)
+            {
+                
+                int monsterChoice = rnd.Next(0, 5);
+                monster = this.MonsterSelect(monsterChoice, monsters);
+            }
+            else
+            {
+                monster = new Boss();
+            }
             double monsterMaxHealth = monster.Health;
             ScreenUpdate(core.Hero, monster);
             DrawBattle();
@@ -85,7 +95,7 @@ namespace HeroesOfFate.GameEngine.Combat
                         case 0:
                             break;
                         default:
-                            DrawScreen.AddLineToBuffer(ref battleArea2, "Invalid command enter the numbet coresponding to the specific action!");
+                            DrawScreen.AddLineToBuffer(ref battleArea2, ExceptionConstants.InvalidCommandException);
                             break;
                     }
                     DrawBattle();
@@ -98,12 +108,12 @@ namespace HeroesOfFate.GameEngine.Combat
                 }
                 catch (FormatException)
                 {
-                    DrawScreen.AddLineToBuffer(ref battleArea2, "Invalid command enter the numbet coresponding to the specific action!");
+                    DrawScreen.AddLineToBuffer(ref battleArea2, ExceptionConstants.InvalidCommandException);
                     DrawBattle();
                 }
                 catch (OverflowException)
                 {
-                    DrawScreen.AddLineToBuffer(ref battleArea2, "Invalid command enter the numbet coresponding to the specific action!");
+                    DrawScreen.AddLineToBuffer(ref battleArea2, ExceptionConstants.InvalidCommandException);
                     DrawBattle();
                 }
             }
@@ -141,6 +151,7 @@ namespace HeroesOfFate.GameEngine.Combat
             if (core.Hero.Health <= 0)
             {
                 DrawScreen.AddLineToBuffer(ref battleArea2, "Game Over! You have been defeated.");
+                Environment.Exit(0);
                 this.UpdateHpBar(core.Hero, monster);
                 check = false;
             }

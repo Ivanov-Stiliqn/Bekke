@@ -19,6 +19,8 @@ namespace HeroesOfFate.GameEngine
         private const char wallSymbol = '█';
         private const char chestSymbol = '▓';
         private const char monsterSymbol = '§';
+        private const char bossSymbol = 'B';
+        private const char heroSymbol = 'H';
         private static Core core = new Core();
 
 
@@ -168,7 +170,7 @@ namespace HeroesOfFate.GameEngine
         //move method
         private static void Move(string command, string[] splitCommand)
         {
-            DrawScreen.AddLineToBuffer(ref DrawScreen.area2, command); //output here "command"
+            DrawScreen.AddLineToBuffer(ref DrawScreen.area2, string.Format(ExceptionConstants.MovingMessage, splitCommand[1], splitCommand[2])); //output here "command"
             int[] tempposition = {heroPosition[0], heroPosition[1]};
             try
             {
@@ -275,18 +277,25 @@ namespace HeroesOfFate.GameEngine
             switch (symbol)
             {
                 case chestSymbol:
-                    DrawScreen.AddLineToBuffer(ref DrawScreen.area2, "You found a chest and you loot 1500g!!!");
+                    DrawScreen.AddLineToBuffer(ref DrawScreen.area2, string.Format(ExceptionConstants.SomethingHappen, "chest", "try to open it"));
                     if (command == "up" || command == "down") specSymbol = '║';
                     else specSymbol = '═';
                     return 1;
                 case monsterSymbol:
-                    //DrawScreen.AddLineToBuffer(ref DrawScreen.area2, "You faced The demon and you died !!!");
+                    DrawScreen.AddLineToBuffer(ref DrawScreen.area2, string.Format(ExceptionConstants.SomethingHappen, "monster", "start fighting"));
                     if (command == "up" || command == "down") specSymbol = '║';
                     else specSymbol = '═';
-                    BattleScreen battle = new BattleScreen(core);
+                    BattleScreen battle = new BattleScreen(core, 0);
                     battle.StartBattle();
                     //Environment.Exit(0);
                     return 2;
+                case bossSymbol:
+                    DrawScreen.AddLineToBuffer(ref DrawScreen.area2, string.Format(ExceptionConstants.SomethingHappen, "Boss", "start fighting"));
+                    if (command == "up" || command == "down") specSymbol = '║';
+                    else specSymbol = '═';
+                    BattleScreen bossBattle = new BattleScreen(core, 1);
+                    bossBattle.StartBattle();
+                    return 3;
                 default:
                     return 0;
             }
@@ -308,7 +317,7 @@ namespace HeroesOfFate.GameEngine
                 int temp = SpecialSymbolReach(tempMapNewLine[newPosition[1] - 1], command, hero);
                 if (temp == 0) specSymbol = tempMapNewLine[newPosition[1] - 1];
                 tempMapNewLine = oldMap[newPosition[0] - 1].ToCharArray();
-                tempMapNewLine[newPosition[1] - 1] = '©';
+                tempMapNewLine[newPosition[1] - 1] = heroSymbol;
                 oldMap[newPosition[0] - 1] = new string(tempMapNewLine);
                 return oldMap;
             }

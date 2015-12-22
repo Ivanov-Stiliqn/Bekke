@@ -14,5 +14,7 @@
         internal const string LessThanException = "{0} can`t be less than {1}";
         internal const string NullOrEmptyException = "{0} can`t be null or empty";
         internal const string MissingException = "There is no such {0} in the game";
+        internal const string MovingMessage = "You moved {0} moves to the {1}";
+        internal const string SomethingHappen = "You found {0} in your path and you {1}";
     }
 }
