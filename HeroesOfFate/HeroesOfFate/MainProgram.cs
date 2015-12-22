@@ -22,5 +22,3 @@ namespace HeroesOfFate
         }
     }
 }
-//TODO: (skill, merchant) very optional, validation(not all done) !!!, add items ++
-// softuni.bg

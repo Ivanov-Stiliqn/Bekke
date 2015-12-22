@@ -4,6 +4,6 @@
     {
         double Gold { get; set; }
 
-        double Exp { get; set; }
+        int Exp { get; set; }
     }
 }

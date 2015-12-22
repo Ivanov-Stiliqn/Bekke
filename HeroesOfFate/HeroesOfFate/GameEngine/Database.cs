@@ -12,13 +12,13 @@ namespace HeroesOfFate.GameEngine
     {
         private ICollection<IMonster> monsters;
         private ICollection<IItem> items;
-        private ICollection<IItemChest> itemChests; 
+        private ICollection<IItem> itemChests; 
 
         public Database()
         {
             this.monsters = new List<IMonster>();
             this.items = new List<IItem>();
-            this.itemChests = new List<IItemChest>();
+            this.itemChests = new List<IItem>();
         }
 
         public IEnumerable<IMonster> Monsters
@@ -31,7 +31,7 @@ namespace HeroesOfFate.GameEngine
             get { return this.items; }
         }
 
-        public IEnumerable<IItemChest> ItemChests
+        public IEnumerable<IItem> ItemChests
         {
             get { return itemChests; }
         } 
@@ -49,7 +49,7 @@ namespace HeroesOfFate.GameEngine
             this.items.Add(item);
         }
 
-        public void AddItemChest(IItemChest itemChest)
+        public void AddItemChest(IItem itemChest)
         {
             this.itemChests.Add(itemChest);
         }

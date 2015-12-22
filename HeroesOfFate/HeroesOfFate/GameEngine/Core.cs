@@ -14,6 +14,7 @@ using HeroesOfFate.GameEngine.IO;
 using HeroesOfFate.GameEngine;
 using HeroesOfFate.Models.Characters.Heroes;
 using HeroesOfFate.Models.Characters.Monsters;
+using HeroesOfFate.Models.Items.Chests;
 
 namespace HeroesOfFate.GameEngine
 {
@@ -25,6 +26,7 @@ namespace HeroesOfFate.GameEngine
         private readonly Database database = new Database();
         private readonly ConsoleReader reader = new ConsoleReader();
         private readonly ConsoleWriter writer = new ConsoleWriter();
+        private readonly IGoldChest goldChest = new GoldChest("Gold chest", 500, 50);
         private Hero hero;
 
 
@@ -128,6 +130,7 @@ namespace HeroesOfFate.GameEngine
                             else if (inputParams[2] == "dwarf") { this.Hero = new Warrior(inputParams[1], Race.Dwarf); }
                             else if (inputParams[2] == "werewolf") { this.Hero = new Warrior(inputParams[1], Race.Werewolf); }
                             else { throw new ArgumentException(string.Format(ExceptionConstants.CharCreationException, "race")); }
+                            
                             check = false;
                             break;
 
@@ -156,6 +159,7 @@ namespace HeroesOfFate.GameEngine
                         default:
                             throw new ArgumentException(string.Format(ExceptionConstants.CharCreationException, "Class"));
                     }
+                    ImplementItems();
                 }
                 catch (ArgumentException e)
                 {
@@ -228,7 +232,7 @@ namespace HeroesOfFate.GameEngine
                     }
                 }
 
-                foreach (var chest in this.database.ItemChests)
+                foreach (IItemChest chest in this.database.ItemChests)
                 {
                     foreach (var item in this.database.Items)
                     {
@@ -296,6 +300,13 @@ namespace HeroesOfFate.GameEngine
             
 
             return this.database.GetitemByIndex(result);
+        }
+
+        public string LootGoldChest()
+        {
+            hero.Gold += goldChest.Gold;
+            hero.Exp += goldChest.Exp;
+            return string.Format(goldChest.Gold + " " + goldChest.Exp);
         }
     }
 }

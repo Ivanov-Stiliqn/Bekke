@@ -51,12 +51,9 @@
     <Compile Include="Contracts\Item Contracts\IArmor.cs" />
     <Compile Include="Contracts\Item Contracts\IChest.cs" />
     <Compile Include="Contracts\Character Contracts\ICharacter.cs" />
-    <Compile Include="Contracts\Character Contracts\Hero Contracts\IArcher.cs" />
     <Compile Include="Contracts\Item Contracts\IGoldChest.cs" />
     <Compile Include="Contracts\Character Contracts\Hero Contracts\IHero.cs" />
     <Compile Include="Contracts\Item Contracts\IItemChest.cs" />
-    <Compile Include="Contracts\Character Contracts\Hero Contracts\IMage.cs" />
-    <Compile Include="Contracts\Character Contracts\Hero Contracts\IWarrior.cs" />
     <Compile Include="Contracts\Character Contracts\Hero Contracts\IInventory.cs" />
     <Compile Include="Contracts\Item Contracts\IItem.cs" />
     <Compile Include="Contracts\Character Contracts\IMerchant.cs" />
@@ -94,8 +91,6 @@
     <Compile Include="Models\Items\Armors\Shield.cs" />
     <Compile Include="Models\Items\Chests\ItemChest.cs" />
     <Compile Include="Models\Items\Potions\Potion.cs" />
-    <Compile Include="Models\Items\Potions\AttackPotion.cs" />
-    <Compile Include="Models\Items\Potions\DefencePotion.cs" />
     <Compile Include="Models\Items\Potions\HealthPotion.cs" />
     <Compile Include="Models\Items\Weapons\Weapon.cs" />
     <Compile Include="Models\Items\Weapons\OneHWeapons\Axe.cs" />
@@ -115,7 +110,6 @@
     <Compile Include="Models\Characters\Monsters\Troll.cs" />
     <Compile Include="Models\Characters\Monsters\Undead.cs" />
     <Compile Include="Models\Characters\Monsters\Wolf.cs" />
-    <Compile Include="Models\NPC\Merchant.cs" />
     <Compile Include="Models\Characters\Heroes\Race.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="resources\MessageBoxManager.cs" />

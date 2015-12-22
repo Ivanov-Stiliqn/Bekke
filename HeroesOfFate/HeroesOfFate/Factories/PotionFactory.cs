@@ -19,10 +19,6 @@ namespace HeroesOfFate.Factories
             {
                 case"healthPotion":
                     return new HealthPotion(id,price);
-                case "attackPotion":
-                    return new AttackPotion(id,price);
-                case"deffencePotion":
-                    return new DefencePotion(id,price);
                 default:
                     throw new ArgumentException(string.Format(ExceptionConstants.MissingException, "potion"));
             }

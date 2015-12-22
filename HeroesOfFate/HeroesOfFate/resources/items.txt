@@ -1,4 +1,11 @@
-﻿potion healthPotion megakruv 50
+﻿potion healthPotion Megakruv 50
+potion healthPotion Megakruv 50
+potion healthPotion Megakruv 50
+potion healthPotion Megakruv 50
+potion healthPotion Megakruv 50
+potion healthPotion Megakruv 50
+potion healthPotion Megakruv 50
+potion healthPotion Megakruv 50
 weapon axe Machkator 30 250
 weapon sword Ishivator 50 300
 armor body RussetArmor 50 500

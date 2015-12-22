@@ -5,11 +5,12 @@ using HeroesOfFate.GameEngine;
 namespace HeroesOfFate.Models.Items.Chests
 {
     public class GoldChest : Chest, IGoldChest
-    {
+    {      
         private double gold;
-        private double exp;
+        private int exp;
 
-        public GoldChest(string id, double gold, double exp) : base(id)
+        public GoldChest(string id, double gold, int exp) 
+            : base(id)
         {
             this.Gold = gold;
             this.Exp = exp;
@@ -28,7 +29,7 @@ namespace HeroesOfFate.Models.Items.Chests
             }
         }
 
-        public double Exp
+        public int Exp
         {
             get { return this.exp; }
             set 

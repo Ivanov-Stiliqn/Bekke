@@ -3,7 +3,7 @@ using HeroesOfFate.Models.Items.Weapons.TwoHWeapons;
 
 namespace HeroesOfFate.Models.Characters.Heroes
 {
-    public class Archer : Hero, IArcher
+    public class Archer : Hero
     {
         private const double DamageMinDefault = 75;
         private const double DamageMaxDefault = 100;

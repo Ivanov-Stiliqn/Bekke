@@ -278,6 +278,28 @@ namespace HeroesOfFate.GameEngine
             {
                 case chestSymbol:
                     DrawScreen.AddLineToBuffer(ref DrawScreen.area2, string.Format(ExceptionConstants.SomethingHappen, "chest", "try to open it"));
+                    
+                    Random rnd = new Random();
+                    if (rnd.Next(1, 3) == 1)
+                    {
+                        string[] recievedGold = core.LootGoldChest().Split(' ');
+                        DrawScreen.AddLineToBuffer(ref DrawScreen.area2,
+                            string.Format(ExceptionConstants.SomethingHappen, "gold chest", "recieved " + recievedGold[0] + " gold and " + recievedGold[1] + " exp" ));
+                    }
+                    else
+                    {
+                        try
+                        {
+                            var item = core.LootRandomItem();
+                            DrawScreen.AddLineToBuffer(ref DrawScreen.area2,
+                            string.Format(ExceptionConstants.SomethingHappen, "item chest", "recieved " + item.Id));
+                        }
+                        catch (ArgumentException e)
+                        {
+                            DrawScreen.AddLineToBuffer(ref DrawScreen.area2, e.Message);
+                        }
+                            
+                    }
                     if (command == "up" || command == "down") specSymbol = '║';
                     else specSymbol = '═';
                     return 1;

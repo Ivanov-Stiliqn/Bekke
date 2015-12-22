@@ -9,26 +9,24 @@ namespace HeroesOfFate.Models.Items
         private ItemType type;
         private string id;
         private decimal price;
+        private double weaponAttack;
+        private double armorDefence;
+        private double healthEffect;
 
         protected Item(string id,decimal price)
         {
             this.Type = type;
             this.Id = id;
             this.Price = price;
+            this.WeaponAttack = weaponAttack;
+            this.ArmorDefence = armorDefence;
+            this.HealthEffect = healthEffect;
         }
 
-        public ItemType Type
+        public ItemType Type 
         {
             get { return this.type; }
-            set 
-            {
-                if (value == null)
-                {
-                    throw new ArgumentException(string.Format(ExceptionConstants.NullOrEmptyException, "Item type"));
-                }
-                this.type = value; 
-            } 
-            
+            set { this.type = value; } 
         }
 
         public string Id
@@ -59,11 +57,44 @@ namespace HeroesOfFate.Models.Items
 
         public virtual bool IsOneH { get; set; }
         //TODO: validation
-        public double WeaponAttack { get; set; }
+        public double WeaponAttack 
+        { 
+            get {return this.weaponAttack;}
+            set
+            {
+                if (value < 0)
+	            {
+		            throw new ArgumentOutOfRangeException(string.Format(ExceptionConstants.LessThanException, "Weapon attack", 0));
+	            }
+                this.weaponAttack = value;
+            }
+        }
 
-        public double ArmorDefence { get; set; }
+        public double ArmorDefence 
+        { 
+            get {return this.armorDefence;}
+            set
+            {
+                if (value < 0)
+	            {
+		            throw new ArgumentOutOfRangeException(string.Format(ExceptionConstants.LessThanException, "Armor defence", 0));
+	            }
+                this.armorDefence = value;
+            }
+        }
 
-        public double HealthEffect { get; set; }
+        public double HealthEffect 
+        { 
+            get {return this.healthEffect;}
+            set
+            {
+                if (value < 0)
+	            {
+		            throw new ArgumentOutOfRangeException(string.Format(ExceptionConstants.LessThanException, "Health effect", 0));
+	            }
+                this.healthEffect = value;
+            }
+        }
 
         public override string ToString()
         {

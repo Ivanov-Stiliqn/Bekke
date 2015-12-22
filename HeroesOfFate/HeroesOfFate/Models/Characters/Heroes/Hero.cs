@@ -185,9 +185,6 @@ namespace HeroesOfFate.Models.Characters.Heroes
 
         public void ApplyPotionEffect(Potion potion)
         {
-            this.DamageMin += potion.WeaponAttack;
-            this.DamageMax += potion.WeaponAttack;
-            this.Armor += potion.ArmorDefence;
             this.Health += potion.HealthEffect;
 
             if (this.Health > this.MaxHealth)
@@ -197,12 +194,6 @@ namespace HeroesOfFate.Models.Characters.Heroes
 
         }
 
-        public void RemovePotionEffect(Potion potion)
-        {
-            this.DamageMin -= potion.WeaponAttack;
-            this.DamageMax -= potion.WeaponAttack;
-            this.Armor -= potion.ArmorDefence;
-        }
 
         public void Equip(IItem item)
         {
