@@ -7,6 +7,7 @@ using HeroesOfFate.Contracts;
 using HeroesOfFate.Contracts.FactoryContracts;
 using HeroesOfFate.Contracts.Item_Contracts;
 using HeroesOfFate.Models.Items.Potions;
+using HeroesOfFate.GameEngine;
 
 namespace HeroesOfFate.Factories
 {
@@ -23,7 +24,7 @@ namespace HeroesOfFate.Factories
                 case"deffencePotion":
                     return new DefencePotion(id,price);
                 default:
-                    throw new ArgumentException("There is no such potion in the game");
+                    throw new ArgumentException(string.Format(ExceptionConstants.MissingException, "potion"));
             }
         }
     }

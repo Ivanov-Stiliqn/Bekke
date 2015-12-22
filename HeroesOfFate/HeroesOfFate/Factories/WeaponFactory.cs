@@ -8,6 +8,7 @@ using HeroesOfFate.Contracts.FactoryContracts;
 using HeroesOfFate.Contracts.Item_Contracts;
 using HeroesOfFate.Models.Items.Weapons.OneHWeapons;
 using HeroesOfFate.Models.Items.Weapons.TwoHWeapons;
+using HeroesOfFate.GameEngine;
 
 namespace HeroesOfFate.Factories
 {
@@ -37,7 +38,7 @@ namespace HeroesOfFate.Factories
                 case"staff":
                     return new Staff(id, weaponAttack, price);
                 default:
-                    throw new ArgumentException("There is no such weapon in the game");
+                    throw new ArgumentException(string.Format(ExceptionConstants.MissingException, "weapon"));
             }
         }
     }

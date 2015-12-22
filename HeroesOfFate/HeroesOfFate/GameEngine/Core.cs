@@ -87,7 +87,7 @@ namespace HeroesOfFate.GameEngine
                     Environment.Exit(0);
                     break;
                 default:
-                    throw new ArgumentException("Unknown command.");
+                    throw new ArgumentException(ExceptionConstants.InvalidCommandException);
             }
         }
 
@@ -112,38 +112,55 @@ namespace HeroesOfFate.GameEngine
             chooseOption.AppendLine("The avalable races are: Human, Elf, Orc, Dwarf or Werewolf");
             this.writer.PrintCommand(chooseOption.ToString());
 
-            string[] inputParams = this.reader.ReadCommand().Split();
+            bool check = true;
 
-            switch (inputParams[0])
+            while (check)
             {
-                case "warrior":
-                    if (inputParams[2] == "human") { this.Hero = new Warrior(inputParams[1], Race.Human);}
-                    else if (inputParams[2] == "elf") { this.Hero = new Warrior(inputParams[1], Race.Elf); }
-                    else if (inputParams[2] == "orc") { this.Hero = new Warrior(inputParams[1], Race.Orc); }
-                    else if (inputParams[2] == "dwarf") { this.Hero = new Warrior(inputParams[1], Race.Dwarf); }
-                    else if (inputParams[2] == "werewolf") { this.Hero = new Warrior(inputParams[1], Race.Werewolf); }
-                    else { throw  new ArgumentException("No such race !");}
+                string[] inputParams = this.reader.ReadCommand().Split();
+                try
+                {
+                    switch (inputParams[0])
+                    {
+                        case "warrior":
+                            if (inputParams[2] == "human") { this.Hero = new Warrior(inputParams[1], Race.Human);}
+                            else if (inputParams[2] == "elf") { this.Hero = new Warrior(inputParams[1], Race.Elf); }
+                            else if (inputParams[2] == "orc") { this.Hero = new Warrior(inputParams[1], Race.Orc); }
+                            else if (inputParams[2] == "dwarf") { this.Hero = new Warrior(inputParams[1], Race.Dwarf); }
+                            else if (inputParams[2] == "werewolf") { this.Hero = new Warrior(inputParams[1], Race.Werewolf); }
+                            else { throw new ArgumentException(string.Format(ExceptionConstants.CharCreationException, "race")); }
+                            check = false;
+                            break;
 
-                    break;
+                        case "archer":
+                            if (inputParams[2] == "human") { this.Hero = new Archer(inputParams[1], Race.Human); }
+                            else if (inputParams[2] == "elf") { this.Hero = new Archer(inputParams[1], Race.Elf); }
+                            else if (inputParams[2] == "orc") { this.Hero = new Archer(inputParams[1], Race.Orc); }
+                            else if (inputParams[2] == "dwarf") { this.Hero = new Archer(inputParams[1], Race.Dwarf); }
+                            else if (inputParams[2] == "werewolf") { this.Hero = new Archer(inputParams[1], Race.Werewolf); }
+                            else { throw new ArgumentException(string.Format(ExceptionConstants.CharCreationException, "race")); }
+                            check = false;
+                            break;
 
-                case "archer":
-                    if (inputParams[2] == "human") { this.Hero = new Archer(inputParams[1], Race.Human); }
-                    else if (inputParams[2] == "elf") { this.Hero = new Archer(inputParams[1], Race.Elf); }
-                    else if (inputParams[2] == "orc") { this.Hero = new Archer(inputParams[1], Race.Orc); }
-                    else if (inputParams[2] == "dwarf") { this.Hero = new Archer(inputParams[1], Race.Dwarf); }
-                    else if (inputParams[2] == "werewolf") { this.Hero = new Archer(inputParams[1], Race.Werewolf); }
-                    else { throw new ArgumentException("No such race !"); }
-
-                    break;
-
-                case "mage":
-                    if (inputParams[2] == "human") { this.Hero = new Mage(inputParams[1], Race.Human); }
-                    else if (inputParams[2] == "elf") { this.Hero = new Mage(inputParams[1], Race.Elf); }
-                    else if (inputParams[2] == "orc") { this.Hero = new Mage(inputParams[1], Race.Orc); }
-                    else if (inputParams[2] == "dwarf") { this.Hero = new Mage(inputParams[1], Race.Dwarf); }
-                    else if (inputParams[2] == "werewolf") { this.Hero = new Mage(inputParams[1], Race.Werewolf); }
-                    else { throw new ArgumentException("No such race !"); }
-                    break;
+                        case "mage":
+                            if (inputParams[2] == "human") { this.Hero = new Mage(inputParams[1], Race.Human); }
+                            else if (inputParams[2] == "elf") { this.Hero = new Mage(inputParams[1], Race.Elf); }
+                            else if (inputParams[2] == "orc") { this.Hero = new Mage(inputParams[1], Race.Orc); }
+                            else if (inputParams[2] == "dwarf") { this.Hero = new Mage(inputParams[1], Race.Dwarf); }
+                            else if (inputParams[2] == "werewolf") { this.Hero = new Mage(inputParams[1], Race.Werewolf); }
+                            else { throw new ArgumentException(string.Format(ExceptionConstants.CharCreationException, "race")); }
+                            check = false;
+                            break;
+                        case "exit":
+                            Environment.Exit(0);
+                            break;
+                        default:
+                            throw new ArgumentException(string.Format(ExceptionConstants.CharCreationException, "Class"));
+                    }
+                }
+                catch (ArgumentException e)
+                {
+                    this.writer.PrintCommand(e.Message);
+                }
             }
         }
 
@@ -163,20 +180,31 @@ namespace HeroesOfFate.GameEngine
 
             this.writer.PrintCommand(output.ToString());
 
-            string input = this.reader.ReadCommand();
+            
 
 
-            switch (input)
+            while (true)
             {
-                case "back":
-                    Console.Clear();
-                    this.StartScreen();
-                    break;
-                case "quit":
-                    Environment.Exit(0);
-                    break;
-                default:
-                    throw new ArgumentException("Unknow command.");
+                try
+                {
+                    string input = this.reader.ReadCommand();
+                    switch (input)
+                    {
+                        case "back":
+                            Console.Clear();
+                            this.StartScreen();
+                            break;
+                        case "quit":
+                            Environment.Exit(0);
+                            break;
+                        default:
+                            throw new ArgumentException(ExceptionConstants.InvalidCommandException);
+                    }
+                }
+                catch (ArgumentException e)
+                {
+                    this.writer.PrintCommand(e.Message);
+                }
             }
         }
 
@@ -216,27 +244,34 @@ namespace HeroesOfFate.GameEngine
             string itemType = inputArgs[0];
             string itemName = inputArgs[1];
             string itemId = inputArgs[2];
-            switch (itemType)
+            try
             {
-                case "potion":
-                    decimal price = decimal.Parse(inputArgs[3]);
-                    IItem potion = this.potionFactory.CreatePotion(itemName, itemId, price);
-                    this.database.AddItem(potion);
-                    break;
-                case "weapon":
-                    double weaponAttack = double.Parse(inputArgs[3]);
-                    decimal weaponPrice = decimal.Parse(inputArgs[4]);
-                    IItem weapon = this.weaponFactory.CreateWeapon(itemName, itemId, weaponAttack, weaponPrice);
-                    this.database.AddItem(weapon);
-                    break;
-                case "armor":
-                    double armorDeffence = double.Parse(inputArgs[3]);
-                    decimal armorPrice = decimal.Parse(inputArgs[4]);
-                    IItem armor = this.armorFactory.CreateArmor(itemName, itemId, armorDeffence, armorPrice);
-                    this.database.AddItem(armor);
-                    break;
-                default:
-                    throw new ArgumentException("Such item does not exist at current time");
+                switch (itemType)
+                {
+                    case "potion":
+                        decimal price = decimal.Parse(inputArgs[3]);
+                        IItem potion = this.potionFactory.CreatePotion(itemName, itemId, price);
+                        this.database.AddItem(potion);
+                        break;
+                    case "weapon":
+                        double weaponAttack = double.Parse(inputArgs[3]);
+                        decimal weaponPrice = decimal.Parse(inputArgs[4]);
+                        IItem weapon = this.weaponFactory.CreateWeapon(itemName, itemId, weaponAttack, weaponPrice);
+                        this.database.AddItem(weapon);
+                        break;
+                    case "armor":
+                        double armorDeffence = double.Parse(inputArgs[3]);
+                        decimal armorPrice = decimal.Parse(inputArgs[4]);
+                        IItem armor = this.armorFactory.CreateArmor(itemName, itemId, armorDeffence, armorPrice);
+                        this.database.AddItem(armor);
+                        break;
+                    default:
+                        throw new ArgumentException(string.Format(ExceptionConstants.InvalidItemException, "Potion"));
+                }
+            }
+            catch (ArgumentException e)
+            {
+                this.writer.PrintCommand(e.Message);
             }
         }
 
@@ -250,11 +285,11 @@ namespace HeroesOfFate.GameEngine
         {
             Random random = new Random();
 
-            int result = random.Next( 0, this.database.Items.Count());
+            int result = random.Next( -2, this.database.Items.Count());
 
             if (result < 0)
             {
-                throw new ArgumentException("You have no luck and looted nothing!!");
+                throw new ArgumentException(ExceptionConstants.NothingLootedException);
             }
 
             this.Hero.AddItemToInventory(this.database.GetitemByIndex(result));

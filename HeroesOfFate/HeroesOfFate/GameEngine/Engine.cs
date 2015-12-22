@@ -173,7 +173,7 @@ namespace HeroesOfFate.GameEngine
             }
             catch (FormatException)
             {
-                DrawScreen.AddLineToBuffer(ref DrawScreen.area2, "Number you entered is not a valid one!");
+                DrawScreen.AddLineToBuffer(ref DrawScreen.area2, ExceptionConstants.InvalidNumberEnteredException);
             }
 
             DrawScreen.area1.Clear();
@@ -187,7 +187,7 @@ namespace HeroesOfFate.GameEngine
         {
             if ((heroPosition[0] > hight || heroPosition[1] > width) || (heroPosition[0] <= 0 || heroPosition[1] <= 0))
             {
-                throw new ArgumentException("Outside Map boundaries!");
+                throw new ArgumentException(ExceptionConstants.OutsideMapBoundariesException);
             }
         }
 
@@ -262,7 +262,7 @@ namespace HeroesOfFate.GameEngine
             char[] tempMapNewLine = oldMap[newPosition[0] - 1].ToCharArray();
             if (!CheckForWallsInPAth(oldMap, oldPosition, newPosition))
             {
-                throw new ArgumentException("You can`t go there !");
+                throw new ArgumentException(ExceptionConstants.WallReachException);
             }
             else
             {
@@ -286,7 +286,7 @@ namespace HeroesOfFate.GameEngine
             else if (direction == "down") heroPosition[0] += steps;
             else
             {
-                throw new ArgumentException("Enter valid direction!");
+                throw new ArgumentException(ExceptionConstants.WrongDirectionException);
             }
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using HeroesOfFate.Contracts;
+using HeroesOfFate.GameEngine;
 
 namespace HeroesOfFate.Models.Items
 {
@@ -30,7 +31,7 @@ namespace HeroesOfFate.Models.Items
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentNullException("item id", "Item name cannot be null or empty !");
+                    throw new ArgumentNullException(string.Format(ExceptionConstants.NullOrNegativeException, "Item id"));
                 }
                 id = value;
             }
@@ -43,7 +44,7 @@ namespace HeroesOfFate.Models.Items
             {
                 if (value < 0)
                 {
-                    throw new ArgumentOutOfRangeException("item price", "Price cannot be negative !");
+                    throw new ArgumentOutOfRangeException(string.Format(ExceptionConstants.NullOrNegativeException, "Item price"));
                 }
                 price = value;
             }

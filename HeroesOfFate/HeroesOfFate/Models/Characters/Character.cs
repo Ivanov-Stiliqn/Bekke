@@ -1,5 +1,6 @@
 ﻿using System;
 using HeroesOfFate.Contracts;
+using HeroesOfFate.GameEngine;
 
 namespace HeroesOfFate.Models.Characters
 {
@@ -32,7 +33,7 @@ namespace HeroesOfFate.Models.Characters
             {
                 if (value < 0)
                 {
-                    throw new ArgumentOutOfRangeException("level", "Level cannot be negative");
+                    throw new ArgumentOutOfRangeException(string.Format(ExceptionConstants.NullOrNegativeException, "Level"));
                 }
                 this.level = value;
             }
@@ -58,7 +59,7 @@ namespace HeroesOfFate.Models.Characters
             {
                 if (value <= 0)
                 {
-                    throw new ArgumentOutOfRangeException("minimum damage", "Damage cannot be 0 or negative !");
+                    throw new ArgumentOutOfRangeException(string.Format(ExceptionConstants.NullOrNegativeException, "Minimum damage"));
                 }
                 this.damageMin = value;
             } 
@@ -71,7 +72,7 @@ namespace HeroesOfFate.Models.Characters
             {
                 if (value <= 0)
                 {
-                    throw new ArgumentOutOfRangeException("maximum damage", "Damage cannot be 0 or negative !");
+                    throw new ArgumentOutOfRangeException(string.Format(ExceptionConstants.NullOrNegativeException, "Maximum damage"));
                 }
                 this.damageMax = value;
             }

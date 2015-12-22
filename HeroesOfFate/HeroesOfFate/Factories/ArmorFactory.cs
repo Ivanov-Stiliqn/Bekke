@@ -7,6 +7,7 @@ using HeroesOfFate.Contracts;
 using HeroesOfFate.Contracts.FactoryContracts;
 using HeroesOfFate.Contracts.Item_Contracts;
 using HeroesOfFate.Models.Items.Armors;
+using HeroesOfFate.GameEngine;
 
 namespace HeroesOfFate.Factories
 {
@@ -30,7 +31,7 @@ namespace HeroesOfFate.Factories
                 case"shield":
                     return new Shield(id, armorDeffence, price);
                 default:
-                    throw new ArgumentException("There is no such armor in the game");
+                    throw new ArgumentException(string.Format(ExceptionConstants.MissingException, "armor"));
             }
         }
     }
