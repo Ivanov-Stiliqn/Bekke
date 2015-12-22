@@ -16,7 +16,9 @@ namespace HeroesOfFate.GameEngine
         private static List<string> map = DrawScreen.AddMap();// adding map to the game
         private static int[] heroPosition = { 5, 1 };
         private static char specSymbol = '═';
-        private static char wallSymbol = '█';
+        private const char wallSymbol = '█';
+        private const char chestSymbol = '▓';
+        private const char monsterSymbol = '§';
         private static Core core = new Core();
 
 
@@ -212,6 +214,11 @@ namespace HeroesOfFate.GameEngine
                     char[] tempMapOldLine = Map[oldPosition[0] - 1].ToCharArray();
                     for (int i = oldPosition[1] - 1; i <= newPosition[1] - 1; i++)
                     {
+                        if (tempMapOldLine[i] == monsterSymbol)
+                        {
+                            changeHeroCoordinate(i + 1, 1);
+                            return true;
+                        }
                         if (tempMapOldLine[i] == wallSymbol) return false;
                     }
                 }
@@ -220,6 +227,11 @@ namespace HeroesOfFate.GameEngine
                     for (int i = oldPosition[0] - 1; i <= newPosition[0] - 1; i++)
                     {
                         char[] tempMapOldLine = Map[i].ToCharArray();
+                        if (tempMapOldLine[i] == monsterSymbol)
+                        {
+                            changeHeroCoordinate(i + 1, 0);
+                            return true;
+                        }
                         if (tempMapOldLine[oldPosition[1] - 1] == wallSymbol) return false;
                     }
                 }
@@ -232,6 +244,11 @@ namespace HeroesOfFate.GameEngine
                     char[] tempMapOldLine = Map[oldPosition[0] - 1].ToCharArray();
                     for (int i = newPosition[1] - 1; i <= oldPosition[1] - 1; i++)
                     {
+                        if (tempMapOldLine[i] == monsterSymbol)
+                        {
+                            changeHeroCoordinate(i + 1, 1);
+                            return true;
+                        }
                         if (tempMapOldLine[i] == wallSymbol) return false;
                     }
                 }
@@ -240,6 +257,11 @@ namespace HeroesOfFate.GameEngine
                     for (int i = newPosition[0] - 1; i <= oldPosition[0] - 1; i++)
                     {
                         char[] tempMapOldLine = Map[i].ToCharArray();
+                        if (tempMapOldLine[i] == monsterSymbol)
+                        {
+                            changeHeroCoordinate(i + 1, 0);
+                            return true;
+                        }
                         if (tempMapOldLine[oldPosition[1] - 1] == wallSymbol) return false;
                     }
                 }
@@ -252,12 +274,12 @@ namespace HeroesOfFate.GameEngine
         {
             switch (symbol)
             {
-                case '▓':
+                case chestSymbol:
                     DrawScreen.AddLineToBuffer(ref DrawScreen.area2, "You found a chest and you loot 1500g!!!");
                     if (command == "up" || command == "down") specSymbol = '║';
                     else specSymbol = '═';
                     return 1;
-                case '§':
+                case monsterSymbol:
                     //DrawScreen.AddLineToBuffer(ref DrawScreen.area2, "You faced The demon and you died !!!");
                     if (command == "up" || command == "down") specSymbol = '║';
                     else specSymbol = '═';
@@ -274,7 +296,7 @@ namespace HeroesOfFate.GameEngine
         {
             char[] tempMapOldLine = oldMap[oldPosition[0] - 1].ToCharArray();
             char[] tempMapNewLine = oldMap[newPosition[0] - 1].ToCharArray();
-            if (!CheckForWallsInPAth(oldMap, oldPosition, newPosition))
+            if (!CheckForWallsInPAth(oldMap, oldPosition,newPosition))
             {
                 throw new ArgumentException(ExceptionConstants.WallReachException);
             }
@@ -291,7 +313,10 @@ namespace HeroesOfFate.GameEngine
                 return oldMap;
             }
         }
-
+        private static void changeHeroCoordinate(int newValue,int position)
+        {
+            heroPosition[position] = newValue; 
+        }
         private static void changeHeroCoordinates(int steps, string direction) 
         {
             if (direction == "left") heroPosition[1] -= steps;
