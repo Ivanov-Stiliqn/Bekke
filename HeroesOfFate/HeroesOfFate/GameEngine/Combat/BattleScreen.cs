@@ -168,6 +168,7 @@ namespace HeroesOfFate.GameEngine.Combat
             core.Hero.Gold += monster.GoldReward;
             DrawScreen.AddLineToBuffer(ref battleArea2,
                 "You earned " + monster.ExpirienceReward + " Exp, and " + monster.GoldReward + " gold.");
+            monster.Health = 0;
             this.UpdateHpBar(core.Hero, monster);
             try
             {

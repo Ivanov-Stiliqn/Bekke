@@ -46,6 +46,7 @@ namespace HeroesOfFate.Models.Characters
             {
                 if (value <= 0)
                 {
+                    this.health = 0;
                     isDead = true;
                 }
                 this.health = value;
