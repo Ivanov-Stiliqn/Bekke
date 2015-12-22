@@ -49,6 +49,8 @@ namespace HeroesOfFate.GameEngine.Combat
             ScreenUpdate(core.Hero, monster);
             DrawBattle();
             bool check = true;
+            int specialHitCD = 0;
+            int hardHitCD = 0;
             while (check)
             {
                 try
@@ -68,9 +70,28 @@ namespace HeroesOfFate.GameEngine.Combat
                             {
                                 check = this.BattleEnd(monster, check, monsterMaxHealth);
                             }
+                            if (specialHitCD > 0) specialHitCD--;
+                            if (hardHitCD > 0) hardHitCD--;
                             break;
                         case 2:
-                            DrawScreen.AddLineToBuffer(ref battleArea2, "You used y and did strong hit to your opponent for x amount of damage!");
+                            if (hardHitCD == 0)
+                            {
+                                dmg = HeroHit(ref monster, rnd.Next((int)core.Hero.DamageMin, (int)core.Hero.DamageMax + 1)) * 2;
+                                DrawScreen.AddLineToBuffer(ref battleArea2, "You used y and did strong hit to your opponent for " + dmg + " amount of damage!");
+                                if (monster.Health > 0)
+                                {
+                                    check = this.MonsterDoDamage(rnd, monster, check);
+                                }
+                                else
+                                {
+                                    check = this.BattleEnd(monster, check, monsterMaxHealth);
+                                }
+                                hardHitCD = 2;
+                            }
+                            else
+                            {
+                                DrawScreen.AddLineToBuffer(ref battleArea2, string.Format("You can`t use that skill... you still have {0} turns in CD", hardHitCD));
+                            }
                             break;
                         case 3:
                             var healthPotion = core.Hero.Inventory.FirstOrDefault(x => x is HealthPotion);
@@ -88,9 +109,28 @@ namespace HeroesOfFate.GameEngine.Combat
                                   "You dont have any HP potions");
                             }
                             check = this.MonsterDoDamage(rnd, monster, check);
+                            if (specialHitCD > 0) specialHitCD--;
+                            if (hardHitCD > 0) hardHitCD--;
                             break;
                         case 4:
-                            DrawScreen.AddLineToBuffer(ref battleArea2, "You used special hit wich did x amount of damage!");
+                            if (specialHitCD == 0)
+                            {
+                                dmg = HeroHit(ref monster, rnd.Next((int)core.Hero.DamageMin, (int)core.Hero.DamageMax + 1)) * 4;
+                                DrawScreen.AddLineToBuffer(ref battleArea2, "You used special hit wich did " + dmg + " amount of damage!");
+                                if (monster.Health > 0)
+                                {
+                                    check = this.MonsterDoDamage(rnd, monster, check);
+                                }
+                                else
+                                {
+                                    check = this.BattleEnd(monster, check, monsterMaxHealth);
+                                }
+                                specialHitCD = 4;
+                            }
+                            else
+                            {
+                                DrawScreen.AddLineToBuffer(ref battleArea2, string.Format("You can`t use that skill... you still have {0} turns in CD", specialHitCD));
+                            }
                             break;
                         case 0:
                             break;
@@ -98,6 +138,7 @@ namespace HeroesOfFate.GameEngine.Combat
                             DrawScreen.AddLineToBuffer(ref battleArea2, ExceptionConstants.InvalidCommandException);
                             break;
                     }
+                    
                     DrawBattle();
                     if (command == 0) check = false;
                     if (check == false)
