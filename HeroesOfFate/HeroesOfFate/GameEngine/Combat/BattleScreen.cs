@@ -76,7 +76,7 @@ namespace HeroesOfFate.GameEngine.Combat
                         case 2:
                             if (hardHitCD == 0)
                             {
-                                dmg = HeroHit(ref monster, rnd.Next((int)core.Hero.DamageMin, (int)core.Hero.DamageMax + 1)) * 2;
+                                dmg = HeroHit(ref monster, rnd.Next((int)core.Hero.DamageMin, (int)core.Hero.DamageMax + 1) * 2);
                                 DrawScreen.AddLineToBuffer(ref battleArea2, "You used y and did strong hit to your opponent for " + dmg + " amount of damage!");
                                 if (monster.Health > 0)
                                 {
@@ -115,7 +115,7 @@ namespace HeroesOfFate.GameEngine.Combat
                         case 4:
                             if (specialHitCD == 0)
                             {
-                                dmg = HeroHit(ref monster, rnd.Next((int)core.Hero.DamageMin, (int)core.Hero.DamageMax + 1)) * 4;
+                                dmg = HeroHit(ref monster, rnd.Next((int)core.Hero.DamageMin, (int)core.Hero.DamageMax + 1) * 4) ;
                                 DrawScreen.AddLineToBuffer(ref battleArea2, "You used special hit wich did " + dmg + " amount of damage!");
                                 if (monster.Health > 0)
                                 {

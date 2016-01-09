@@ -185,9 +185,9 @@ namespace HeroesOfFate.GameEngine
             this.writer.PrintCommand(output.ToString());
 
             
+            bool check = true;
 
-
-            while (true)
+            while (check)
             {
                 try
                 {
@@ -197,6 +197,7 @@ namespace HeroesOfFate.GameEngine
                         case "back":
                             Console.Clear();
                             this.StartScreen();
+                            check = false;
                             break;
                         case "quit":
                             Environment.Exit(0);
